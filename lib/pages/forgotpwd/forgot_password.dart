@@ -1,32 +1,28 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:testing/pages/forgotpwd/pwd.dart';
 import 'package:testing/pages/login/login.dart';
 
-class Forgot_Password extends StatelessWidget {
-  const Forgot_Password({super.key});
+class forgotPassword extends StatelessWidget {
+  const forgotPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(80.0),
+          preferredSize: const Size.fromHeight(80.0),
           child: AppBar(
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
                 borderRadius:
                     BorderRadius.vertical(bottom: Radius.circular(30))),
             centerTitle: true,
           ),
         ),
         body: Center(
-            child: Container(
+            child: SizedBox(
                 width: 300,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Change your password',
+                    const Text('Change your password',
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 20,
@@ -41,9 +37,9 @@ class Forgot_Password extends StatelessWidget {
                           hintText: 'New Password',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(11),
-                              borderSide: BorderSide(color: Colors.black)),
+                              borderSide: const BorderSide(color: Colors.black)),
                         ),
-                        style: TextStyle(color: Colors.black)),
+                        style: const TextStyle(color: Colors.black)),
                     Container(
                       height: 15,
                     ),
@@ -54,9 +50,9 @@ class Forgot_Password extends StatelessWidget {
                           hintText: 'Confirm Password',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(11),
-                              borderSide: BorderSide(color: Colors.black)),
+                              borderSide: const BorderSide(color: Colors.black)),
                         ),
-                        style: TextStyle(color: Colors.black)),
+                        style: const TextStyle(color: Colors.black)),
                     Container(
                       height: 15,
                     ),
@@ -69,7 +65,7 @@ class Forgot_Password extends StatelessWidget {
                                       title: 'Login',
                                     )));
                       },
-                      child: Text('Confirm'),
+                      child: const Text('Confirm'),
                     ),
                   ],
                 ))));

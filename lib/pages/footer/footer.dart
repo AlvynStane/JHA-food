@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:testing/providers/news_provider.dart';
 
 class Footter extends StatefulWidget {
   const Footter({super.key});
@@ -15,7 +12,7 @@ class _FootterState extends State<Footter> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-        items: [
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle_rounded),
@@ -27,7 +24,6 @@ class _FootterState extends State<Footter> {
           setState(() {
             _selectedIndex = index;
           });
-          ;
         });
   }
 }

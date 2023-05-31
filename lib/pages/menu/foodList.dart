@@ -10,10 +10,7 @@ class Food {
   Food({this.heroTag, this.foodName, this.foodPrice, this.number});
 
   @override
-  bool operator ==(Object other) {
-    return other is Food && this.foodName == other.foodName;
-  }
-
-  @override
-  int get hashCode => super.hashCode;
+  bool operator == (Object other) {
+    return other is Food && foodName == other.foodName;
+  }  
 }

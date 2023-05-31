@@ -1,10 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:testing/pages/forgotpwd/forgot_password.dart';
 import 'package:testing/pages/forgotpwd/pwd.dart';
-import 'package:testing/pages/forgotpwd/verif.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:testing/menu.dart';
 import 'package:testing/pages/regist/regist_news.dart';
 import 'package:testing/main.dart';
@@ -40,12 +36,12 @@ class _MyHomePageState extends State<Login> {
           backgroundColor: Colors.purple,
         ),
         body: Center(
-            child: Container(
+            child: SizedBox(
                 width: 300,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('LOGIN',
+                    const Text('LOGIN',
                         style: TextStyle(color: Colors.black, fontSize: 35)),
                     TextField(
                         keyboardType: TextInputType.emailAddress,
@@ -55,20 +51,20 @@ class _MyHomePageState extends State<Login> {
                             focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(11),
                                 borderSide:
-                                    BorderSide(color: Colors.black, width: 2)),
+                                    const BorderSide(color: Colors.black, width: 2)),
                             enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(11),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                     color: Colors.blueAccent, width: 2)),
                             disabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(11),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                     color: Colors.black45, width: 2)),
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.email,
                               color: Colors.black,
                             )),
-                        style: TextStyle(color: Colors.black)),
+                        style: const TextStyle(color: Colors.black)),
                     Container(
                       height: 11,
                     ),
@@ -79,12 +75,12 @@ class _MyHomePageState extends State<Login> {
                             hintText: 'Enter Password Here',
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(11),
-                                borderSide: BorderSide(color: Colors.black)),
-                            prefixIcon: Icon(
+                                borderSide: const BorderSide(color: Colors.black)),
+                            prefixIcon: const Icon(
                               Icons.lock,
                               color: Colors.black,
                             )),
-                        style: TextStyle(color: Colors.black)),
+                        style: const TextStyle(color: Colors.black)),
                     Row(
                       children: <Widget>[
                         Checkbox(
@@ -99,22 +95,19 @@ class _MyHomePageState extends State<Login> {
                       ],
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: 10),
-                      padding: EdgeInsets.all(15),
-                      child: Container(
+                      margin: const EdgeInsets.only(top: 10),
+                      padding: const EdgeInsets.all(15),
+                      child: SizedBox(
                           height: 40,
                           width: 90,
                           child: ElevatedButton(
                               onPressed: () {
-                                String uEmail =
-                                    TextEditingController().text.toString();
-                                String uPass = TextEditingController().text;
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => Menu()));
+                                        builder: (context) => const Menu()));
                               },
-                              child: Text(
+                              child: const Text(
                                 'Login',
                               ))),
                     ),
@@ -122,7 +115,7 @@ class _MyHomePageState extends State<Login> {
                         text: TextSpan(children: [
                       TextSpan(
                           text: 'Belum punya akun ? Daftar Disini',
-                          style: TextStyle(color: Colors.blue),
+                          style: const TextStyle(color: Colors.blue),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
                               Navigator.push(
@@ -136,14 +129,14 @@ class _MyHomePageState extends State<Login> {
                         text: TextSpan(children: [
                       TextSpan(
                           text: 'Lupa Password ?',
-                          style: TextStyle(color: Colors.blue),
+                          style: const TextStyle(color: Colors.blue),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const Bantuan_Forgot()));
+                                          const bantuanForgot()));
                             })
                     ])),
                   ],

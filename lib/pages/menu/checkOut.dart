@@ -3,7 +3,7 @@ import '../../menu.dart';
 import 'foodList.dart';
 
 class CheckOutPage extends StatefulWidget {
-  CheckOutPage();
+  const CheckOutPage({super.key});
 
   @override
   _CheckOutPageState createState() => _CheckOutPageState();
@@ -17,18 +17,18 @@ class _CheckOutPageState extends State<CheckOutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFF7A9BEE),
+        backgroundColor: const Color(0xFF7A9BEE),
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
               Navigator.of(context).pop();
             },
-            icon: Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios),
             color: Colors.white,
           ),
           backgroundColor: Colors.transparent,
           elevation: 0.0,
-          title: Text('INVOICE',
+          title: const Text('INVOICE',
               style: TextStyle(
                   fontFamily: 'Montserrat',
                   fontSize: 18.0,
@@ -36,10 +36,10 @@ class _CheckOutPageState extends State<CheckOutPage> {
           centerTitle: true,
         ),
         body: Column(children: <Widget>[
-          SizedBox(height: 20.0),
+          const SizedBox(height: 20.0),
           Container(
               height: MediaQuery.of(context).size.height - 100.0,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(75.0)),
               ),
@@ -51,20 +51,20 @@ class _CheckOutPageState extends State<CheckOutPage> {
                       padding: const EdgeInsets.fromLTRB(10, 2, 10, 0),
                       child: Column(
                         children: <Widget>[
-                          SizedBox(height: 16),
-                          Text(
+                          const SizedBox(height: 16),
+                          const Text(
                             'Delivery Information',
                             style: TextStyle(
                                 fontFamily: 'Montserrat', fontSize: 18.0),
                           ),
-                          SizedBox(height: 16),
+                          const SizedBox(height: 16),
                           Row(
                             children: [
                               SizedBox(
                                 width: (MediaQuery.of(context).size.width / 2) -
                                     20,
                                 child: TextFormField(
-                                  decoration: InputDecoration(
+                                  decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
                                     hintText: 'Enter your Name',
                                     labelText: 'Name',
@@ -77,12 +77,12 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                   },
                                 ),
                               ),
-                              SizedBox(width: 10),
+                              const SizedBox(width: 10),
                               SizedBox(
                                 width: (MediaQuery.of(context).size.width / 2) -
                                     20,
                                 child: TextFormField(
-                                  decoration: InputDecoration(
+                                  decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
                                     hintText: 'Enter your Phone Number',
                                     labelText: 'Phone Number',
@@ -99,7 +99,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                               ),
                             ],
                           ),
-                          SizedBox(height: 16),
+                          const SizedBox(height: 16),
                           Row(
                             children: [
                               SizedBox(
@@ -119,7 +119,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                   },
                                 ),
                               ),
-                              SizedBox(width: 10),
+                              const SizedBox(width: 10),
                               SizedBox(
                                 width: (MediaQuery.of(context).size.width / 2) -
                                     20,
@@ -139,9 +139,9 @@ class _CheckOutPageState extends State<CheckOutPage> {
                               ),
                             ],
                           ),
-                          SizedBox(height: 16),
+                          const SizedBox(height: 16),
                           Container(
-                            padding: EdgeInsets.only(right: 10),
+                            padding: const EdgeInsets.only(right: 10),
                             width: MediaQuery.of(context).size.width - 20,
                             child: TextFormField(
                               decoration: const InputDecoration(
@@ -157,8 +157,8 @@ class _CheckOutPageState extends State<CheckOutPage> {
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.only(top: 10),
-                            child: Center(
+                            margin: const EdgeInsets.only(top: 10),
+                            child: const Center(
                                 child: Text("Payment Type",
                                     style: TextStyle(
                                         fontFamily: 'Montserrat',
@@ -167,7 +167,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                           Row(
                             children: [
                               Container(
-                                margin: EdgeInsets.only(left: 70),
+                                margin: const EdgeInsets.only(left: 70),
                                 width: (MediaQuery.of(context).size.width / 2) -
                                     30,
                                 child: ListTile(
@@ -184,7 +184,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                   ),
                                 ),
                               ),
-                              Container(
+                              SizedBox(
                                 width: (MediaQuery.of(context).size.width / 2) -
                                     60,
                                 child: ListTile(
@@ -226,7 +226,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                         },
                                       ),
                                     ),
-                                    SizedBox(width: 10),
+                                    const SizedBox(width: 10),
                                     SizedBox(
                                       width:
                                           (MediaQuery.of(context).size.width /
@@ -251,7 +251,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                 )
                               : const SizedBox.shrink(),
                           Container(
-                              margin: EdgeInsets.only(top: 10),
+                              margin: const EdgeInsets.only(top: 10),
                               height: 65.0,
                               width: 120.0,
                               decoration: BoxDecoration(
@@ -262,7 +262,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
                               child: InkWell(
-                                child: Center(
+                                child: const Center(
                                   child: Text(' Confirm\nPurchase',
                                       style: TextStyle(
                                           fontFamily: 'Montserrat',
@@ -273,7 +273,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                 onTap: () {
                                   if (!(_formKey.currentState!.validate())) {
                                     ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(
+                                        const SnackBar(
                                             content: Text(
                                                 "Please fill the required info!")));
                                   } else {
@@ -282,17 +282,17 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                       builder: (BuildContext context) {
                                         // return object of type Dialog
                                         return ButtonBarTheme(
-                                          data: ButtonBarThemeData(
+                                          data: const ButtonBarThemeData(
                                               alignment:
                                                   MainAxisAlignment.center),
                                           child: AlertDialog(
-                                            title: Icon(
+                                            title: const Icon(
                                               Icons
                                                   .check_circle_outline_rounded,
                                               color: Colors.green,
                                               size: 50,
                                             ),
-                                            content: Text(
+                                            content: const Text(
                                                 'Thank you for your purchase\n Tracking ID: #2352452',
                                                 textAlign: TextAlign.center),
                                             actions: <Widget>[
@@ -305,10 +305,10 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                                             MaterialPageRoute(
                                                                 builder:
                                                                     (context) =>
-                                                                        Menu()),
+                                                                        const Menu()),
                                                             (route) => false);
                                                   },
-                                                  child: Text('OK',
+                                                  child: const Text('OK',
                                                       style: TextStyle(
                                                           fontSize: 17,
                                                           color: Colors

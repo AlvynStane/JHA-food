@@ -11,8 +11,9 @@ class DetailsPage extends StatefulWidget {
   final vit;
   final pro;
 
-  DetailsPage(
-      {this.heroTag,
+  const DetailsPage(
+      {super.key, 
+      this.heroTag,
       this.foodName,
       this.foodPrice,
       this.weight,
@@ -32,18 +33,18 @@ class _DetailsPageState extends State<DetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFF7A9BEE),
+        backgroundColor: const Color(0xFF7A9BEE),
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
               Navigator.of(context).pop();
             },
-            icon: Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios),
             color: Colors.white,
           ),
           backgroundColor: Colors.transparent,
           elevation: 0.0,
-          title: Text('Details',
+          title: const Text('Details',
               style: TextStyle(
                   fontFamily: 'Montserrat',
                   fontSize: 18.0,
@@ -59,7 +60,7 @@ class _DetailsPageState extends State<DetailsPage> {
             Positioned(
                 top: 75.0,
                 child: Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(45.0),
                           topRight: Radius.circular(45.0),
@@ -87,16 +88,16 @@ class _DetailsPageState extends State<DetailsPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(widget.foodName,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontFamily: 'Montserrat',
                             fontSize: 22.0,
                             fontWeight: FontWeight.bold)),
-                    SizedBox(height: 20.0),
+                    const SizedBox(height: 20.0),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text('\$${widget.foodPrice}',
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontFamily: 'Montserrat',
                                 fontSize: 20.0,
                                 color: Colors.grey)),
@@ -106,7 +107,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           height: 40.0,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(17.0),
-                              color: Color(0xFF7A9BEE)),
+                              color: const Color(0xFF7A9BEE)),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
@@ -124,8 +125,8 @@ class _DetailsPageState extends State<DetailsPage> {
                                   width: 25.0,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(7.0),
-                                      color: Color(0xFF7A9BEE)),
-                                  child: Center(
+                                      color: const Color(0xFF7A9BEE)),
+                                  child: const Center(
                                     child: Icon(
                                       Icons.remove,
                                       color: Colors.white,
@@ -135,7 +136,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                 ),
                               ),
                               Text('$num',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: Colors.white,
                                       fontFamily: 'Montserrat',
                                       fontSize: 15.0)),
@@ -152,7 +153,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(7.0),
                                       color: Colors.white),
-                                  child: Center(
+                                  child: const Center(
                                     child: Icon(
                                       Icons.add,
                                       color: Color(0xFF7A9BEE),
@@ -166,27 +167,27 @@ class _DetailsPageState extends State<DetailsPage> {
                         )
                       ],
                     ),
-                    SizedBox(height: 20.0),
-                    Container(
+                    const SizedBox(height: 20.0),
+                    SizedBox(
                         height: 150.0,
                         child: ListView(
                           scrollDirection: Axis.horizontal,
                           children: <Widget>[
                             _buildInfoCard('WEIGHT', widget.weight, 'G'),
-                            SizedBox(width: 10.0),
+                            const SizedBox(width: 10.0),
                             _buildInfoCard('CALORIES', widget.cal, 'CAL'),
-                            SizedBox(width: 10.0),
+                            const SizedBox(width: 10.0),
                             _buildInfoCard('VITAMINS', widget.vit, 'VIT'),
-                            SizedBox(width: 10.0),
+                            const SizedBox(width: 10.0),
                             _buildInfoCard('Protein', widget.pro, 'G')
                           ],
                         )),
-                    SizedBox(height: 15.0),
+                    const SizedBox(height: 15.0),
                     InkWell(
                       child: Padding(
-                        padding: EdgeInsets.only(bottom: 5.0),
+                        padding: const EdgeInsets.only(bottom: 5.0),
                         child: Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(10.0),
                                   topRight: Radius.circular(10.0),
@@ -196,7 +197,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           height: 40.0,
                           child: Center(
                             child: Text('ADD \n$price \$',
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.white,
                                     fontFamily: 'Montserrat')),
                           ),
@@ -230,12 +231,12 @@ class _DetailsPageState extends State<DetailsPage> {
           selectCard(cardTitle);
         },
         child: AnimatedContainer(
-            duration: Duration(milliseconds: 500),
+            duration: const Duration(milliseconds: 500),
             curve: Curves.easeIn,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
               color:
-                  cardTitle == selectedCard ? Color(0xFF7A9BEE) : Colors.white,
+                  cardTitle == selectedCard ? const Color(0xFF7A9BEE) : Colors.white,
               border: Border.all(
                   color: cardTitle == selectedCard
                       ? Colors.transparent

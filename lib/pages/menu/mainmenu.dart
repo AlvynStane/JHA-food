@@ -1,9 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-
-import 'cartPage.dart';
 import 'detailsPage.dart';
 
 class MainMenu extends StatefulWidget {
@@ -18,7 +13,7 @@ class _MainMenuState extends State<MainMenu> {
   Widget build(BuildContext context) {
     return ListView(
       children: <Widget>[
-        Padding(
+        const Padding(
           padding: EdgeInsets.only(top: 15.0, left: 10.0),
           child: Text('Welcome, Order Now!',
               style: TextStyle(
@@ -27,11 +22,11 @@ class _MainMenuState extends State<MainMenu> {
                   fontWeight: FontWeight.bold,
                   fontSize: 25.0)),
         ),
-        SizedBox(height: 25.0),
+        const SizedBox(height: 25.0),
         Padding(
-          padding: EdgeInsets.only(left: 120.0),
+          padding: const EdgeInsets.only(left: 120.0),
           child: Row(
-            children: <Widget>[
+            children: const <Widget>[
               Text('Healthy',
                   style: TextStyle(
                       fontFamily: 'Montserrat',
@@ -47,20 +42,20 @@ class _MainMenuState extends State<MainMenu> {
             ],
           ),
         ),
-        SizedBox(height: 25.0),
+        const SizedBox(height: 25.0),
         Container(
           height: MediaQuery.of(context).size.height - 130.0,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(topLeft: Radius.circular(75.0)),
           ),
           child: ListView(
             primary: false,
-            padding: EdgeInsets.only(left: 25.0, right: 20.0),
+            padding: const EdgeInsets.only(left: 25.0, right: 20.0),
             children: <Widget>[
               Padding(
-                  padding: EdgeInsets.only(top: 45.0),
-                  child: Container(
+                  padding: const EdgeInsets.only(top: 45.0),
+                  child: SizedBox(
                       height: MediaQuery.of(context).size.height - 260.0,
                       child: ListView(children: [
                         _buildFoodItem('plate1.png', 'Salmon bowl', 24.00,
@@ -108,7 +103,7 @@ class _MainMenuState extends State<MainMenu> {
   Widget _buildFoodItem(String imgPath, String foodName, double price,
       String weight, String cal, String vit, String pro) {
     return Padding(
-      padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+      padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
       child: InkWell(
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
@@ -125,29 +120,28 @@ class _MainMenuState extends State<MainMenu> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Container(
-                  child: Row(children: [
+              Row(children: [
                 Hero(
-                    tag: imgPath,
-                    child: Image(
-                        image: AssetImage(imgPath),
-                        fit: BoxFit.cover,
-                        height: 75.0,
-                        width: 75.0)),
-                SizedBox(width: 10.0),
+                tag: imgPath,
+                child: Image(
+                    image: AssetImage(imgPath),
+                    fit: BoxFit.cover,
+                    height: 75.0,
+                    width: 75.0)),
+                const SizedBox(width: 10.0),
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Text(foodName,
-                      style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          fontSize: 17.0,
-                          fontWeight: FontWeight.bold)),
-                  Text('\$$price',
-                      style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          fontSize: 15.0,
-                          color: Colors.grey))
+              Text(foodName,
+                  style: const TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontSize: 17.0,
+                      fontWeight: FontWeight.bold)),
+              Text('\$$price',
+                  style: const TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontSize: 15.0,
+                      color: Colors.grey))
                 ])
-              ])),
+              ]),
             ],
           )),
     );

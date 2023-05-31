@@ -2,36 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:testing/pages/login/login.dart';
 
 class Profile extends StatefulWidget {
+  const Profile({super.key});
+
   @override
   _ProfileState createState() => _ProfileState();
 }
 
 class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
+  void initState() => super.initState();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'Profile',
           style: TextStyle(
               color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),
         ),
         elevation: 0,
-        backgroundColor: Color(0xFF7A9BEE),
+        backgroundColor: const Color(0xFF7A9BEE),
       ),
       body: Container(
         color: Colors.white,
         child: Column(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.only(top: 20),
+              padding: const EdgeInsets.only(top: 20),
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height / 2 - 100,
               decoration: BoxDecoration(
@@ -42,8 +41,8 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                       spreadRadius: 10,
                     )
                   ],
-                  color: Color(0xFF7A9BEE),
-                  borderRadius: BorderRadius.only(
+                  color: const Color(0xFF7A9BEE),
+                  borderRadius: const BorderRadius.only(
                     bottomRight: Radius.circular(30),
                     bottomLeft: Radius.circular(30),
                   )),
@@ -56,32 +55,32 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                         height: 105,
                         width: 105,
                         decoration: BoxDecoration(
-                            color: Color(0xFF7A9BEE),
+                            color: const Color(0xFF7A9BEE),
                             borderRadius: BorderRadius.circular(52.5),
-                            boxShadow: [
+                            boxShadow: const [
                               BoxShadow(
                                 color: Colors.white10,
                                 spreadRadius: 2,
                               )
                             ]),
-                        child: CircleAvatar(
+                        child: const CircleAvatar(
                           radius: 50,
                           backgroundImage: AssetImage('assets/selena.jpg'),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  Text(
+                  const Text(
                     'Selena Gomez',
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 23,
                         fontWeight: FontWeight.bold),
                   ),
-                  Text(
+                  const Text(
                     'selenagomez@gmail.com',
                     style: TextStyle(
                         color: Colors.white, fontWeight: FontWeight.w300),
@@ -90,7 +89,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(top: 50, right: 34, left: 34),
+              padding: const EdgeInsets.only(top: 50, right: 34, left: 34),
               child: Column(
                 children: <Widget>[
                   Padding(
@@ -102,7 +101,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                           height: 60,
                           width: 85,
                           decoration: BoxDecoration(
-                              color: Color(0xFF7A9BEE),
+                              color: const Color(0xFF7A9BEE),
                               borderRadius: BorderRadius.circular(5),
                               boxShadow: [
                                 BoxShadow(
@@ -113,7 +112,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
-                              children: <Widget>[
+                              children: const <Widget>[
                                 Icon(
                                   Icons.dashboard,
                                   color: Colors.white,
@@ -130,7 +129,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                           height: 60,
                           width: 85,
                           decoration: BoxDecoration(
-                              color: Color(0xFF7A9BEE),
+                              color: const Color(0xFF7A9BEE),
                               borderRadius: BorderRadius.circular(5),
                               boxShadow: [
                                 BoxShadow(
@@ -141,7 +140,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
-                              children: <Widget>[
+                              children: const <Widget>[
                                 Icon(Icons.account_balance,
                                     color: Colors.white),
                                 Text(
@@ -156,7 +155,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                           height: 60,
                           width: 85,
                           decoration: BoxDecoration(
-                              color: Color(0xFF7A9BEE),
+                              color: const Color(0xFF7A9BEE),
                               borderRadius: BorderRadius.circular(5),
                               boxShadow: [
                                 BoxShadow(
@@ -167,7 +166,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
-                              children: <Widget>[
+                              children: const <Widget>[
                                 Icon(
                                   Icons.credit_card,
                                   color: Colors.white,
@@ -192,7 +191,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                           height: 60,
                           width: 85,
                           decoration: BoxDecoration(
-                              color: Color(0xFF7A9BEE),
+                              color: const Color(0xFF7A9BEE),
                               borderRadius: BorderRadius.circular(5),
                               boxShadow: [
                                 BoxShadow(
@@ -203,7 +202,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
-                              children: <Widget>[
+                              children: const <Widget>[
                                 Icon(
                                   Icons.language,
                                   color: Colors.white,
@@ -220,7 +219,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                           height: 60,
                           width: 85,
                           decoration: BoxDecoration(
-                              color: Color(0xFF7A9BEE),
+                              color: const Color(0xFF7A9BEE),
                               borderRadius: BorderRadius.circular(5),
                               boxShadow: [
                                 BoxShadow(
@@ -231,7 +230,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
-                              children: <Widget>[
+                              children: const <Widget>[
                                 Icon(
                                   Icons.question_answer,
                                   color: Colors.white,
@@ -248,7 +247,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                           height: 60,
                           width: 85,
                           decoration: BoxDecoration(
-                              color: Color(0xFF7A9BEE),
+                              color: const Color(0xFF7A9BEE),
                               borderRadius: BorderRadius.circular(5),
                               boxShadow: [
                                 BoxShadow(
@@ -261,7 +260,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                             child: Column(
                               children: <Widget>[
                                 IconButton(
-                                  icon: Icon(Icons.logout, color: Colors.white),
+                                  icon: const Icon(Icons.logout, color: Colors.white),
                                   onPressed: () {
                                     Navigator.pushReplacement(
                                         context,

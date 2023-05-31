@@ -3,7 +3,7 @@ import 'foodList.dart';
 import 'checkOut.dart';
 
 class CartPage extends StatefulWidget {
-  CartPage();
+  const CartPage({super.key});
 
   @override
   _CartPageState createState() => _CartPageState();
@@ -13,45 +13,45 @@ class _CartPageState extends State<CartPage> {
   @override
   void initState() {
     super.initState();
-    list.forEach((food) {
+    for (var food in list) {
       total = total + food.number * food.foodPrice;
-    });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF7A9BEE),
+      backgroundColor: const Color(0xFF7A9BEE),
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
-          icon: Icon(Icons.arrow_back_ios),
+          icon: const Icon(Icons.arrow_back_ios),
           color: Colors.white,
         ),
         backgroundColor: Colors.transparent,
         elevation: 0.0,
-        title: Text('My Cart',
+        title: const Text('My Cart',
             style: TextStyle(
                 fontFamily: 'Montserrat', fontSize: 18.0, color: Colors.white)),
         centerTitle: true,
       ),
       body: ListView(children: <Widget>[
-        SizedBox(height: 20.0),
+        const SizedBox(height: 20.0),
         Container(
             height: MediaQuery.of(context).size.height - 100.0,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(topLeft: Radius.circular(75.0)),
             ),
             child: ListView(
                 primary: false,
-                padding: EdgeInsets.only(left: 25.0, right: 20.0),
+                padding: const EdgeInsets.only(left: 25.0, right: 20.0),
                 children: <Widget>[
                   Padding(
-                      padding: EdgeInsets.only(top: 45.0),
-                      child: Container(
+                      padding: const EdgeInsets.only(top: 45.0),
+                      child: SizedBox(
                           height: MediaQuery.of(context).size.height - 220.0,
                           child: ListView.builder(
                             key: UniqueKey(),
@@ -74,7 +74,7 @@ class _CartPageState extends State<CartPage> {
                       InkWell(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => CartPage()));
+                              builder: (context) => const CartPage()));
                         },
                         child: Container(
                           height: 65.0,
@@ -90,7 +90,7 @@ class _CartPageState extends State<CartPage> {
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           child: InkWell(
-                            child: Center(
+                            child: const Center(
                               child: Text('Checkout',
                                   style: TextStyle(
                                       fontFamily: 'Montserrat',
@@ -105,21 +105,21 @@ class _CartPageState extends State<CartPage> {
                                   builder: (BuildContext context) {
                                     // return object of type Dialog
                                     return ButtonBarTheme(
-                                        data: ButtonBarThemeData(
+                                        data: const ButtonBarThemeData(
                                             alignment:
                                                 MainAxisAlignment.center),
                                         child: AlertDialog(
-                                          title: Icon(Icons.cancel_outlined,
+                                          title: const Icon(Icons.cancel_outlined,
                                               color: Colors.redAccent,
                                               size: 45),
-                                          content: Text(
+                                          content: const Text(
                                               'Please Add Some\n Items Before Checkout',
                                               textAlign: TextAlign.center),
                                           actions: <Widget>[
                                             TextButton(
                                               onPressed: () =>
                                                   Navigator.of(context).pop(),
-                                              child: Text('OK',
+                                              child: const Text('OK',
                                                   style: TextStyle(
                                                     fontSize: 17,
                                                   )),
@@ -136,11 +136,11 @@ class _CartPageState extends State<CartPage> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 20,
                       ),
                       Text("Total: $total \$",
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontFamily: 'Montserrat',
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
@@ -161,7 +161,7 @@ class BuildFoodItem extends StatefulWidget {
   int number;
 
   BuildFoodItem(
-      {required this.imgPath,
+      {super.key, required this.imgPath,
       required this.foodName,
       required this.price,
       required this.number,
@@ -183,39 +183,38 @@ class _BuildFoodItemState extends State<BuildFoodItem> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+        padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
         child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Container(
-                  child: Row(children: [
+              Row(children: [
                 Hero(
-                    tag: widget.imgPath,
-                    child: Image(
-                        image: AssetImage(widget.imgPath),
-                        fit: BoxFit.cover,
-                        height: 75.0,
-                        width: 75.0)),
-                SizedBox(width: 10.0),
+                tag: widget.imgPath,
+                child: Image(
+                    image: AssetImage(widget.imgPath),
+                    fit: BoxFit.cover,
+                    height: 75.0,
+                    width: 75.0)),
+                const SizedBox(width: 10.0),
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Text(widget.foodName,
-                      style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          fontSize: 17.0,
-                          fontWeight: FontWeight.bold)),
-                  Text('Total price: \$${widget.price * localNumber}',
-                      style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          fontSize: 15.0,
-                          color: Colors.grey))
+              Text(widget.foodName,
+                  style: const TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontSize: 17.0,
+                      fontWeight: FontWeight.bold)),
+              Text('Total price: \$${widget.price * localNumber}',
+                  style: const TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontSize: 15.0,
+                      color: Colors.grey))
                 ])
-              ])),
+              ]),
               Container(
                 width: 125.0,
                 height: 40.0,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(17.0),
-                    color: Color(0xFF7A9BEE)),
+                    color: const Color(0xFF7A9BEE)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
@@ -245,8 +244,8 @@ class _BuildFoodItemState extends State<BuildFoodItem> {
                         width: 25.0,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(7.0),
-                            color: Color(0xFF7A9BEE)),
-                        child: Center(
+                            color: const Color(0xFF7A9BEE)),
+                        child: const Center(
                           child: Icon(
                             Icons.remove,
                             color: Colors.white,
@@ -256,7 +255,7 @@ class _BuildFoodItemState extends State<BuildFoodItem> {
                       ),
                     ),
                     Text('$localNumber',
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.white,
                             fontFamily: 'Montserrat',
                             fontSize: 15.0)),
@@ -279,7 +278,7 @@ class _BuildFoodItemState extends State<BuildFoodItem> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(7.0),
                             color: Colors.white),
-                        child: Center(
+                        child: const Center(
                           child: Icon(
                             Icons.add,
                             color: Color(0xFF7A9BEE),
