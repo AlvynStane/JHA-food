@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:testing/pages/forgotpwd/verif.dart';
+import 'package:testing/pages/front_page/forget_password/change_password.dart';
 
-class bantuanForgot extends StatelessWidget {
-  const bantuanForgot({super.key});
+class pageVerify extends StatelessWidget {
+  const pageVerify({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class bantuanForgot extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('Search your account',
+                    const Text('ENTER THE VERIFICATION CODE',
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 20,
@@ -30,18 +30,19 @@ class bantuanForgot extends StatelessWidget {
                     Container(
                       height: 10,
                     ),
-                    const Text(
-                      'Enter your username or email or phone number that linked to your account',
-                      textAlign: TextAlign.center,
-                    ),
+                    const Text('Enter the 6 digit verification code',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 15,
+                        )),
                     Container(
                       height: 20,
                     ),
                     TextField(
-                        keyboardType: TextInputType.text,
+                        keyboardType: TextInputType.number,
                         controller: TextEditingController(),
                         decoration: InputDecoration(
-                          hintText: 'Username, email, or phone number',
+                          hintText: 'Verification Code',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(11),
                               borderSide: const BorderSide(color: Colors.black)),
@@ -55,9 +56,9 @@ class bantuanForgot extends StatelessWidget {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const pageVerify()));
+                                builder: (context) => const forgotPassword()));
                       },
-                      child: const Text('Next'),
+                      child: const Text('Send'),
                     )
                   ],
                 ))));

@@ -1,9 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:testing/pages/forgotpwd/pwd.dart';
 import 'package:testing/menu.dart';
 import 'package:testing/pages/regist/regist_news.dart';
 import 'package:testing/main.dart';
+
+import '../../providers/dark_theme.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key, required this.title}) : super(key: key);
@@ -17,21 +20,22 @@ class _MyHomePageState extends State<Login> {
   bool _agree = false;
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<DarkThemeProvider>(context);
     return Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
-          actions: [
-            IconButton(
-                icon: Icon(MyApp.themeNotifier.value == ThemeMode.light
-                    ? Icons.dark_mode
-                    : Icons.light_mode),
-                onPressed: () {
-                  MyApp.themeNotifier.value =
-                      MyApp.themeNotifier.value == ThemeMode.light
-                          ? ThemeMode.dark
-                          : ThemeMode.light;
-                })
-          ],
+          actions: <Widget>[
+          Icon(themeProvider.darkTheme == false
+              ? Icons.wb_sunny
+              : Icons.nightlight_round),
+          Switch(
+              value: themeProvider.darkTheme,
+              onChanged: (value) {
+                setState(() {
+                  themeProvider.darkMode = value;
+                });
+              })
+        ],
           centerTitle: true,
           backgroundColor: Colors.purple,
         ),
@@ -102,7 +106,7 @@ class _MyHomePageState extends State<Login> {
                           width: 90,
                           child: ElevatedButton(
                               onPressed: () {
-                                Navigator.pushReplacement(
+                                Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => const Menu()));
