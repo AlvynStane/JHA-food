@@ -1,6 +1,0 @@
-{
-    "dart.experimentalRefactors": true,
-    "css.lint.important": "warning",
-    "less.lint.important": "warning",
-    "scss.lint.important": "warning"
-}
