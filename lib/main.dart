@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:testing/pages/login/login.dart';
+import 'package:testing/pages/front_page/login/login.dart';
 import 'package:testing/providers/dark_theme.dart';
 import 'package:testing/providers/news_provider.dart';
 import 'package:provider/provider.dart';

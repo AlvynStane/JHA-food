@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../menu.dart';
-import 'foodList.dart';
+import '../main_menu_page.dart';
+import 'food_list.dart';
 
 class CheckOutPage extends StatefulWidget {
   const CheckOutPage({super.key});

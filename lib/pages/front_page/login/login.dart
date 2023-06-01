@@ -1,12 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:testing/pages/forgotpwd/pwd.dart';
-import 'package:testing/menu.dart';
-import 'package:testing/pages/regist/regist_news.dart';
-import 'package:testing/main.dart';
+import 'package:testing/pages/main_page/main_menu_page.dart';
+import 'package:testing/pages/front_page/register/register_news.dart';
 
-import '../../providers/dark_theme.dart';
+import '../../../providers/dark_theme.dart';
+import '../forget_password/forget_password.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key, required this.title}) : super(key: key);

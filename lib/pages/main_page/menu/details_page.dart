@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'foodList.dart';
+import 'food_list.dart';
 import 'package:collection/collection.dart';
 
 class DetailsPage extends StatefulWidget {

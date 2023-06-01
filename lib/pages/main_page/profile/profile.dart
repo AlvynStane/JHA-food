@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:testing/pages/login/login.dart';
+import 'package:testing/pages/front_page/login/login.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});

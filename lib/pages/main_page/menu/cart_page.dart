@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'foodList.dart';
-import 'checkOut.dart';
+import 'food_list.dart';
+import 'check_out.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});

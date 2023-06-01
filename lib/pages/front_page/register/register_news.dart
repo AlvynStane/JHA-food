@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:testing/pages/login/login.dart';
+import 'package:testing/pages/front_page/login/login.dart';
 
 class Register_News extends StatelessWidget {
   const Register_News({super.key});
