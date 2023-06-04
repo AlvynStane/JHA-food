@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:testing/pages/main_page/menu/menu.dart';
 import 'package:testing/pages/main_page/profile/profile.dart';
 import 'package:testing/pages/main_page/menu/cart_page.dart';
+import 'package:testing/providers/dark_theme.dart';
 
 void main() => runApp(const Menu());
 
@@ -11,9 +13,11 @@ class Menu extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    final themeProvider = Provider.of<DarkThemeProvider>(context);
+    return MaterialApp(
       title: "JHA FOOD",
       home: MyHomePage(),
+      theme: themeProvider.darkTheme == true ? themeProvider.dark : themeProvider.light,
       debugShowCheckedModeBanner: false,
     );
   }
@@ -51,12 +55,16 @@ class _MyHomePageState extends State<MyHomePage> {
               _selectedIndex = index;
             });
           }),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: ((context) => const CartPage())));
-        },
-        child: const Icon(Icons.shopping_basket),
+      floatingActionButton: Visibility(
+        visible: _selectedIndex == 0,
+        child: FloatingActionButton(
+          tooltip: "List",
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: ((context) => const CartPage())));
+          },
+          child: const Icon(Icons.shopping_basket),
+        ),
       ),
     );
   }
