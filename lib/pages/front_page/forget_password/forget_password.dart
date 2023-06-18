@@ -7,15 +7,7 @@ class bantuanForgot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(80.0),
-          child: AppBar(
-            shape: const RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.vertical(bottom: Radius.circular(30))),
-            centerTitle: true,
-          ),
-        ),
+        appBar: AppBar(),
         body: Center(
             child: SizedBox(
                 width: 300,

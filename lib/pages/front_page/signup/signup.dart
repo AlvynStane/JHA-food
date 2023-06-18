@@ -1,8 +1,6 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:testing/pages/front_page/login/login.dart';
 import 'package:testing/pages/main_page/main_menu_page.dart';
-import 'package:testing/pages/main_page/menu/menu.dart';
 
 class Register_News extends StatelessWidget {
   const Register_News({super.key});
@@ -10,20 +8,7 @@ class Register_News extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('SIGN UP'),
-          centerTitle: true,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Login(title: 'login')));
-            },
-            icon: const Icon(Icons.arrow_back_ios),
-            color: Colors.white,
-          ),
-        ),
+        appBar: AppBar(),
         body: Center(
             child: SizedBox(
                 width: 300,
@@ -104,7 +89,7 @@ class Register_News extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Menu()));
+                            MaterialPageRoute(builder: (context) => HomePages()));
                       },
                       child: const Text('Create'),
                     ),
@@ -117,11 +102,11 @@ class Register_News extends StatelessWidget {
                         const Text("Already have an account? "),
                         TextButton(
                             onPressed: () {
-                              Navigator.push(
+                              Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          Login(title: 'login')));
+                                          Login()));
                             },
                             style: ButtonStyle(
                                 overlayColor: MaterialStateProperty.all<Color>(

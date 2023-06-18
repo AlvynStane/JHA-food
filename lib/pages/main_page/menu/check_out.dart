@@ -298,6 +298,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                             actions: <Widget>[
                                               TextButton(
                                                   onPressed: () {
+                                                    // history.addToHistory(list, total);
                                                     list.clear();
                                                     total = 0;
                                                     Navigator.of(context)
@@ -305,7 +306,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                                             MaterialPageRoute(
                                                                 builder:
                                                                     (context) =>
-                                                                        const Menu()),
+                                                                        const HomePages()),
                                                             (route) => false);
                                                   },
                                                   child: const Text('OK',

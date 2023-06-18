@@ -1,36 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:testing/pages/main_page/menu/menu.dart';
 import 'package:testing/pages/main_page/profile/profile.dart';
 import 'package:testing/pages/main_page/menu/cart_page.dart';
-import 'package:testing/providers/dark_theme.dart';
 
-void main() => runApp(const Menu());
-
-class Menu extends StatelessWidget {
-  const Menu({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    final themeProvider = Provider.of<DarkThemeProvider>(context);
-    return MaterialApp(
-      title: "JHA FOOD",
-      home: MyHomePage(),
-      theme: themeProvider.darkTheme == true ? themeProvider.dark : themeProvider.light,
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class HomePages extends StatefulWidget {
+  const HomePages({super.key});
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _HomePagesState createState() => _HomePagesState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomePagesState extends State<HomePages> {
   int _selectedIndex = 0;
   final List _widgetOptions = [
     const MainMenu(),

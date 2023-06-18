@@ -102,39 +102,42 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Container(
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => history()),
+                            );
+                          },
+                          child: Container(
                             height: 75,
                             width: 85,
                             decoration: BoxDecoration(
-                                color: Colors.cyan,
-                                borderRadius: BorderRadius.circular(5),
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: Colors.black.withOpacity(0.3),
-                                      spreadRadius: 6,
-                                      blurRadius: 4)
-                                ]),
+                              color: Colors.cyan,
+                              borderRadius: BorderRadius.circular(5),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.3),
+                                  spreadRadius: 6,
+                                  blurRadius: 4,
+                                ),
+                              ],
+                            ),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 children: <Widget>[
-                                  IconButton(
-                                    icon: const Icon(Icons.history,
-                                        color: Colors.white),
-                                    onPressed: () {
-                                      Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => history()));
-                                    },
-                                  ),
+                                  Icon(Icons.history, color: Colors.white),
                                   Text(
                                     'History',
                                     style: TextStyle(color: Colors.white),
-                                  )
+                                  ),
                                 ],
                               ),
-                            )),
+                            ),
+                          ),
+                        ),
                         Container(
                             height: 75,
                             width: 85,
@@ -304,9 +307,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                                     Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => const Login(
-                                                  title: 'Login',
-                                                )));
+                                            builder: (context) => const Login()));
                                   },
                                 ),
                                 Text(
