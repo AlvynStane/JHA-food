@@ -1,6 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:testing/pages/front_page/login/login.dart';
+import 'package:testing/pages/main_page/main_menu_page.dart';
+import 'package:testing/pages/main_page/menu/menu.dart';
 
 class Register_News extends StatelessWidget {
   const Register_News({super.key});
@@ -8,13 +10,18 @@ class Register_News extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(80.0),
-          child: AppBar(
-            shape: const RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.vertical(bottom: Radius.circular(30))),
-            centerTitle: true,
+        appBar: AppBar(
+          title: Text('SIGN UP'),
+          centerTitle: true,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Login(title: 'login')));
+            },
+            icon: const Icon(Icons.arrow_back_ios),
+            color: Colors.white,
           ),
         ),
         body: Center(
@@ -23,7 +30,7 @@ class Register_News extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('REGISTER',
+                    const Text('SIGN UP',
                         style: TextStyle(color: Colors.black, fontSize: 35)),
                     Container(
                       height: 30,
@@ -35,7 +42,8 @@ class Register_News extends StatelessWidget {
                             hintText: 'Enter Username Here',
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(11),
-                                borderSide: const BorderSide(color: Colors.black)),
+                                borderSide:
+                                    const BorderSide(color: Colors.black)),
                             prefixIcon: const Icon(
                               Icons.person,
                               color: Colors.black,
@@ -51,7 +59,8 @@ class Register_News extends StatelessWidget {
                             hintText: 'Enter Phone Number Here',
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(11),
-                                borderSide: const BorderSide(color: Colors.black)),
+                                borderSide:
+                                    const BorderSide(color: Colors.black)),
                             prefixIcon: const Icon(
                               Icons.phone,
                               color: Colors.black,
@@ -67,7 +76,8 @@ class Register_News extends StatelessWidget {
                             hintText: 'Enter Email Here',
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(11),
-                                borderSide: const BorderSide(color: Colors.black)),
+                                borderSide:
+                                    const BorderSide(color: Colors.black)),
                             prefixIcon: const Icon(
                               Icons.email,
                               color: Colors.black,
@@ -81,7 +91,8 @@ class Register_News extends StatelessWidget {
                           hintText: 'Enter Password Here',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(11),
-                              borderSide: const BorderSide(color: Colors.black)),
+                              borderSide:
+                                  const BorderSide(color: Colors.black)),
                           prefixIcon: const Icon(
                             Icons.lock,
                             color: Colors.black,
@@ -92,27 +103,35 @@ class Register_News extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Menu()));
                       },
                       child: const Text('Create'),
                     ),
                     Container(
                       height: 15,
                     ),
-                    RichText(
-                        text: TextSpan(children: [
-                      TextSpan(
-                          text: 'Sudah punya akun ? Login Disini',
-                          style: const TextStyle(color: Colors.blue),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text("Already have an account? "),
+                        TextButton(
+                            onPressed: () {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => const Login(
-                                            title: 'Login',
-                                          )));
-                            })
-                    ]))
+                                      builder: (context) =>
+                                          Login(title: 'login')));
+                            },
+                            style: ButtonStyle(
+                                overlayColor: MaterialStateProperty.all<Color>(
+                                    Colors.transparent)),
+                            child: const Text(
+                              'Sign in here',
+                              style: TextStyle(color: Colors.blue),
+                            )),
+                      ],
+                    ),
                   ],
                 ))));
   }

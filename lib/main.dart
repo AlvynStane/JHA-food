@@ -22,10 +22,12 @@ class MyApp extends StatelessWidget {
         valueListenable: themeNotifier,
         builder: (_, ThemeMode currentMode, __) {
           return MaterialApp(
-            // Remove the debug banner
+            color: const Color(0xFF7A9BEE),
             debugShowCheckedModeBanner: false,
             title: 'JHA FOOD',
-            theme: themeProvider.darkTheme == true ? themeProvider.dark : themeProvider.light,
+            theme: themeProvider.darkTheme == true
+                ? themeProvider.dark
+                : themeProvider.light,
             home: const Login(
               title: 'Login',
             ),
