@@ -5,7 +5,6 @@ class NewsProvider extends ChangeNotifier {
   int get selectedIndex => _selectedIndex;
 
   set setselectedIndex(val) {
-    //mengganti private
     _selectedIndex = val;
     notifyListeners();
   }

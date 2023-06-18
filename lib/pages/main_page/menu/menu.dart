@@ -18,7 +18,7 @@ class _MainMenuState extends State<MainMenu> {
           child: Text('Welcome, Order Now!',
               style: TextStyle(
                   fontFamily: 'Montserrat',
-                  color: Colors.white,
+                  // color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 25.0)),
         ),
@@ -30,14 +30,14 @@ class _MainMenuState extends State<MainMenu> {
               Text('Healthy',
                   style: TextStyle(
                       fontFamily: 'Montserrat',
-                      color: Colors.white,
+                      // color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 25.0)),
               SizedBox(width: 10.0),
               Text('Food Menu',
                   style: TextStyle(
                       fontFamily: 'Montserrat',
-                      color: Colors.white,
+                      // color: Colors.white,
                       fontSize: 25.0))
             ],
           ),
@@ -46,7 +46,7 @@ class _MainMenuState extends State<MainMenu> {
         Container(
           height: MediaQuery.of(context).size.height - 130.0,
           decoration: const BoxDecoration(
-            color: Colors.white,
+            // color: Colors.white,
             borderRadius: BorderRadius.only(topLeft: Radius.circular(75.0)),
           ),
           child: ListView(
@@ -139,7 +139,8 @@ class _MainMenuState extends State<MainMenu> {
                   style: const TextStyle(
                       fontFamily: 'Montserrat',
                       fontSize: 15.0,
-                      color: Colors.grey))
+                      // color: Colors.grey
+                  ))
                 ])
               ]),
             ],

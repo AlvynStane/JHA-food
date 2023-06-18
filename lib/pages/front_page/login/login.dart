@@ -15,6 +15,7 @@ class Login extends StatefulWidget {
 
 class _MyHomePageState extends State<Login> {
   bool _agree = false;
+  bool _obscureText = true;
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<DarkThemeProvider>(context);
@@ -48,38 +49,32 @@ class _MyHomePageState extends State<Login> {
                         controller: TextEditingController(),
                         decoration: InputDecoration(
                             hintText: 'Enter Email Here',
-                            focusedBorder: OutlineInputBorder(
+                            border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(11),
-                                borderSide:
-                                    const BorderSide(color: Colors.black, width: 2)),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(11),
-                                borderSide: const BorderSide(
-                                    color: Colors.blueAccent, width: 2)),
-                            disabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(11),
-                                borderSide: const BorderSide(
-                                    color: Colors.black45, width: 2)),
-                            prefixIcon: const Icon(
-                              Icons.email,
-                            )),
+                                borderSide: const BorderSide(width: 2)),
+                            prefixIcon: const Icon(Icons.email)),
                         ),
                     Container(
                       height: 11,
                     ),
                     TextField(
                         controller: TextEditingController(),
-                        obscureText: true,
+                        obscureText: _obscureText,
+                        keyboardType: TextInputType.text,
                         decoration: InputDecoration(
                             hintText: 'Enter Password Here',
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(11),
-                                borderSide: const BorderSide(color: Colors.black)),
-                            prefixIcon: const Icon(
-                              Icons.lock,
-                              color: Colors.black,
-                            )),
-                        style: const TextStyle(color: Colors.black)),
+                            ),
+                            prefixIcon: const Icon(Icons.lock),
+                            suffixIcon: InkWell(
+                              onTap: () {
+                                setState(() {
+                                  _obscureText = !_obscureText;
+                                });
+                              }, 
+                              child: Icon(_obscureText ? Icons.visibility : Icons.visibility_off))),
+                        ),
                     Row(
                       children: <Widget>[
                         Checkbox(
