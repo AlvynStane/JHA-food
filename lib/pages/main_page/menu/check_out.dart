@@ -17,7 +17,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xFF7A9BEE),
+        backgroundColor: Colors.cyan,
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {

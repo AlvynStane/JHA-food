@@ -21,19 +21,19 @@ class _MyHomePageState extends State<Login> {
     final themeProvider = Provider.of<DarkThemeProvider>(context);
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          title: Text('SIGN IN'),
           actions: <Widget>[
-          Icon(themeProvider.darkTheme == false
-              ? Icons.wb_sunny
-              : Icons.nightlight_round),
-          Switch(
-              value: themeProvider.darkTheme,
-              onChanged: (value) {
-                setState(() {
-                  themeProvider.darkMode = value;
-                });
-              })
-        ],
+            Icon(themeProvider.darkTheme == false
+                ? Icons.wb_sunny
+                : Icons.nightlight_round),
+            Switch(
+                value: themeProvider.darkTheme,
+                onChanged: (value) {
+                  setState(() {
+                    themeProvider.darkMode = value;
+                  });
+                })
+          ],
           centerTitle: true,
         ),
         body: Center(
@@ -42,18 +42,22 @@ class _MyHomePageState extends State<Login> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('LOGIN',
-                        style: TextStyle(fontSize: 35)),
+                    const Text('SIGN IN', style: TextStyle(fontSize: 35)),
                     TextField(
-                        keyboardType: TextInputType.emailAddress,
                         controller: TextEditingController(),
+                        obscureText: true,
                         decoration: InputDecoration(
                             hintText: 'Enter Email Here',
                             border: OutlineInputBorder(
+                            
                                 borderRadius: BorderRadius.circular(11),
-                                borderSide: const BorderSide(width: 2)),
-                            prefixIcon: const Icon(Icons.email)),
-                        ),
+                                borderSide:
+                                    const BorderSide(color: Colors.black)),
+                            prefixIcon: const Icon(
+                              Icons.email,
+                              color: Colors.black,
+                            )),
+                        style: const TextStyle(color: Colors.black)),
                     Container(
                       height: 11,
                     ),
@@ -65,16 +69,12 @@ class _MyHomePageState extends State<Login> {
                             hintText: 'Enter Password Here',
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(11),
-                            ),
-                            prefixIcon: const Icon(Icons.lock),
-                            suffixIcon: InkWell(
-                              onTap: () {
-                                setState(() {
-                                  _obscureText = !_obscureText;
-                                });
-                              }, 
-                              child: Icon(_obscureText ? Icons.visibility : Icons.visibility_off))),
-                        ),
+                                borderSide: const BorderSide(color: Colors.black)),
+                            prefixIcon: const Icon(
+                              Icons.lock,
+                              color: Colors.black,
+                            )),
+                        style: const TextStyle(color: Colors.black)),
                     Row(
                       children: <Widget>[
                         Checkbox(
@@ -102,33 +102,44 @@ class _MyHomePageState extends State<Login> {
                                         builder: (context) => const Menu()));
                               },
                               child: const Text(
-                                'Login',
+                                'SIGN IN',
                               ))),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text('Belum punya akun ? '),
+                        const Text("Not registered? "),
                         TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => const Register_News()));
-                          }, 
-                          style: ButtonStyle(overlayColor: MaterialStateProperty.all<Color>(Colors.transparent)),
-                          child: const Text('Daftar Disini', style: TextStyle(color: Colors.blue),)
-                        ),
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const Register_News()));
+                            },
+                            style: ButtonStyle(
+                                overlayColor: MaterialStateProperty.all<Color>(
+                                    Colors.transparent)),
+                            child: const Text(
+                              'Create an account',
+                              style: TextStyle(color: Colors.blue),
+                            )),
                       ],
                     ),
                     TextButton(
-                          onPressed: () {
-                            Navigator.push(
+                        onPressed: () {
+                          Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => const bantuanForgot()));
-                          }, 
-                          style: ButtonStyle(overlayColor: MaterialStateProperty.all<Color>(Colors.transparent)),
-                          child: const Text('Lupa Password ?', style: TextStyle(color: Colors.blue),)
-                        ),
+                              MaterialPageRoute(
+                                  builder: (context) => const bantuanForgot()));
+                        },
+                        style: ButtonStyle(
+                            overlayColor: MaterialStateProperty.all<Color>(
+                                Colors.transparent)),
+                        child: const Text(
+                          'Forgot password?',
+                          style: TextStyle(color: Colors.blue),
+                        )),
                   ],
                 ))));
   }

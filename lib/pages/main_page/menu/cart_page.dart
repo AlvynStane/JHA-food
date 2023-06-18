@@ -21,7 +21,7 @@ class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF7A9BEE),
+      backgroundColor: Colors.cyan,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -109,7 +109,8 @@ class _CartPageState extends State<CartPage> {
                                             alignment:
                                                 MainAxisAlignment.center),
                                         child: AlertDialog(
-                                          title: const Icon(Icons.cancel_outlined,
+                                          title: const Icon(
+                                              Icons.cancel_outlined,
                                               color: Colors.redAccent,
                                               size: 45),
                                           content: const Text(
@@ -161,7 +162,8 @@ class BuildFoodItem extends StatefulWidget {
   int number;
 
   BuildFoodItem(
-      {super.key, required this.imgPath,
+      {super.key,
+      required this.imgPath,
       required this.foodName,
       required this.price,
       required this.number,
@@ -189,24 +191,24 @@ class _BuildFoodItemState extends State<BuildFoodItem> {
             children: <Widget>[
               Row(children: [
                 Hero(
-                tag: widget.imgPath,
-                child: Image(
-                    image: AssetImage(widget.imgPath),
-                    fit: BoxFit.cover,
-                    height: 75.0,
-                    width: 75.0)),
+                    tag: widget.imgPath,
+                    child: Image(
+                        image: AssetImage(widget.imgPath),
+                        fit: BoxFit.cover,
+                        height: 75.0,
+                        width: 75.0)),
                 const SizedBox(width: 10.0),
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(widget.foodName,
-                  style: const TextStyle(
-                      fontFamily: 'Montserrat',
-                      fontSize: 17.0,
-                      fontWeight: FontWeight.bold)),
-              Text('Total price: \$${widget.price * localNumber}',
-                  style: const TextStyle(
-                      fontFamily: 'Montserrat',
-                      fontSize: 15.0,
-                      color: Colors.grey))
+                  Text(widget.foodName,
+                      style: const TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontSize: 17.0,
+                          fontWeight: FontWeight.bold)),
+                  Text('Total price: \$${widget.price * localNumber}',
+                      style: const TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontSize: 15.0,
+                          color: Colors.grey))
                 ])
               ]),
               Container(
@@ -214,7 +216,7 @@ class _BuildFoodItemState extends State<BuildFoodItem> {
                 height: 40.0,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(17.0),
-                    color: const Color(0xFF7A9BEE)),
+                    color: Colors.cyan),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
@@ -244,7 +246,7 @@ class _BuildFoodItemState extends State<BuildFoodItem> {
                         width: 25.0,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(7.0),
-                            color: const Color(0xFF7A9BEE)),
+                            color: Colors.cyan),
                         child: const Center(
                           child: Icon(
                             Icons.remove,

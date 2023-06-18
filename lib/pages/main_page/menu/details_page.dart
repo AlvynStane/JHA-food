@@ -12,7 +12,7 @@ class DetailsPage extends StatefulWidget {
   final pro;
 
   const DetailsPage(
-      {super.key, 
+      {super.key,
       this.heroTag,
       this.foodName,
       this.foodPrice,
@@ -33,7 +33,7 @@ class _DetailsPageState extends State<DetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xFF7A9BEE),
+        backgroundColor: Colors.cyan,
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
@@ -107,7 +107,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           height: 40.0,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(17.0),
-                              color: const Color(0xFF7A9BEE)),
+                              color: Colors.cyan),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
@@ -125,7 +125,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                   width: 25.0,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(7.0),
-                                      color: const Color(0xFF7A9BEE)),
+                                      color: Colors.cyan),
                                   child: const Center(
                                     child: Icon(
                                       Icons.remove,
@@ -156,7 +156,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                   child: const Center(
                                     child: Icon(
                                       Icons.add,
-                                      color: Color(0xFF7A9BEE),
+                                      color: Colors.cyan,
                                       size: 20.0,
                                     ),
                                   ),
@@ -235,8 +235,7 @@ class _DetailsPageState extends State<DetailsPage> {
             curve: Curves.easeIn,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
-              color:
-                  cardTitle == selectedCard ? const Color(0xFF7A9BEE) : Colors.white,
+              color: cardTitle == selectedCard ? Colors.cyan : Colors.white,
               border: Border.all(
                   color: cardTitle == selectedCard
                       ? Colors.transparent
