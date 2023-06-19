@@ -112,7 +112,7 @@ class _LoginState extends State<Login> {
                         setState(() {
                           _agree = val!;
                           _agreeError =
-                              null; // Reset _agreeError when checkbox value changes
+                              null;
                         });
                       },
                     ),
@@ -168,7 +168,7 @@ class _LoginState extends State<Login> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Register_News(),
+                            builder: (context) => Register_News(),
                           ),
                         );
                       },

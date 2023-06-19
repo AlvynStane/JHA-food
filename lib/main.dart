@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:testing/pages/front_page/login/login.dart';
 import 'package:testing/pages/main_page/main_menu_page.dart';
 import 'package:testing/providers/dark_theme.dart';
-import 'package:testing/providers/news_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:testing/providers/language_provider.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (_) => NewsProvider()),
-    ChangeNotifierProvider(create: (_) => DarkThemeProvider())
+    ChangeNotifierProvider(create: (_) => DarkThemeProvider()),
+    ChangeNotifierProvider(create: (_) => LanguageProvider())
   ], child: const MyApp()));
 }
 

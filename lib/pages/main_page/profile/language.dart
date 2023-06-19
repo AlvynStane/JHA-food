@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:provider/provider.dart';
 import 'package:testing/pages/main_page/profile/profile.dart';
+import 'package:testing/providers/language_provider.dart';
 
 class Language extends StatefulWidget {
   const Language({super.key});
@@ -9,11 +10,12 @@ class Language extends StatefulWidget {
   State<Language> createState() => _LanguageState();
 }
 
-int _radioValue = 1;
-
 class _LanguageState extends State<Language> {
+  int radioValue = 0;
   @override
   Widget build(BuildContext context) {
+    final languageProvider = Provider.of<LanguageProvider>(context);
+    int selectedValue = languageProvider.selectedValue;
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -28,16 +30,26 @@ class _LanguageState extends State<Language> {
           icon: const Icon(Icons.arrow_back_ios),
           color: Colors.white,
         ),
+        actions: [
+          IconButton(
+              onPressed: () {
+                if (selectedValue != null) {
+              languageProvider.setSelectedValue(radioValue);
+              Navigator.pop(context);
+            }
+              },
+              icon: Icon(Icons.checklist))
+        ],
       ),
       body: Column(
         children: [
           RadioListTile(
               title: Text('Bahasa Indonesia'),
               value: 0,
-              groupValue: _radioValue,
+              groupValue: radioValue,
               onChanged: (val) {
                 setState(() {
-                  _radioValue = 0;
+                  radioValue = val!;
                 });
               }),
           Divider(
@@ -46,10 +58,10 @@ class _LanguageState extends State<Language> {
           RadioListTile(
               title: Text('Bahasa Inggris'),
               value: 1,
-              groupValue: _radioValue,
+              groupValue: radioValue,
               onChanged: (val) {
                 setState(() {
-                  _radioValue = 1;
+                  radioValue = val!;
                 });
               }),
           Divider(

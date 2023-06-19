@@ -65,25 +65,18 @@ class _MainMenuState extends State<MainMenu> {
                           _buildFoodItem('plate1.png', 'Salmon bowl', 24.00),
                           _buildFoodItem('plate2.png', 'Spring bowl', 22.00),
                           _buildFoodItem('plate3.png', 'Salmon Salad', 24.00),
-                          _buildFoodItem(
-                              'plate4.png', 'Curry Rice bowl', 25.00),
+                          _buildFoodItem('plate4.png', 'Curry Rice bowl', 25.00),
                           _buildFoodItem('plate5.png', 'Berry bowl', 30.00),
                           _buildFoodItem('plate6.png', 'Avocado bowl', 45.00),
-                          _buildFoodItem(
-                              'plate7.png', 'Lamb with potato', 35.00),
-                          _buildFoodItem(
-                              'plate8.png', 'Steak with fries', 50.00),
+                          _buildFoodItem('plate7.png', 'Lamb with potato', 35.00),
+                          _buildFoodItem('plate8.png', 'Steak with fries', 50.00),
                           _buildFoodItem('plate9.png', 'Grilled Rabbit', 30.00),
-                          _buildFoodItem(
-                              'plate10.png', 'Fried duck meat', 28.00),
-                          _buildFoodItem(
-                              'plate11.png', 'Rice with vege.', 32.00),
+                          _buildFoodItem('plate10.png', 'Fried duck meat', 28.00),
+                          _buildFoodItem('plate11.png', 'Rice with vege.', 32.00),
                           _buildFoodItem('plate12.png', 'Tinga Chicken', 25.00),
-                          _buildFoodItem(
-                              'plate13.png', 'Roasted Chicken', 30.00),
+                          _buildFoodItem('plate13.png', 'Roasted Chicken', 30.00),
                           _buildFoodItem('plate14.png', 'Shrimp Creole', 19.00),
-                          _buildFoodItem(
-                              'plate15.png', 'Chicken Quinoa', 26.00),
+                          _buildFoodItem('plate15.png', 'Chicken Quinoa', 26.00),
                           _buildFoodItem('plate16.png', 'BBQ Salmon', 27.00),
                           _buildFoodItem('plate17.png', 'Beef w/ chili', 39.00),
                         ]))),
