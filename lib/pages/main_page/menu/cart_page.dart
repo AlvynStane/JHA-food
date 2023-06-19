@@ -103,7 +103,6 @@ class _CartPageState extends State<CartPage> {
                                 showDialog(
                                   context: context,
                                   builder: (BuildContext context) {
-                                    // return object of type Dialog
                                     return ButtonBarTheme(
                                         data: const ButtonBarThemeData(
                                             alignment:

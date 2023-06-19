@@ -88,8 +88,10 @@ class Register_News extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => HomePages()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomePages()));
                       },
                       child: const Text('Create'),
                     ),
@@ -105,8 +107,7 @@ class Register_News extends StatelessWidget {
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          Login()));
+                                      builder: (context) => Login()));
                             },
                             style: ButtonStyle(
                                 overlayColor: MaterialStateProperty.all<Color>(

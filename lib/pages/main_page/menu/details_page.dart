@@ -6,20 +6,13 @@ class DetailsPage extends StatefulWidget {
   final heroTag;
   final foodName;
   final double? foodPrice;
-  final weight;
-  final cal;
-  final vit;
-  final pro;
 
-  const DetailsPage(
-      {super.key,
-      this.heroTag,
-      this.foodName,
-      this.foodPrice,
-      this.weight,
-      this.cal,
-      this.vit,
-      this.pro});
+  const DetailsPage({
+    super.key,
+    this.heroTag,
+    this.foodName,
+    this.foodPrice,
+  });
 
   @override
   _DetailsPageState createState() => _DetailsPageState();
@@ -53,7 +46,9 @@ class _DetailsPageState extends State<DetailsPage> {
         ),
         body: SingleChildScrollView(
           child: Container(
-            height: MediaQuery.of(context).size.height - kToolbarHeight - MediaQuery.of(context).padding.top,
+            height: MediaQuery.of(context).size.height -
+                kToolbarHeight -
+                MediaQuery.of(context).padding.top,
             child: ListView(children: [
               Stack(children: [
                 Container(
@@ -113,7 +108,8 @@ class _DetailsPageState extends State<DetailsPage> {
                                   borderRadius: BorderRadius.circular(17.0),
                                   color: Colors.cyan),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
                                   InkWell(
                                     onTap: () {
@@ -173,22 +169,7 @@ class _DetailsPageState extends State<DetailsPage> {
                             )
                           ],
                         ),
-                        const SizedBox(height: 20.0),
-                        SizedBox(
-                            height: 100.0,
-                            child: ListView(
-                              scrollDirection: Axis.horizontal,
-                              children: <Widget>[
-                                _buildInfoCard('WEIGHT', widget.weight, 'G'),
-                                const SizedBox(width: 10.0),
-                                _buildInfoCard('CALORIES', widget.cal, 'CAL'),
-                                const SizedBox(width: 10.0),
-                                _buildInfoCard('VITAMINS', widget.vit, 'VIT'),
-                                const SizedBox(width: 10.0),
-                                _buildInfoCard('Protein', widget.pro, 'G')
-                              ],
-                            )),
-                        const SizedBox(height: 15.0),
+                        const SizedBox(height: 420.0),
                         InkWell(
                           child: Padding(
                             padding: const EdgeInsets.only(bottom: 5.0),

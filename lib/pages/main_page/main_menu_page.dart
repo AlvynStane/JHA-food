@@ -40,8 +40,8 @@ class _HomePagesState extends State<HomePages> {
         child: FloatingActionButton(
           tooltip: "List",
           onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: ((context) => const CartPage())));
+            Navigator.push(context,
+                MaterialPageRoute(builder: ((context) => const CartPage())));
           },
           child: const Icon(Icons.shopping_basket),
         ),

@@ -18,6 +18,7 @@ class _LoginState extends State<Login> {
   final _passwordController = TextEditingController();
   bool _agree = false;
   bool _obscureText = true;
+  String? _agreeError;
 
   @override
   void dispose() {
@@ -103,18 +104,34 @@ class _LoginState extends State<Login> {
                   style: const TextStyle(color: Colors.black),
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Checkbox(
                       value: _agree,
                       onChanged: (bool? val) {
                         setState(() {
                           _agree = val!;
+                          _agreeError =
+                              null; // Reset _agreeError when checkbox value changes
                         });
                       },
                     ),
-                    const Text("I'm not a robot"),
+                    Text(
+                      "I'm not a robot",
+                    ),
                   ],
                 ),
+                if (_agreeError != null)
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 28.0),
+                      child: Text(
+                        _agreeError!,
+                        style: TextStyle(color: Colors.red),
+                      ),
+                    ),
+                  ),
                 Container(
                   margin: const EdgeInsets.only(top: 10),
                   padding: const EdgeInsets.all(15),
@@ -124,12 +141,18 @@ class _LoginState extends State<Login> {
                     child: ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const HomePages(),
-                            ),
-                          );
+                          if (!_agree) {
+                            setState(() {
+                              _agreeError = "Please show you're not a robot";
+                            });
+                          } else {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const HomePages(),
+                              ),
+                            );
+                          }
                         }
                       },
                       child: const Text('LOG IN'),

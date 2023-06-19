@@ -23,8 +23,7 @@ class _LanguageState extends State<Language> {
         centerTitle: true,
         leading: IconButton(
           onPressed: () {
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => Profile()));
+            Navigator.pop(context);
           },
           icon: const Icon(Icons.arrow_back_ios),
           color: Colors.white,

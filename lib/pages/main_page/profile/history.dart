@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:testing/pages/main_page/profile/profile.dart';
 
-class history extends StatefulWidget {
-  const history({super.key});
+class History extends StatefulWidget {
+  const History({Key? key}) : super(key: key);
 
   @override
-  State<history> createState() => _historyState();
+  _HistoryState createState() => _HistoryState();
 }
 
-class _historyState extends State<history> {
+class _HistoryState extends State<History> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,8 +20,7 @@ class _historyState extends State<history> {
         centerTitle: true,
         leading: IconButton(
           onPressed: () {
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => Profile()));
+            Navigator.pop(context);
           },
           icon: const Icon(Icons.arrow_back_ios),
           color: Colors.white,

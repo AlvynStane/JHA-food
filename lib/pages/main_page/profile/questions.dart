@@ -22,8 +22,7 @@ class _questionsState extends State<questions> {
       centerTitle: true,
       leading: IconButton(
         onPressed: () {
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => const Profile()));
+          Navigator.pop(context);
         },
         icon: const Icon(Icons.arrow_back_ios),
         color: Colors.white,

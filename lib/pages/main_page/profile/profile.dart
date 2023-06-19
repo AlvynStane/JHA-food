@@ -102,42 +102,39 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => history()),
-                            );
-                          },
-                          child: Container(
+                        Container(
                             height: 75,
                             width: 85,
                             decoration: BoxDecoration(
-                              color: Colors.cyan,
-                              borderRadius: BorderRadius.circular(5),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.3),
-                                  spreadRadius: 6,
-                                  blurRadius: 4,
-                                ),
-                              ],
-                            ),
+                                color: Colors.cyan,
+                                borderRadius: BorderRadius.circular(5),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.3),
+                                      spreadRadius: 6,
+                                      blurRadius: 4)
+                                ]),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 children: <Widget>[
-                                  Icon(Icons.history, color: Colors.white),
+                                  IconButton(
+                                    icon: const Icon(Icons.history,
+                                        color: Colors.white),
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => History()));
+                                    },
+                                  ),
                                   Text(
                                     'History',
                                     style: TextStyle(color: Colors.white),
-                                  ),
+                                  )
                                 ],
                               ),
-                            ),
-                          ),
-                        ),
+                            )),
                         Container(
                             height: 75,
                             width: 85,
@@ -158,7 +155,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                                     icon: const Icon(Icons.account_balance,
                                         color: Colors.white),
                                     onPressed: () {
-                                      Navigator.pushReplacement(
+                                      Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) => balance()));
@@ -191,7 +188,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                                   icon: const Icon(Icons.credit_card,
                                       color: Colors.white),
                                   onPressed: () {
-                                    Navigator.pushReplacement(
+                                    Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) => cc()));
@@ -234,7 +231,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                                   icon: const Icon(Icons.language,
                                       color: Colors.white),
                                   onPressed: () {
-                                    Navigator.pushReplacement(
+                                    Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
@@ -269,7 +266,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                                   icon: const Icon(Icons.question_answer,
                                       color: Colors.white),
                                   onPressed: () {
-                                    Navigator.pushReplacement(
+                                    Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
@@ -307,7 +304,8 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                                     Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => const Login()));
+                                            builder: (context) =>
+                                                const Login()));
                                   },
                                 ),
                                 Text(
