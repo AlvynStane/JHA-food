@@ -1,22 +1,20 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:testing/pages/main_page/profile/profile.dart';
+import 'package:flutter/material.dart';
 
-class questions extends StatefulWidget {
-  const questions({super.key});
+class Account extends StatefulWidget {
+  const Account({super.key});
 
   @override
-  State<questions> createState() => _questionsState();
+  State<Account> createState() => _AccountState();
 }
 
-class _questionsState extends State<questions> {
+class _AccountState extends State<Account> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
       title: const Text(
-        'Help',
+        'My Account',
         style: TextStyle(color: Colors.white),
       ),
       centerTitle: true,

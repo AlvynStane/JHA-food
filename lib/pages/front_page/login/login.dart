@@ -55,7 +55,7 @@ class _LoginState extends State<Login> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text('LOG IN', style: TextStyle(fontSize: 35)),
+                const Text('SIGN IN', style: TextStyle(fontSize: 35)),
                 TextFormField(
                   controller: _emailController,
                   decoration: InputDecoration(
@@ -111,8 +111,7 @@ class _LoginState extends State<Login> {
                       onChanged: (bool? val) {
                         setState(() {
                           _agree = val!;
-                          _agreeError =
-                              null;
+                          _agreeError = null;
                         });
                       },
                     ),
@@ -155,7 +154,7 @@ class _LoginState extends State<Login> {
                           }
                         }
                       },
-                      child: const Text('LOG IN'),
+                      child: const Text('SIGN IN'),
                     ),
                   ),
                 ),

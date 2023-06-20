@@ -14,7 +14,7 @@ class _HistoryState extends State<History> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'History',
+          'Order History',
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,

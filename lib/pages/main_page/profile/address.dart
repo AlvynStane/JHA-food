@@ -1,22 +1,20 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:testing/pages/main_page/profile/profile.dart';
+import 'package:flutter/material.dart';
 
-class cc extends StatefulWidget {
-  const cc({super.key});
+class Address extends StatefulWidget {
+  const Address({super.key});
 
   @override
-  State<cc> createState() => _ccState();
+  State<Address> createState() => _AddressState();
 }
 
-class _ccState extends State<cc> {
+class _AddressState extends State<Address> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
       title: const Text(
-        'Credit Card',
+        'Saved Address',
         style: TextStyle(color: Colors.white),
       ),
       centerTitle: true,

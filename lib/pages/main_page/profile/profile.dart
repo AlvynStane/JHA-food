@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:testing/pages/front_page/login/login.dart';
+import 'package:testing/pages/main_page/profile/account.dart';
+import 'package:testing/pages/main_page/profile/address.dart';
 import 'package:testing/pages/main_page/profile/balance.dart';
-import 'package:testing/pages/main_page/profile/cc.dart';
+import 'package:testing/pages/main_page/profile/contact.dart';
 import 'package:testing/pages/main_page/profile/history.dart';
 import 'package:testing/pages/main_page/profile/language.dart';
-import 'package:testing/pages/main_page/profile/questions.dart';
+import 'package:testing/pages/main_page/profile/faq.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -24,8 +26,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
         centerTitle: true,
         title: const Text(
           'Profile',
-          style: TextStyle(
-              color: Colors.white),
+          style: TextStyle(color: Colors.white),
         ),
       ),
       body: SingleChildScrollView(
@@ -36,10 +37,8 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
               child: Container(
                 padding: EdgeInsets.fromLTRB(20, 10, 0, 10),
                 decoration: BoxDecoration(
-                  border: Border.symmetric(
-                    horizontal: BorderSide(color: Colors.grey)
-                  )
-                ),
+                    border: Border.symmetric(
+                        horizontal: BorderSide(color: Colors.grey))),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -56,12 +55,14 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                           ]),
                       child: const CircleAvatar(
                         radius: 50,
-                        backgroundImage:
-                            AssetImage('assets/selena.jpg'),
+                        backgroundImage: AssetImage('assets/selena.jpg'),
                       ),
                     ),
-                    SizedBox(width: 20,),
+                    SizedBox(
+                      width: 20,
+                    ),
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
                           'Selena Gomez',
@@ -77,6 +78,20 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                         ),
                       ],
                     ),
+                    Container(
+                      padding: const EdgeInsets.only(left: 40),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Account(),
+                            ),
+                          );
+                        },
+                        child: const Text('Edit Profil'),
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -96,7 +111,28 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                     physics: NeverScrollableScrollPhysics(),
                     children: [
                       _listname(Icons.credit_card, 'Balance', balance()),
-                      _listname(Icons.location_city, 'Saved Address', null),
+                      _listname(Icons.location_city_rounded, 'Saved Address',
+                          Address()),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Activities',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: ListView(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    children: [
+                      _listname(Icons.history, 'Order History', History()),
                     ],
                   ),
                 ),
@@ -127,7 +163,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Help Centre',
+                  'Help Center',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 Padding(
@@ -136,42 +172,31 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     children: [
-                      _listname(Icons.question_answer, 'FAQ', cc()),
-                      _listname(Icons.help_center, 'Contact Us', null),
+                      _listname(Icons.question_answer, 'FAQ', Help()),
+                      _listname(Icons.help_center, 'Contact Us', Contact()),
                     ],
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             Container(
-              alignment: Alignment.center,
-                height: 50,
-                width: 120,
-                decoration: BoxDecoration(
-                      color: Colors.cyan,
-                      borderRadius: BorderRadius.circular(5),
+              padding: const EdgeInsets.all(8.0),
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Login(),
                     ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: <Widget>[
-                      IconButton(
-                        icon: const Icon(Icons.logout, color: Colors.white),
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Login()));
-                        },
-                      ),
-                      Text(
-                        'Log Out',
-                        style: TextStyle(color: Colors.white),
-                      )
-                    ],
-                  ),
-                ))
+                  );
+                },
+                child: const Text('LOG OUT'),
+              ),
+            )
           ],
         ),
       ),

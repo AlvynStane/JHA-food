@@ -25,8 +25,8 @@ class _HomePagesState extends State<HomePages> {
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person_2_rounded),
-              label: 'Profile',
+              icon: Icon(Icons.account_circle),
+              label: 'Account',
             )
           ],
           currentIndex: _selectedIndex,

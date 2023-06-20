@@ -11,7 +11,7 @@ class Language extends StatefulWidget {
 }
 
 class _LanguageState extends State<Language> {
-  int radioValue = 0;
+  int radioValue = 1;
   @override
   Widget build(BuildContext context) {
     final languageProvider = Provider.of<LanguageProvider>(context);
@@ -34,11 +34,14 @@ class _LanguageState extends State<Language> {
           IconButton(
               onPressed: () {
                 if (selectedValue != null) {
-              languageProvider.setSelectedValue(radioValue);
-              Navigator.pop(context);
-            }
+                  languageProvider.setSelectedValue(radioValue);
+                  Navigator.pop(context);
+                }
               },
-              icon: Icon(Icons.checklist))
+              icon: Icon(
+                Icons.check,
+                color: Colors.white,
+              ))
         ],
       ),
       body: Column(

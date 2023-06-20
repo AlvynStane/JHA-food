@@ -188,7 +188,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                 width: (MediaQuery.of(context).size.width / 2) -
                                     60,
                                 child: ListTile(
-                                  title: const Text('Visa'),
+                                  title: const Text('Balance'),
                                   leading: Radio(
                                     value: PaymentType.Visa,
                                     groupValue: pt,
