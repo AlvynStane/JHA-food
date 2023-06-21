@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:testing/pages/front_page/login/login.dart';
+import 'package:testing/pages/loading_page/loading.dart';
 import 'package:testing/pages/main_page/main_menu_page.dart';
 import 'package:testing/providers/dark_theme.dart';
 import 'package:testing/providers/language_provider.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
             theme: themeProvider.darkTheme == true
                 ? themeProvider.dark
                 : themeProvider.light,
-            home: const Login(),
+            home: Loading(),
           );
         });
   }
