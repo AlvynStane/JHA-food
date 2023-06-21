@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-class LanguageProvider extends ChangeNotifier {
-  int _selectedValue = 1;
+class LanguageProvider extends ChangeNotifier{
+  List<String> languageList = ['Indonesia', 'English'];
+  String _selectedLanguage = 'Indonesia';
 
-  int get selectedValue => _selectedValue;
+  String get selectedLanguage => _selectedLanguage;
 
-  void setSelectedValue(int value) {
-    _selectedValue = value;
+  void changeLanguage(String value) {
+    _selectedLanguage = value;
     notifyListeners();
   }
 }
