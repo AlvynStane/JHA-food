@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:testing/pages/main_page/profile/profile.dart';
+import 'package:testing/providers/food_list.dart';
 
 class History extends StatefulWidget {
   const History({Key? key}) : super(key: key);
@@ -24,6 +25,34 @@ class _HistoryState extends State<History> {
           },
           icon: const Icon(Icons.arrow_back_ios),
           color: Colors.white,
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: ListView.builder(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          itemCount: allHistory.length,
+          itemBuilder: (context, index) {
+            HistoryList history = allHistory[index];
+            return ExpansionTile(
+                title: Text('Tracking ID: #${history.invoiceHistory}'),
+                children: [
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: history.listHistory?.length,
+                    itemBuilder: (context, foodIndex) {
+                      Food food = history.listHistory![foodIndex];
+                      return ListTile(
+                        title: Text(food.foodName!),
+                        subtitle: Text(
+                            'Price: \$${food.foodPrice!.toStringAsFixed(2)}'),
+                        trailing: Text('Quantity: ${food.number}'),
+                      );
+                    },
+                  )
+                ]);
+          },
         ),
       ),
     );

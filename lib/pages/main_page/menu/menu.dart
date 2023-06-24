@@ -21,7 +21,6 @@ class _MainMenuState extends State<MainMenu> {
             padding: EdgeInsets.only(top: 15.0, left: 10.0),
             child: Text('Welcome, Order Now!',
                 style: TextStyle(
-                    fontFamily: 'Montserrat',
                     // color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 25.0)),
@@ -33,14 +32,14 @@ class _MainMenuState extends State<MainMenu> {
               children: const <Widget>[
                 Text('Healthy',
                     style: TextStyle(
-                        fontFamily: 'Montserrat',
+
                         // color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 25.0)),
                 SizedBox(width: 10.0),
                 Text('Food Menu',
                     style: TextStyle(
-                        fontFamily: 'Montserrat',
+
                         // color: Colors.white,
                         fontSize: 25.0))
               ],
@@ -65,18 +64,25 @@ class _MainMenuState extends State<MainMenu> {
                           _buildFoodItem('plate1.png', 'Salmon bowl', 24.00),
                           _buildFoodItem('plate2.png', 'Spring bowl', 22.00),
                           _buildFoodItem('plate3.png', 'Salmon Salad', 24.00),
-                          _buildFoodItem('plate4.png', 'Curry Rice bowl', 25.00),
+                          _buildFoodItem(
+                              'plate4.png', 'Curry Rice bowl', 25.00),
                           _buildFoodItem('plate5.png', 'Berry bowl', 30.00),
                           _buildFoodItem('plate6.png', 'Avocado bowl', 45.00),
-                          _buildFoodItem('plate7.png', 'Lamb with potato', 35.00),
-                          _buildFoodItem('plate8.png', 'Steak with fries', 50.00),
+                          _buildFoodItem(
+                              'plate7.png', 'Lamb with potato', 35.00),
+                          _buildFoodItem(
+                              'plate8.png', 'Steak with fries', 50.00),
                           _buildFoodItem('plate9.png', 'Grilled Rabbit', 30.00),
-                          _buildFoodItem('plate10.png', 'Fried duck meat', 28.00),
-                          _buildFoodItem('plate11.png', 'Rice with vege.', 32.00),
+                          _buildFoodItem(
+                              'plate10.png', 'Fried duck meat', 28.00),
+                          _buildFoodItem(
+                              'plate11.png', 'Rice with vege.', 32.00),
                           _buildFoodItem('plate12.png', 'Tinga Chicken', 25.00),
-                          _buildFoodItem('plate13.png', 'Roasted Chicken', 30.00),
+                          _buildFoodItem(
+                              'plate13.png', 'Roasted Chicken', 30.00),
                           _buildFoodItem('plate14.png', 'Shrimp Creole', 19.00),
-                          _buildFoodItem('plate15.png', 'Chicken Quinoa', 26.00),
+                          _buildFoodItem(
+                              'plate15.png', 'Chicken Quinoa', 26.00),
                           _buildFoodItem('plate16.png', 'BBQ Salmon', 27.00),
                           _buildFoodItem('plate17.png', 'Beef w/ chili', 39.00),
                         ]))),
@@ -119,12 +125,9 @@ class _MainMenuState extends State<MainMenu> {
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Text(foodName,
                       style: const TextStyle(
-                          fontFamily: 'Montserrat',
-                          fontSize: 17.0,
-                          fontWeight: FontWeight.bold)),
+                          fontSize: 17.0, fontWeight: FontWeight.bold)),
                   Text('\$$price',
                       style: const TextStyle(
-                        fontFamily: 'Montserrat',
                         fontSize: 15.0,
                         // color: Colors.grey
                       ))

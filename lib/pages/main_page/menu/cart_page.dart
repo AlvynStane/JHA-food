@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'food_list.dart';
+import '../../../providers/food_list.dart';
 import 'check_out.dart';
 
 class CartPage extends StatefulWidget {
@@ -33,8 +33,7 @@ class _CartPageState extends State<CartPage> {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         title: const Text('My Cart',
-            style: TextStyle(
-                fontFamily: 'Montserrat', fontSize: 18.0, color: Colors.white)),
+            style: TextStyle(fontSize: 18.0, color: Colors.white)),
         centerTitle: true,
       ),
       body: ListView(children: <Widget>[
@@ -93,7 +92,6 @@ class _CartPageState extends State<CartPage> {
                             child: const Center(
                               child: Text('Checkout',
                                   style: TextStyle(
-                                      fontFamily: 'Montserrat',
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 17.0)),
@@ -141,7 +139,6 @@ class _CartPageState extends State<CartPage> {
                       ),
                       Text("Total: $total \$",
                           style: const TextStyle(
-                              fontFamily: 'Montserrat',
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
                               fontSize: 17.0)),
@@ -200,14 +197,10 @@ class _BuildFoodItemState extends State<BuildFoodItem> {
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Text(widget.foodName,
                       style: const TextStyle(
-                          fontFamily: 'Montserrat',
-                          fontSize: 17.0,
-                          fontWeight: FontWeight.bold)),
+                          fontSize: 17.0, fontWeight: FontWeight.bold)),
                   Text('Total price: \$${widget.price * localNumber}',
-                      style: const TextStyle(
-                          fontFamily: 'Montserrat',
-                          fontSize: 15.0,
-                          color: Colors.grey))
+                      style:
+                          const TextStyle(fontSize: 15.0, color: Colors.grey))
                 ])
               ]),
               Container(
@@ -257,9 +250,7 @@ class _BuildFoodItemState extends State<BuildFoodItem> {
                     ),
                     Text('$localNumber',
                         style: const TextStyle(
-                            color: Colors.white,
-                            fontFamily: 'Montserrat',
-                            fontSize: 15.0)),
+                            color: Colors.white, fontSize: 15.0)),
                     InkWell(
                       onTap: () {
                         setState(() {

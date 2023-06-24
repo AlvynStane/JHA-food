@@ -225,7 +225,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
         child: ListTile(
           title: Text(name),
           leading: Icon(icon),
-          trailing: Text('>'),
+          trailing: Icon(Icons.arrow_forward_ios),
         ),
       ),
     );

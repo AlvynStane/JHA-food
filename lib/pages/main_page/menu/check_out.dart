@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../main_menu_page.dart';
-import 'food_list.dart';
+import '../../../providers/food_list.dart';
 
 class CheckOutPage extends StatefulWidget {
   const CheckOutPage({super.key});
@@ -29,10 +29,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           title: const Text('INVOICE',
-              style: TextStyle(
-                  fontFamily: 'Montserrat',
-                  fontSize: 18.0,
-                  color: Colors.white)),
+              style: TextStyle(fontSize: 18.0, color: Colors.white)),
           centerTitle: true,
         ),
         body: Column(children: <Widget>[
@@ -54,8 +51,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                           const SizedBox(height: 16),
                           const Text(
                             'Delivery Information',
-                            style: TextStyle(
-                                fontFamily: 'Montserrat', fontSize: 18.0),
+                            style: TextStyle(fontSize: 18.0),
                           ),
                           const SizedBox(height: 16),
                           Row(
@@ -160,9 +156,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                             margin: const EdgeInsets.only(top: 10),
                             child: const Center(
                                 child: Text("Payment Type",
-                                    style: TextStyle(
-                                        fontFamily: 'Montserrat',
-                                        fontSize: 18.0))),
+                                    style: TextStyle(fontSize: 18.0))),
                           ),
                           Row(
                             children: [
@@ -265,7 +259,6 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                 child: const Center(
                                   child: Text(' Confirm\nPurchase',
                                       style: TextStyle(
-                                          fontFamily: 'Montserrat',
                                           color: Colors.black,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 17.0)),
@@ -292,15 +285,15 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                               color: Colors.green,
                                               size: 50,
                                             ),
-                                            content: const Text(
-                                                'Thank you for your purchase\n Tracking ID: #2352452',
+                                            content: Text(
+                                                'Thank you for your purchase\n Tracking ID: #$randomInvoice',
                                                 textAlign: TextAlign.center),
                                             actions: <Widget>[
                                               TextButton(
                                                   onPressed: () {
-                                                    // history.addToHistory(list, total);
-                                                    list.clear();
-                                                    total = 0;
+                                                    addToHistory();
+                                                    // list.clear();
+                                                    // total = 0;
                                                     Navigator.of(context)
                                                         .pushAndRemoveUntil(
                                                             MaterialPageRoute(

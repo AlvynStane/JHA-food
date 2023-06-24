@@ -2,21 +2,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:testing/pages/front_page/login/login.dart';
 
-void main() {
-  runApp(Loading());
-}
-
-class Loading extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
-    );
-  }
-}
-
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -49,11 +37,13 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Image(
+              image: AssetImage('logo.png'),
+              width: 200,
+              height: 200,
+            ),
             Text('JHA FOOD',
-                style: TextStyle(
-                    fontFamily: 'Montserrat',
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold)),
+                style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold)),
             SizedBox(height: 24),
             CircularProgressIndicator(),
           ],

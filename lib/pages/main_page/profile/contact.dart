@@ -44,9 +44,9 @@ class _ContactState extends State<Contact> {
                 child: Text(
                   'Our Priority is always Your Satisfaction',
                   style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Montserrat'),
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
                 )),
             Padding(
               padding: const EdgeInsets.all(20.0),
