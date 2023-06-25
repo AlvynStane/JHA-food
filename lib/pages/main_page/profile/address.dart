@@ -1,4 +1,3 @@
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 
 class Address extends StatefulWidget {
@@ -9,6 +8,12 @@ class Address extends StatefulWidget {
 }
 
 class _AddressState extends State<Address> {
+  List<AddressData> addresses = [
+    AddressData(name: 'Selena Gomez', address: 'Jl. Asia No 123'),
+    AddressData(name: 'Justin Bieber', address: 'Jl. Thamrin No 456'),
+    AddressData(name: 'Shawn Mendes', address: 'Jl. Sutomo No 789'),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,108 +47,17 @@ class _AddressState extends State<Address> {
             ),
             SizedBox(height: 16.0),
             Expanded(
-              child: ListView(
-                children: [
-                  Card(
-                    elevation: 5.0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    color: Colors.white,
-                    child: ListTile(
-                      title: Text(
-                        'Selena Gomez',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16.0,
-                          color: Colors.black,
-                        ),
-                      ),
-                      subtitle: Text(
-                        'Jl. Asia No 123',
-                        style: TextStyle(
-                          fontSize: 14.0,
-                          color: Colors.grey[600],
-                        ),
-                      ),
-                      trailing: IconButton(
-                        onPressed: () {
-                          _editAddress(context);
-                        },
-                        icon: Icon(
-                          Icons.edit,
-                          color: Colors.blue,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Card(
-                    elevation: 5.0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    color: Colors.white,
-                    child: ListTile(
-                      title: Text(
-                        'Justin Bieber',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16.0,
-                          color: Colors.black,
-                        ),
-                      ),
-                      subtitle: Text(
-                        'Jl. Thamrin No 456',
-                        style: TextStyle(
-                          fontSize: 14.0,
-                          color: Colors.grey[600],
-                        ),
-                      ),
-                      trailing: IconButton(
-                        onPressed: () {
-                          _editAddress(context);
-                        },
-                        icon: Icon(
-                          Icons.edit,
-                          color: Colors.blue,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Card(
-                    elevation: 5.0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    color: Colors.white,
-                    child: ListTile(
-                      title: Text(
-                        'Shawn Mendes',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16.0,
-                          color: Colors.black,
-                        ),
-                      ),
-                      subtitle: Text(
-                        'Jl. Sutomo No 789',
-                        style: TextStyle(
-                          fontSize: 14.0,
-                          color: Colors.grey[600],
-                        ),
-                      ),
-                      trailing: IconButton(
-                        onPressed: () {
-                          _editAddress(context);
-                        },
-                        icon: Icon(
-                          Icons.edit,
-                          color: Colors.blue,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+              child: ListView.builder(
+                itemCount: addresses.length,
+                itemBuilder: (context, index) {
+                  final address = addresses[index];
+                  return AddressCard(
+                    address: address,
+                    onEdit: () {
+                      _editAddress(context, address);
+                    },
+                  );
+                },
               ),
             ),
           ],
@@ -152,17 +66,102 @@ class _AddressState extends State<Address> {
     );
   }
 
-  void _editAddress(BuildContext context) {
+  void _editAddress(BuildContext context, AddressData address) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => EditAddressScreen(),
+        builder: (context) => EditAddressScreen(address: address),
+      ),
+    ).then((editedAddress) {
+      if (editedAddress != null) {
+        setState(() {
+          address.name = editedAddress.name;
+          address.address = editedAddress.address;
+        });
+      }
+    });
+  }
+}
+
+class AddressData {
+  String name;
+  String address;
+
+  AddressData({required this.name, required this.address});
+}
+
+class AddressCard extends StatelessWidget {
+  final AddressData address;
+  final VoidCallback onEdit;
+
+  const AddressCard({
+    required this.address,
+    required this.onEdit,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 5.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      color: Colors.white,
+      child: ListTile(
+        title: Text(
+          address.name,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 16.0,
+            color: Colors.black,
+          ),
+        ),
+        subtitle: Text(
+          address.address,
+          style: TextStyle(
+            fontSize: 14.0,
+            color: Colors.grey[600],
+          ),
+        ),
+        trailing: IconButton(
+          onPressed: onEdit,
+          icon: Icon(
+            Icons.edit,
+            color: Colors.blue,
+          ),
+        ),
       ),
     );
   }
 }
 
-class EditAddressScreen extends StatelessWidget {
+class EditAddressScreen extends StatefulWidget {
+  final AddressData address;
+
+  const EditAddressScreen({required this.address});
+
+  @override
+  _EditAddressScreenState createState() => _EditAddressScreenState();
+}
+
+class _EditAddressScreenState extends State<EditAddressScreen> {
+  late TextEditingController _nameController;
+  late TextEditingController _addressController;
+
+  @override
+  void initState() {
+    super.initState();
+    _nameController = TextEditingController(text: widget.address.name);
+    _addressController = TextEditingController(text: widget.address.address);
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _addressController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -187,6 +186,34 @@ class EditAddressScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16.0),
+            TextFormField(
+              controller: _nameController,
+              decoration: InputDecoration(
+                labelText: 'Name',
+              ),
+            ),
+            SizedBox(height: 16.0),
+            TextFormField(
+              controller: _addressController,
+              decoration: InputDecoration(
+                labelText: 'Address',
+              ),
+            ),
+            SizedBox(height: 16.0),
+            ElevatedButton(
+              onPressed: () {
+                String editedName = _nameController.text;
+                String editedAddress = _addressController.text;
+
+                AddressData editedData = AddressData(
+                  name: editedName,
+                  address: editedAddress,
+                );
+
+                Navigator.pop(context, editedData);
+              },
+              child: Text('Save Address'),
+            ),
           ],
         ),
       ),
