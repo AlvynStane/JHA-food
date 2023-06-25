@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:testing/pages/front_page/login/login.dart';
-import 'package:testing/pages/main_page/profile/account.dart';
 import 'package:testing/pages/main_page/profile/address.dart';
 import 'package:testing/pages/main_page/profile/balance.dart';
 import 'package:testing/pages/main_page/profile/contact.dart';
@@ -9,13 +8,16 @@ import 'package:testing/pages/main_page/profile/language.dart';
 import 'package:testing/pages/main_page/profile/faq.dart';
 
 class Profile extends StatefulWidget {
-  const Profile({super.key});
+  const Profile({Key? key});
 
   @override
   _ProfileState createState() => _ProfileState();
 }
 
 class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
+  String username = 'Selena Gomez';
+  String email = 'selenagomez@gmail.com';
+
   @override
   void initState() => super.initState();
 
@@ -64,15 +66,15 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Selena Gomez',
+                        Text(
+                          username,
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 23,
                               fontWeight: FontWeight.bold),
                         ),
-                        const Text(
-                          'selenagomez@gmail.com',
+                        Text(
+                          email,
                           style: TextStyle(
                               color: Colors.black, fontWeight: FontWeight.w300),
                         ),
@@ -82,14 +84,9 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                       padding: const EdgeInsets.only(left: 40),
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => Account(),
-                            ),
-                          );
+                          _editProfile();
                         },
-                        child: const Text('Edit Profil'),
+                        child: const Text('Edit Profile'),
                       ),
                     )
                   ],
@@ -214,7 +211,6 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => page));
         }
-        ;
       },
       child: Container(
         decoration: BoxDecoration(
@@ -228,6 +224,58 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
           trailing: Icon(Icons.arrow_forward_ios),
         ),
       ),
+    );
+  }
+
+  void _editProfile() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        String newUsername = username;
+        String newEmail = email;
+        return AlertDialog(
+          title: Text('Edit Profile'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                onChanged: (value) {
+                  newUsername = value;
+                },
+                decoration: InputDecoration(
+                  labelText: 'Username',
+                ),
+              ),
+              TextField(
+                onChanged: (value) {
+                  newEmail = value;
+                },
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  username = newUsername;
+                  email = newEmail;
+                });
+                Navigator.pop(context);
+              },
+              child: Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Cancel'),
+            ),
+          ],
+        );
+      },
     );
   }
 }
