@@ -110,7 +110,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     children: [
-                      _listname(Icons.credit_card, 'Balance', balance()),
+                      _listname(Icons.credit_card, 'Balance', SaldoPage()),
                       _listname(Icons.location_city_rounded, 'Saved Address',
                           Address()),
                     ],
