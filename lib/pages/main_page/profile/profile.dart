@@ -19,7 +19,9 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
   String email = 'selenagomez@gmail.com';
 
   @override
-  void initState() => super.initState();
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +41,9 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
               child: Container(
                 padding: EdgeInsets.fromLTRB(20, 10, 0, 10),
                 decoration: BoxDecoration(
-                    border: Border.symmetric(
-                        horizontal: BorderSide(color: Colors.grey))),
+                  border: Border.symmetric(
+                      horizontal: BorderSide(color: Colors.grey)),
+                ),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -48,137 +51,157 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                       height: 70,
                       width: 70,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(40),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Colors.white10,
-                              spreadRadius: 2,
-                            )
-                          ]),
+                        borderRadius: BorderRadius.circular(40),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.white10,
+                            spreadRadius: 2,
+                          ),
+                        ],
+                      ),
                       child: const CircleAvatar(
                         radius: 50,
                         backgroundImage: AssetImage('assets/selena.jpg'),
                       ),
                     ),
-                    SizedBox(
-                      width: 20,
-                    ),
+                    SizedBox(width: 20),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           username,
                           style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 23,
-                              fontWeight: FontWeight.bold),
+                            color: Colors.black,
+                            fontSize: 23,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         Text(
                           email,
                           style: TextStyle(
-                              color: Colors.black, fontWeight: FontWeight.w300),
+                            color: Colors.black,
+                            fontWeight: FontWeight.w300,
+                          ),
                         ),
                       ],
                     ),
                     Container(
                       padding: const EdgeInsets.only(left: 40),
                       child: ElevatedButton(
-                        onPressed: () {
-                          _editProfile();
-                        },
+                        onPressed: _editProfile,
                         child: const Text('Edit Profile'),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
             ),
+            SizedBox(height: 20),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Account',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    'Account',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
                 ),
+                SizedBox(height: 10),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: ListView(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     children: [
-                      _listname(Icons.credit_card, 'Balance', SaldoPage()),
-                      _listname(Icons.location_city_rounded, 'Saved Address',
+                      _listItem(Icons.credit_card, 'Balance', SaldoPage()),
+                      SizedBox(height: 10),
+                      _listItem(Icons.location_city_rounded, 'Saved Address',
                           Address()),
                     ],
                   ),
                 ),
               ],
             ),
+            SizedBox(height: 20),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Activities',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    'Activities',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
                 ),
+                SizedBox(height: 10),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: ListView(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     children: [
-                      _listname(Icons.history, 'Order History', History()),
+                      _listItem(Icons.history, 'Order History', History()),
                     ],
                   ),
                 ),
               ],
             ),
+            SizedBox(height: 20),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'General',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    'General',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
                 ),
+                SizedBox(height: 10),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: ListView(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     children: [
-                      _listname(Icons.language, 'Language', Language()),
+                      _listItem(Icons.language, 'Language', Language()),
                     ],
                   ),
                 ),
               ],
             ),
+            SizedBox(height: 20),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Help Center',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    'Help Center',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
                 ),
+                SizedBox(height: 10),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: ListView(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     children: [
-                      _listname(Icons.question_answer, 'FAQ', Help()),
-                      _listname(Icons.help_center, 'Contact Us', Contact()),
+                      _listItem(Icons.question_answer, 'FAQ', Help()),
+                      SizedBox(height: 10),
+                      _listItem(Icons.help_center, 'Contact Us', Contact()),
                     ],
                   ),
                 ),
               ],
             ),
-            SizedBox(
-              height: 20,
-            ),
+            SizedBox(height: 20),
             Container(
               padding: const EdgeInsets.all(8.0),
               width: double.infinity,
@@ -193,23 +216,21 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                 },
                 child: const Text('LOG OUT'),
               ),
-            )
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _listname(
-    IconData icon,
-    String name,
-    Widget? page,
-  ) {
+  Widget _listItem(IconData icon, String name, Widget? page) {
     return InkWell(
       onTap: () {
         if (page != null) {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => page));
+            context,
+            MaterialPageRoute(builder: (context) => page),
+          );
         }
       },
       child: Container(

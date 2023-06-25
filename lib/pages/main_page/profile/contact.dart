@@ -24,7 +24,7 @@ class _ContactState extends State<Contact> {
       appBar: AppBar(
         title: const Text(
           'Contact Us',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.white, fontSize: 20),
         ),
         centerTitle: true,
         leading: IconButton(
@@ -39,17 +39,17 @@ class _ContactState extends State<Contact> {
         child: Column(
           children: [
             Padding(
-                padding:
-                    const EdgeInsets.only(left: 20.0, right: 20.0, top: 10),
-                child: Text(
-                  'Our Priority is always Your Satisfaction',
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                  ),
-                )),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Text(
+                'Our Priority is always Your Satisfaction',
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
             Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(20),
               child: Text(
                 "For further inquiries, please don't hesitate to contact us using the form below. We will get in touch with you as soon as possible.",
                 style: TextStyle(fontSize: 20),
@@ -57,16 +57,22 @@ class _ContactState extends State<Contact> {
             ),
             SizedBox(height: 15),
             Form(
-                child: SizedBox(
-              width: 380,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'FULL NAME',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  TextFormField(
+              child: SizedBox(
+                width: 380,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: Text(
+                        'FULL NAME',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                    TextFormField(
                       controller: _fullnameController,
                       decoration: InputDecoration(
                         hintText: "Enter your name",
@@ -74,13 +80,20 @@ class _ContactState extends State<Contact> {
                           borderRadius: BorderRadius.circular(7),
                           borderSide: const BorderSide(color: Colors.black),
                         ),
-                      )),
-                  SizedBox(height: 20),
-                  Text(
-                    'PHONE NUMBER',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  TextFormField(
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: Text(
+                        'PHONE NUMBER',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                    TextFormField(
                       controller: _phonenumberController,
                       decoration: InputDecoration(
                         hintText: "Enter your phone number",
@@ -88,13 +101,20 @@ class _ContactState extends State<Contact> {
                           borderRadius: BorderRadius.circular(7),
                           borderSide: const BorderSide(color: Colors.black),
                         ),
-                      )),
-                  SizedBox(height: 20),
-                  Text(
-                    'EMAIL',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  TextFormField(
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: Text(
+                        'EMAIL',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                    TextFormField(
                       controller: _emailController,
                       decoration: InputDecoration(
                         hintText: "Enter your email",
@@ -102,13 +122,20 @@ class _ContactState extends State<Contact> {
                           borderRadius: BorderRadius.circular(7),
                           borderSide: const BorderSide(color: Colors.black),
                         ),
-                      )),
-                  SizedBox(height: 20),
-                  Text(
-                    'MESSAGE',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  TextFormField(
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: Text(
+                        'MESSAGE',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                    TextFormField(
                       controller: _messageController,
                       decoration: InputDecoration(
                         hintText: "Enter your message",
@@ -116,10 +143,12 @@ class _ContactState extends State<Contact> {
                           borderRadius: BorderRadius.circular(7),
                           borderSide: const BorderSide(color: Colors.black),
                         ),
-                      ))
-                ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            )),
+            ),
             Container(
               margin: const EdgeInsets.only(top: 10),
               padding: const EdgeInsets.only(top: 15, left: 290, bottom: 15),
@@ -135,7 +164,10 @@ class _ContactState extends State<Contact> {
                     ));
                     Navigator.pop(context);
                   },
-                  child: const Text('SEND'),
+                  child: const Text(
+                    'SEND',
+                    style: TextStyle(fontSize: 16),
+                  ),
                 ),
               ),
             ),
