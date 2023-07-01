@@ -1,10 +1,18 @@
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
-import 'package:testing/pages/main_page/profile/profile.dart';
+import 'package:provider/provider.dart';
+import 'package:testing/providers/saved_account.dart';
 
-class SaldoPage extends StatelessWidget {
+class SaldoPage extends StatefulWidget {
+  const SaldoPage({super.key});
+
+  @override
+  State<SaldoPage> createState() => _SaldoPageState();
+}
+
+class _SaldoPageState extends State<SaldoPage> {
   @override
   Widget build(BuildContext context) {
+    final accountProvider = Provider.of<AccountProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -38,7 +46,7 @@ class SaldoPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Saldo',
+                      'Balance',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -58,7 +66,7 @@ class SaldoPage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          '1,000',
+                          accountProvider.loggedInAccount!.balance.toString(),
                           style: TextStyle(
                             fontSize: 40,
                             fontWeight: FontWeight.bold,
@@ -125,19 +133,5 @@ class SaldoPage extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class Balance extends StatefulWidget {
-  const Balance({Key? key}) : super(key: key);
-
-  @override
-  State<Balance> createState() => _BalanceState();
-}
-
-class _BalanceState extends State<Balance> {
-  @override
-  Widget build(BuildContext context) {
-    return SaldoPage();
   }
 }

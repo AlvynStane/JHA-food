@@ -197,52 +197,52 @@ class _CheckOutPageState extends State<CheckOutPage> {
                               ),
                             ],
                           ),
-                          show
-                              ? Row(
-                                  children: [
-                                    SizedBox(
-                                      width:
-                                          (MediaQuery.of(context).size.width /
-                                                  2) -
-                                              20,
-                                      child: TextFormField(
-                                        decoration: const InputDecoration(
-                                            border: OutlineInputBorder(),
-                                            hintText: 'Enter Credit Card No.',
-                                            labelText: 'Credit Card Number'),
-                                        validator: (value) {
-                                          if (value == null ||
-                                              value.isEmpty ||
-                                              value.length <= 16) {
-                                            return 'Please enter Correct Credit Card number';
-                                          }
-                                          return null;
-                                        },
-                                      ),
-                                    ),
-                                    const SizedBox(width: 10),
-                                    SizedBox(
-                                      width:
-                                          (MediaQuery.of(context).size.width /
-                                                  2) -
-                                              20,
-                                      child: TextFormField(
-                                        decoration: const InputDecoration(
-                                            border: OutlineInputBorder(),
-                                            hintText: 'On the back of the card',
-                                            labelText: 'CCV'),
-                                        validator: (value) {
-                                          if (value == null ||
-                                              value.isEmpty ||
-                                              value.length == 2) {
-                                            return 'Please enter correct CCV';
-                                          }
-                                          return null;
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                )
+                          show ? Container(child: Text('Balance : \$ 1000'),)
+                              // ? Row(
+                              //     children: [
+                              //       SizedBox(
+                              //         width:
+                              //             (MediaQuery.of(context).size.width /
+                              //                     2) -
+                              //                 20,
+                              //         child: TextFormField(
+                              //           decoration: const InputDecoration(
+                              //               border: OutlineInputBorder(),
+                              //               hintText: 'Enter Credit Card No.',
+                              //               labelText: 'Credit Card Number'),
+                              //           validator: (value) {
+                              //             if (value == null ||
+                              //                 value.isEmpty ||
+                              //                 value.length <= 16) {
+                              //               return 'Please enter Correct Credit Card number';
+                              //             }
+                              //             return null;
+                              //           },
+                              //         ),
+                              //       ),
+                              //       const SizedBox(width: 10),
+                              //       SizedBox(
+                              //         width:
+                              //             (MediaQuery.of(context).size.width /
+                              //                     2) -
+                              //                 20,
+                              //         child: TextFormField(
+                              //           decoration: const InputDecoration(
+                              //               border: OutlineInputBorder(),
+                              //               hintText: 'On the back of the card',
+                              //               labelText: 'CCV'),
+                              //           validator: (value) {
+                              //             if (value == null ||
+                              //                 value.isEmpty ||
+                              //                 value.length == 2) {
+                              //               return 'Please enter correct CCV';
+                              //             }
+                              //             return null;
+                              //           },
+                              //         ),
+                              //       ),
+                              //     ],
+                              //   )
                               : const SizedBox.shrink(),
                           Container(
                               margin: const EdgeInsets.only(top: 10),

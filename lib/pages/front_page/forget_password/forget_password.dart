@@ -16,9 +16,7 @@ class bantuanForgot extends StatelessWidget {
                   children: [
                     const Text('Search your account',
                         style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold)),
+                            fontSize: 20, fontWeight: FontWeight.bold)),
                     Container(
                       height: 10,
                     ),
@@ -30,15 +28,15 @@ class bantuanForgot extends StatelessWidget {
                       height: 20,
                     ),
                     TextField(
-                        keyboardType: TextInputType.text,
-                        controller: TextEditingController(),
-                        decoration: InputDecoration(
-                          hintText: 'Username, email, or phone number',
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(11),
-                              borderSide: const BorderSide(color: Colors.black)),
-                        ),
-                        style: const TextStyle(color: Colors.black)),
+                      keyboardType: TextInputType.text,
+                      controller: TextEditingController(),
+                      decoration: InputDecoration(
+                        hintText: 'Username, email, or phone number',
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(11),
+                            borderSide: const BorderSide()),
+                      ),
+                    ),
                     Container(
                       height: 15,
                     ),

@@ -4,6 +4,7 @@ import 'package:testing/pages/front_page/forget_password/forget_password.dart';
 import 'package:testing/pages/main_page/main_menu_page.dart';
 import 'package:testing/pages/front_page/signup/signup.dart';
 import 'package:testing/providers/dark_theme.dart';
+import 'package:testing/providers/saved_account.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -18,7 +19,13 @@ class _LoginState extends State<Login> {
   final _passwordController = TextEditingController();
   bool _agree = false;
   bool _obscureText = true;
+  late LoginResult logged;
   String? _agreeError;
+
+  void showErrorSnackBar(String message) {
+    final snackBar = SnackBar(content: Text(message));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
 
   @override
   void dispose() {
@@ -30,23 +37,10 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<DarkThemeProvider>(context);
+    final accountProvider =
+        Provider.of<AccountProvider>(context, listen: false);
     return Scaffold(
-      appBar: AppBar(
-        actions: <Widget>[
-          Icon(themeProvider.darkTheme == false
-              ? Icons.wb_sunny
-              : Icons.nightlight_round),
-          Switch(
-            value: themeProvider.darkTheme,
-            onChanged: (value) {
-              setState(() {
-                themeProvider.darkMode = value;
-              });
-            },
-          ),
-        ],
-        centerTitle: true,
-      ),
+      appBar: AppBar(),
       body: Center(
         child: Form(
           key: _formKey,
@@ -56,43 +50,52 @@ class _LoginState extends State<Login> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text('SIGN IN', style: TextStyle(fontSize: 35)),
+                SizedBox(height: 30),
                 TextFormField(
                   controller: _emailController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter email/username';
+                    }
+                    return null;
+                  },
                   decoration: InputDecoration(
                     hintText: 'Enter Email Here',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(11),
-                      borderSide: const BorderSide(color: Colors.black),
+                      borderSide: const BorderSide(),
                     ),
                     prefixIcon: const Icon(
                       Icons.email,
-                      color: Colors.black,
                     ),
                   ),
-                  style: const TextStyle(color: Colors.black),
                 ),
                 Container(
                   height: 11,
                 ),
                 TextFormField(
                   controller: _passwordController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter password';
+                    }
+                    return null;
+                  },
                   obscureText: _obscureText,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                     hintText: 'Enter Password Here',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(11),
-                      borderSide: const BorderSide(color: Colors.black),
+                      borderSide: const BorderSide(),
                     ),
                     prefixIcon: const Icon(
                       Icons.lock,
-                      color: Colors.black,
                     ),
                     suffixIcon: IconButton(
                       color: Colors.transparent,
                       icon: Icon(
                         _obscureText ? Icons.visibility_off : Icons.visibility,
-                        color: Colors.black,
                       ),
                       onPressed: () {
                         setState(() {
@@ -101,7 +104,6 @@ class _LoginState extends State<Login> {
                       },
                     ),
                   ),
-                  style: const TextStyle(color: Colors.black),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -115,7 +117,7 @@ class _LoginState extends State<Login> {
                         });
                       },
                     ),
-                    Text(
+                    const Text(
                       "I'm not a robot",
                     ),
                   ],
@@ -145,12 +147,19 @@ class _LoginState extends State<Login> {
                               _agreeError = "Please show you're not a robot";
                             });
                           } else {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const HomePages(),
-                              ),
-                            );
+                            logged = checkLoginCredentials(
+                                _emailController.text,
+                                _passwordController.text,
+                                showErrorSnackBar);
+                            if (logged.success) {
+                              accountProvider.login(logged.account!);
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const HomePages(),
+                                ),
+                              );
+                            }
                           }
                         }
                       },

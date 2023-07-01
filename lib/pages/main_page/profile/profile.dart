@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:testing/pages/front_page/login/login.dart';
 import 'package:testing/pages/main_page/profile/address.dart';
 import 'package:testing/pages/main_page/profile/balance.dart';
@@ -6,6 +7,8 @@ import 'package:testing/pages/main_page/profile/contact.dart';
 import 'package:testing/pages/main_page/profile/history.dart';
 import 'package:testing/pages/main_page/profile/language.dart';
 import 'package:testing/pages/main_page/profile/faq.dart';
+import 'package:testing/providers/dark_theme.dart';
+import 'package:testing/providers/saved_account.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key});
@@ -15,8 +18,8 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
-  String username = 'Selena Gomez';
-  String email = 'selenagomez@gmail.com';
+  late String username;
+  late String email;
 
   @override
   void initState() {
@@ -25,75 +28,58 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final accountProvider =
+        Provider.of<AccountProvider>(context, listen: false);
+    final themeProvider = Provider.of<DarkThemeProvider>(context);
+    String username = accountProvider.loggedInAccount!.username;
+    String email = accountProvider.loggedInAccount!.email;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
           'Profile',
-          style: TextStyle(color: Colors.white),
         ),
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            InkWell(
-              child: Container(
-                padding: EdgeInsets.fromLTRB(20, 10, 0, 10),
-                decoration: BoxDecoration(
-                  border: Border.symmetric(
-                      horizontal: BorderSide(color: Colors.grey)),
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: 70,
-                      width: 70,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(40),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Colors.white10,
-                            spreadRadius: 2,
-                          ),
-                        ],
-                      ),
-                      child: const CircleAvatar(
-                        radius: 50,
-                        backgroundImage: AssetImage('assets/selena.jpg'),
-                      ),
-                    ),
-                    SizedBox(width: 20),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          username,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 23,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          email,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w300,
-                          ),
+            ListTile(
+              leading: Container(
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(40),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.white10,
+                          spreadRadius: 2,
                         ),
                       ],
                     ),
-                    Container(
-                      padding: const EdgeInsets.only(left: 40),
-                      child: ElevatedButton(
-                        onPressed: _editProfile,
-                        child: const Text('Edit Profile'),
-                      ),
+                    child: const CircleAvatar(
+                      radius: 70,
+                      backgroundImage: AssetImage('assets/selena.jpg'),
                     ),
-                  ],
+                  ),
+              title: Text(
+                username,
+                style: TextStyle(
+                  fontSize: 23,
+                  fontWeight: FontWeight.bold,
                 ),
+              ),
+              subtitle: Text(
+                email,
+                style: TextStyle(
+                  fontWeight: FontWeight.w300,
+                ),
+              ),
+              trailing: IconButton(
+                icon: Icon(Icons.edit),
+                onPressed: () {
+                  _editProfile();
+                },
               ),
             ),
             SizedBox(height: 20),
@@ -115,10 +101,10 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     children: [
-                      _listItem(Icons.credit_card, 'Balance', SaldoPage()),
-                      SizedBox(height: 10),
+                      _listItem(Icons.credit_card, 'Balance',
+                          page: SaldoPage()),
                       _listItem(Icons.location_city_rounded, 'Saved Address',
-                          Address()),
+                          page: Address()),
                     ],
                   ),
                 ),
@@ -143,7 +129,8 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     children: [
-                      _listItem(Icons.history, 'Order History', History()),
+                      _listItem(Icons.history, 'Order History',
+                          page: History()),
                     ],
                   ),
                 ),
@@ -168,7 +155,12 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     children: [
-                      _listItem(Icons.language, 'Language', Language()),
+                      _listItem(Icons.language, 'Language', page: Language()),
+                      _listItem(
+                          themeProvider.darkTheme == false
+                              ? Icons.wb_sunny
+                              : Icons.nightlight_round,
+                          'Dark Theme'),
                     ],
                   ),
                 ),
@@ -193,9 +185,10 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     children: [
-                      _listItem(Icons.question_answer, 'FAQ', Help()),
+                      _listItem(Icons.question_answer, 'FAQ', page: Help()),
                       SizedBox(height: 10),
-                      _listItem(Icons.help_center, 'Contact Us', Contact()),
+                      _listItem(Icons.help_center, 'Contact Us',
+                          page: Contact()),
                     ],
                   ),
                 ),
@@ -207,6 +200,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
+                  accountProvider.logout();
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
@@ -223,7 +217,8 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
     );
   }
 
-  Widget _listItem(IconData icon, String name, Widget? page) {
+  Widget _listItem(IconData icon, String name, {Widget? page}) {
+    final themeProvider = Provider.of<DarkThemeProvider>(context);
     return InkWell(
       onTap: () {
         if (page != null) {
@@ -242,7 +237,16 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
         child: ListTile(
           title: Text(name),
           leading: Icon(icon),
-          trailing: Icon(Icons.arrow_forward_ios),
+          trailing: page != null
+              ? Icon(Icons.arrow_forward_ios)
+              : Switch(
+                  value: themeProvider.darkTheme,
+                  onChanged: (value) {
+                    setState(() {
+                      themeProvider.darkMode = value;
+                    });
+                  },
+                ),
         ),
       ),
     );
@@ -252,8 +256,11 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
     showDialog(
       context: context,
       builder: (context) {
-        String newUsername = username;
-        String newEmail = email;
+        final accountProvider = Provider.of<AccountProvider>(context, listen: false);
+        String newUsername = accountProvider.loggedInAccount!.username;
+        String newEmail = accountProvider.loggedInAccount!.email;
+        String newPhone = accountProvider.loggedInAccount!.phonenum;
+        String newPass = accountProvider.loggedInAccount!.password;
         return AlertDialog(
           title: Text('Edit Profile'),
           content: Column(
@@ -275,14 +282,29 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                   labelText: 'Email',
                 ),
               ),
+              TextField(
+                onChanged: (value) {
+                  newPhone = value;
+                },
+                decoration: InputDecoration(
+                  labelText: 'Phone Number',
+                ),
+              ),
+              TextField(
+                onChanged: (value) {
+                  newPass = value;
+                },
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                ),
+              ),
             ],
           ),
           actions: [
             TextButton(
               onPressed: () {
                 setState(() {
-                  username = newUsername;
-                  email = newEmail;
+                  accountProvider.editProfile(newUsername, newEmail, newPass, newPhone);
                 });
                 Navigator.pop(context);
               },

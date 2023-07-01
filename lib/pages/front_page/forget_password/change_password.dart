@@ -16,35 +16,33 @@ class forgotPassword extends StatelessWidget {
                   children: [
                     const Text('Change your password',
                         style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold)),
+                            fontSize: 20, fontWeight: FontWeight.bold)),
                     Container(
                       height: 15,
                     ),
                     TextField(
-                        keyboardType: TextInputType.text,
-                        controller: TextEditingController(),
-                        decoration: InputDecoration(
-                          hintText: 'New Password',
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(11),
-                              borderSide: const BorderSide(color: Colors.black)),
-                        ),
-                        style: const TextStyle(color: Colors.black)),
+                      keyboardType: TextInputType.text,
+                      controller: TextEditingController(),
+                      decoration: InputDecoration(
+                        hintText: 'New Password',
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(11),
+                            borderSide: const BorderSide()),
+                      ),
+                    ),
                     Container(
                       height: 15,
                     ),
                     TextField(
-                        keyboardType: TextInputType.text,
-                        controller: TextEditingController(),
-                        decoration: InputDecoration(
-                          hintText: 'Confirm Password',
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(11),
-                              borderSide: const BorderSide(color: Colors.black)),
-                        ),
-                        style: const TextStyle(color: Colors.black)),
+                      keyboardType: TextInputType.text,
+                      controller: TextEditingController(),
+                      decoration: InputDecoration(
+                        hintText: 'Confirm Password',
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(11),
+                            borderSide: const BorderSide()),
+                      ),
+                    ),
                     Container(
                       height: 15,
                     ),
