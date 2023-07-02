@@ -23,7 +23,8 @@ class _CheckOutPageState extends State<CheckOutPage> {
 
   @override
   Widget build(BuildContext context) {
-    final accountProvider = Provider.of<AccountProvider>(context, listen: false);
+    final accountProvider =
+        Provider.of<AccountProvider>(context, listen: false);
     double balance = accountProvider.loggedInAccount?.balance ?? 0;
     return Scaffold(
         backgroundColor: Colors.cyan,
@@ -87,7 +88,11 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                 width: (MediaQuery.of(context).size.width / 2) -
                                     20,
                                 child: TextFormField(
-                                  initialValue: accountProvider.loggedInAccount != null ? accountProvider.loggedInAccount!.phonenum : '',
+                                  initialValue:
+                                      accountProvider.loggedInAccount != null
+                                          ? accountProvider
+                                              .loggedInAccount!.phonenum
+                                          : '',
                                   decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
                                     hintText: 'Enter your Phone Number',
@@ -207,7 +212,8 @@ class _CheckOutPageState extends State<CheckOutPage> {
                               ),
                             ],
                           ),
-                          show ? Text('Balance : \$ $balance')
+                          show
+                              ? Text('Balance : \$ $balance')
                               : const SizedBox.shrink(),
                           Container(
                               margin: const EdgeInsets.only(top: 10),
@@ -230,11 +236,15 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                 ),
                                 onTap: () {
                                   if (!(_formKey.currentState!.validate())) {
-                                    showErrorSnackBar("Please fill the required info!");
-                                  } if(balance >= total){
+                                    showErrorSnackBar(
+                                        "Please fill the required info!");
+                                  }
+                                  if (balance >= total) {
                                     showErrorSnackBar("Insufficient balance!");
                                   } else {
-                                    if(pt == PaymentType.Balance){balance - total;}
+                                    if (pt == PaymentType.Balance) {
+                                      balance - total;
+                                    }
                                     showDialog(
                                       context: context,
                                       builder: (BuildContext context) {

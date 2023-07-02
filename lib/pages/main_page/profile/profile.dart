@@ -28,8 +28,11 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final accountProvider = Provider.of<AccountProvider>(context, listen: false);
-    if (accountProvider.loggedInAccount == null){ accountProvider.login(accountProvider.accountList[0]);}
+    final accountProvider =
+        Provider.of<AccountProvider>(context, listen: false);
+    if (accountProvider.loggedInAccount == null) {
+      accountProvider.login(accountProvider.accountList[0]);
+    }
     final themeProvider = Provider.of<DarkThemeProvider>(context);
     String username = accountProvider.loggedInAccount!.username;
     String email = accountProvider.loggedInAccount!.email;
@@ -46,22 +49,22 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
           children: [
             ListTile(
               leading: Container(
-                    height: 50,
-                    width: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.white10,
-                          spreadRadius: 2,
-                        ),
-                      ],
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(40),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.white10,
+                      spreadRadius: 2,
                     ),
-                    child: const CircleAvatar(
-                      radius: 70,
-                      backgroundImage: AssetImage('assets/selena.jpg'),
-                    ),
-                  ),
+                  ],
+                ),
+                child: const CircleAvatar(
+                  radius: 70,
+                  backgroundImage: AssetImage('assets/selena.jpg'),
+                ),
+              ),
               title: Text(
                 username,
                 style: TextStyle(
@@ -185,7 +188,8 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     children: [
-                      _listItem(Icons.question_answer, 'FAQ', page: Help()),
+                      _listItem(Icons.question_answer, 'About Us and FAQ',
+                          page: FAQ()),
                       SizedBox(height: 10),
                       _listItem(Icons.help_center, 'Contact Us',
                           page: Contact()),
@@ -256,7 +260,8 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
     showDialog(
       context: context,
       builder: (context) {
-        final accountProvider = Provider.of<AccountProvider>(context, listen: false);
+        final accountProvider =
+            Provider.of<AccountProvider>(context, listen: false);
         String newUsername = accountProvider.loggedInAccount!.username;
         String newEmail = accountProvider.loggedInAccount!.email;
         String newPhone = accountProvider.loggedInAccount!.phonenum;
@@ -303,18 +308,19 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
           actions: [
             TextButton(
               onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
                 setState(() {
-                  accountProvider.editProfile(newUsername, newEmail, newPass, newPhone);
+                  accountProvider.editProfile(
+                      newUsername, newEmail, newPass, newPhone);
                 });
                 Navigator.pop(context);
               },
               child: Text('Save'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text('Cancel'),
             ),
           ],
         );
