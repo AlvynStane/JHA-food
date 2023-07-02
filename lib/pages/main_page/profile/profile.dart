@@ -28,8 +28,8 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final accountProvider =
-        Provider.of<AccountProvider>(context, listen: false);
+    final accountProvider = Provider.of<AccountProvider>(context, listen: false);
+    if (accountProvider.loggedInAccount == null){ accountProvider.login(accountProvider.accountList[0]);}
     final themeProvider = Provider.of<DarkThemeProvider>(context);
     String username = accountProvider.loggedInAccount!.username;
     String email = accountProvider.loggedInAccount!.email;

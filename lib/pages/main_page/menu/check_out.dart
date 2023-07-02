@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:testing/providers/saved_account.dart';
 import '../main_menu_page.dart';
 import '../../../providers/food_list.dart';
 
@@ -14,8 +16,15 @@ class _CheckOutPageState extends State<CheckOutPage> {
   PaymentType pt = PaymentType.Cash;
   bool show = false;
 
+  void showErrorSnackBar(String message) {
+    final snackBar = SnackBar(content: Text(message));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   @override
   Widget build(BuildContext context) {
+    final accountProvider = Provider.of<AccountProvider>(context, listen: false);
+    double balance = accountProvider.loggedInAccount?.balance ?? 0;
     return Scaffold(
         backgroundColor: Colors.cyan,
         appBar: AppBar(
@@ -78,6 +87,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                 width: (MediaQuery.of(context).size.width / 2) -
                                     20,
                                 child: TextFormField(
+                                  initialValue: accountProvider.loggedInAccount != null ? accountProvider.loggedInAccount!.phonenum : '',
                                   decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
                                     hintText: 'Enter your Phone Number',
@@ -184,7 +194,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                 child: ListTile(
                                   title: const Text('Balance'),
                                   leading: Radio(
-                                    value: PaymentType.Visa,
+                                    value: PaymentType.Balance,
                                     groupValue: pt,
                                     onChanged: (PaymentType? value) {
                                       setState(() {
@@ -197,52 +207,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                               ),
                             ],
                           ),
-                          show ? Container(child: Text('Balance : \$ 1000'),)
-                              // ? Row(
-                              //     children: [
-                              //       SizedBox(
-                              //         width:
-                              //             (MediaQuery.of(context).size.width /
-                              //                     2) -
-                              //                 20,
-                              //         child: TextFormField(
-                              //           decoration: const InputDecoration(
-                              //               border: OutlineInputBorder(),
-                              //               hintText: 'Enter Credit Card No.',
-                              //               labelText: 'Credit Card Number'),
-                              //           validator: (value) {
-                              //             if (value == null ||
-                              //                 value.isEmpty ||
-                              //                 value.length <= 16) {
-                              //               return 'Please enter Correct Credit Card number';
-                              //             }
-                              //             return null;
-                              //           },
-                              //         ),
-                              //       ),
-                              //       const SizedBox(width: 10),
-                              //       SizedBox(
-                              //         width:
-                              //             (MediaQuery.of(context).size.width /
-                              //                     2) -
-                              //                 20,
-                              //         child: TextFormField(
-                              //           decoration: const InputDecoration(
-                              //               border: OutlineInputBorder(),
-                              //               hintText: 'On the back of the card',
-                              //               labelText: 'CCV'),
-                              //           validator: (value) {
-                              //             if (value == null ||
-                              //                 value.isEmpty ||
-                              //                 value.length == 2) {
-                              //               return 'Please enter correct CCV';
-                              //             }
-                              //             return null;
-                              //           },
-                              //         ),
-                              //       ),
-                              //     ],
-                              //   )
+                          show ? Text('Balance : \$ $balance')
                               : const SizedBox.shrink(),
                           Container(
                               margin: const EdgeInsets.only(top: 10),
@@ -265,15 +230,14 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                 ),
                                 onTap: () {
                                   if (!(_formKey.currentState!.validate())) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                        const SnackBar(
-                                            content: Text(
-                                                "Please fill the required info!")));
+                                    showErrorSnackBar("Please fill the required info!");
+                                  } if(balance >= total){
+                                    showErrorSnackBar("Insufficient balance!");
                                   } else {
+                                    if(pt == PaymentType.Balance){balance - total;}
                                     showDialog(
                                       context: context,
                                       builder: (BuildContext context) {
-                                        // return object of type Dialog
                                         return ButtonBarTheme(
                                           data: const ButtonBarThemeData(
                                               alignment:
@@ -325,4 +289,4 @@ class _CheckOutPageState extends State<CheckOutPage> {
   }
 }
 
-enum PaymentType { Cash, Visa }
+enum PaymentType { Cash, Balance }

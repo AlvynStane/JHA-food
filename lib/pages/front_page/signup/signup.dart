@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:testing/pages/front_page/login/login.dart';
 import 'package:testing/pages/main_page/main_menu_page.dart';
 import 'package:testing/providers/saved_account.dart';
@@ -26,6 +27,8 @@ class _Register_NewsState extends State<Register_News> {
 
   @override
   Widget build(BuildContext context) {
+    final accountProvider =
+        Provider.of<AccountProvider>(context, listen: false);
     return Scaffold(
         appBar: AppBar(),
         body: Center(
@@ -142,7 +145,7 @@ class _Register_NewsState extends State<Register_News> {
                   ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        create = createNewAcc(
+                        create = accountProvider.createNewAcc(
                             _unameController.text,
                             _passwordController.text,
                             _emailController.text,
@@ -150,6 +153,7 @@ class _Register_NewsState extends State<Register_News> {
                             0,
                             showErrorSnackBar);
                         if (create) {
+                          accountProvider.login(accountProvider.accountList.last);
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(

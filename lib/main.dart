@@ -7,11 +7,13 @@ import 'package:testing/pages/main_page/main_menu_page.dart';
 import 'package:testing/providers/dark_theme.dart';
 import 'package:testing/providers/language_provider.dart';
 import 'package:testing/providers/saved_account.dart';
+import 'package:testing/providers/saved_address.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => DarkThemeProvider()),
     ChangeNotifierProvider(create: (_) => LanguageProvider()),
+    ChangeNotifierProvider(create: (context) => AddressProvider()),
     ChangeNotifierProvider(create: (context) => AccountProvider()),
   ], child: const MyApp()));
 }
@@ -43,7 +45,7 @@ class MyApp extends StatelessWidget {
             theme: themeProvider.darkTheme == true
                 ? themeProvider.dark
                 : themeProvider.light,
-            home: Login(),
+            home: HomePages(),
           );
         });
   }

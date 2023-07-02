@@ -36,7 +36,6 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<DarkThemeProvider>(context);
     final accountProvider =
         Provider.of<AccountProvider>(context, listen: false);
     return Scaffold(
@@ -147,7 +146,7 @@ class _LoginState extends State<Login> {
                               _agreeError = "Please show you're not a robot";
                             });
                           } else {
-                            logged = checkLoginCredentials(
+                            logged = accountProvider.checkLoginCredentials(
                                 _emailController.text,
                                 _passwordController.text,
                                 showErrorSnackBar);
