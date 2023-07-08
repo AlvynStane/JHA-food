@@ -17,7 +17,12 @@ class _AddressState extends State<Address> {
     final addressProvider = Provider.of<AddressProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Saved Address'),
+        title: const Text(
+          'Saved Address',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
         centerTitle: true,
         leading: IconButton(
           onPressed: () {
@@ -28,22 +33,12 @@ class _AddressState extends State<Address> {
         ),
         actions: [
           IconButton(
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AddNewAdress(),
-                  ));
-            },
-            icon: Icon(Icons.add),
-          ),
-          IconButton(
               onPressed: () {
                 setState(() {
                   removeBut = !removeBut;
                 });
               },
-              icon: Icon(Icons.remove))
+              icon: Icon(Icons.delete))
         ],
       ),
       body: Container(
@@ -70,7 +65,7 @@ class _AddressState extends State<Address> {
                           ),
                         ),
                         subtitle: Text(
-                          "${address.address}, ${address.city} - ${address.country}",
+                          "${address.address}, ${address.city} - ${address.province}",
                           style: TextStyle(
                             fontSize: 14.0,
                           ),
@@ -88,13 +83,25 @@ class _AddressState extends State<Address> {
                                 onPressed: () {
                                   addressProvider.removeAddress(address);
                                 },
-                                icon: Icon(Icons.remove_circle))),
+                                icon: Icon(Icons.remove_circle),
+                                color: Colors.red,
+                              )),
                   );
                 },
               ),
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AddNewAdress(),
+              ));
+        },
+        child: Icon(Icons.add),
       ),
     );
   }
@@ -108,7 +115,7 @@ class _AddressState extends State<Address> {
         String newAddress = address.address;
         String newPhone = address.phone;
         String newCity = address.city;
-        String newCountry = address.country;
+        TextEditingController provinceController = TextEditingController(text: address.province);
         return AlertDialog(
           title: Text('Edit Address'),
           content: Column(
@@ -147,12 +154,19 @@ class _AddressState extends State<Address> {
                 ),
               ),
               TextField(
-                onChanged: (value) {
-                  newCountry = value;
-                },
+                controller: provinceController,
                 decoration: InputDecoration(
-                  labelText: 'Country',
+                  labelText: 'Province',
                 ),
+                onTap: () async {
+                  final selectedProvince = await showProvinceDialog(context);
+                  if (selectedProvince != null) {
+                    setState(() {
+                      provinceController.text = selectedProvince;
+                    });
+                  }
+                  FocusManager.instance.primaryFocus?.unfocus();
+                },
               ),
             ],
           ),
@@ -161,7 +175,7 @@ class _AddressState extends State<Address> {
               onPressed: () {
                 setState(() {
                   addressProvider.editAddress(address, newName, newAddress,
-                      newPhone, newCity, newCountry);
+                      newPhone, newCity, provinceController.text);
                 });
                 Navigator.pop(context);
               },
@@ -192,7 +206,7 @@ class _AddNewAdressState extends State<AddNewAdress> {
   final _addressController = TextEditingController();
   final _phoneController = TextEditingController();
   final _cityController = TextEditingController();
-  final _countryController = TextEditingController();
+  TextEditingController _provinceController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -201,14 +215,12 @@ class _AddNewAdressState extends State<AddNewAdress> {
     _addressController.dispose();
     _phoneController.dispose();
     _cityController.dispose();
-    _countryController.dispose();
+    _provinceController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final accountProvider =
-        Provider.of<AccountProvider>(context, listen: false);
     final addressProvider = Provider.of<AddressProvider>(context);
     return Scaffold(
       appBar: AppBar(),
@@ -218,6 +230,7 @@ class _AddNewAdressState extends State<AddNewAdress> {
             Form(
               key: _formKey,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const SizedBox(height: 16),
                   const Text(
@@ -268,7 +281,7 @@ class _AddNewAdressState extends State<AddNewAdress> {
                   ),
                   const SizedBox(height: 16),
                   Container(
-                    padding: const EdgeInsets.only(right: 10),
+                    padding: const EdgeInsets.only(right: 10, left: 10),
                     width: MediaQuery.of(context).size.width - 20,
                     child: TextFormField(
                       controller: _addressController,
@@ -308,15 +321,26 @@ class _AddNewAdressState extends State<AddNewAdress> {
                       SizedBox(
                         width: (MediaQuery.of(context).size.width / 2) - 20,
                         child: TextFormField(
-                          controller: _countryController,
+                          controller: _provinceController,
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(),
-                            hintText: 'Enter your Country',
-                            labelText: "Country",
+                            hintText: 'Enter your Province',
+                            labelText: "Province",
                           ),
+                          onTap: () async {
+                            final selectedProvince =
+                                await showProvinceDialog(context);
+                            if (selectedProvince != null) {
+                              setState(() {
+                                _provinceController.text =
+                                    selectedProvince;
+                              });
+                            }
+                            FocusManager.instance.primaryFocus?.unfocus();
+                          },
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Please enter a valid country';
+                              return 'Please enter a valid province';
                             }
                             return null;
                           },
@@ -326,7 +350,7 @@ class _AddNewAdressState extends State<AddNewAdress> {
                   ),
                   SizedBox(height: 20),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       ElevatedButton(
                         onPressed: () {
@@ -336,12 +360,13 @@ class _AddNewAdressState extends State<AddNewAdress> {
                                 _addressController.text,
                                 _phoneController.text,
                                 _cityController.text,
-                                _countryController.text);
+                                _provinceController.text);
                             Navigator.pop(context);
                           }
                         },
                         child: Text('Save'),
                       ),
+                      SizedBox(width: 20),
                       OutlinedButton(
                         onPressed: () {
                           Navigator.pop(context);

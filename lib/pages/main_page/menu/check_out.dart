@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:testing/providers/saved_account.dart';
 import '../main_menu_page.dart';
-import '../../../providers/food_list.dart';
+import 'package:testing/providers/food_list.dart';
 
 class CheckOutPage extends StatefulWidget {
   const CheckOutPage({super.key});
@@ -20,6 +20,50 @@ class _CheckOutPageState extends State<CheckOutPage> {
     final snackBar = SnackBar(content: Text(message));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
+
+  void showSuccessDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return ButtonBarTheme(
+        data: const ButtonBarThemeData(
+          alignment: MainAxisAlignment.center,
+        ),
+        child: AlertDialog(
+          title: const Icon(
+            Icons.check_circle_outline_rounded,
+            color: Colors.green,
+            size: 50,
+          ),
+          content: Text(
+            'Thank you for your purchase\n Tracking ID: #$randomInvoice',
+            textAlign: TextAlign.center,
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                addToHistory();
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                    builder: (context) => const HomePages(),
+                  ),
+                  (route) => false,
+                );
+              },
+              child: const Text(
+                'OK',
+                style: TextStyle(
+                  fontSize: 17,
+                  color: Colors.lightGreen,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    },
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -227,75 +271,36 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
                               child: InkWell(
-                                child: const Center(
-                                  child: Text(' Confirm\nPurchase',
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 17.0)),
-                                ),
-                                onTap: () {
-                                  if (!(_formKey.currentState!.validate())) {
-                                    showErrorSnackBar(
-                                        "Please fill the required info!");
-                                  }
-                                  if (balance >= total) {
-                                    showErrorSnackBar("Insufficient balance!");
-                                  } else {
-                                    if (pt == PaymentType.Balance) {
-                                      balance - total;
+                                  child: const Center(
+                                    child: Text(' Confirm\nPurchase',
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 17.0)),
+                                  ),
+                                  onTap: () {
+                                    if (!(_formKey.currentState!.validate())) {
+                                      showErrorSnackBar("Please fill the required info!");
+                                    } else if (pt == PaymentType.Balance) {
+                                      if (balance <= total) {
+                                        showErrorSnackBar("Insufficient balance!");
+                                      } else {
+                                        accountProvider.editBalance(total);
+                                        showSuccessDialog(context);
+                                      }
+                                    } else {
+                                      showSuccessDialog(context);
                                     }
-                                    showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return ButtonBarTheme(
-                                          data: const ButtonBarThemeData(
-                                              alignment:
-                                                  MainAxisAlignment.center),
-                                          child: AlertDialog(
-                                            title: const Icon(
-                                              Icons
-                                                  .check_circle_outline_rounded,
-                                              color: Colors.green,
-                                              size: 50,
-                                            ),
-                                            content: Text(
-                                                'Thank you for your purchase\n Tracking ID: #$randomInvoice',
-                                                textAlign: TextAlign.center),
-                                            actions: <Widget>[
-                                              TextButton(
-                                                  onPressed: () {
-                                                    addToHistory();
-                                                    // list.clear();
-                                                    // total = 0;
-                                                    Navigator.of(context)
-                                                        .pushAndRemoveUntil(
-                                                            MaterialPageRoute(
-                                                                builder:
-                                                                    (context) =>
-                                                                        const HomePages()),
-                                                            (route) => false);
-                                                  },
-                                                  child: const Text('OK',
-                                                      style: TextStyle(
-                                                          fontSize: 17,
-                                                          color: Colors
-                                                              .lightGreen))),
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    );
-                                  }
-                                },
-                              )),
+                                  })),
                         ],
                       ),
                     ),
                   )
                 ]),
               ))
-        ]));
+        ],
+        ),
+        );
   }
 }
 

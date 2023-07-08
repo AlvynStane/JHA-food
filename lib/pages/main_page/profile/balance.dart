@@ -29,7 +29,6 @@ class _SaldoPageState extends State<SaldoPage> {
         ),
       ),
       body: Container(
-        color: Colors.grey[100],
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -62,7 +61,6 @@ class _SaldoPageState extends State<SaldoPage> {
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black,
                           ),
                         ),
                         Text(
@@ -70,7 +68,6 @@ class _SaldoPageState extends State<SaldoPage> {
                           style: TextStyle(
                             fontSize: 40,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black,
                           ),
                         ),
                       ],
@@ -80,14 +77,12 @@ class _SaldoPageState extends State<SaldoPage> {
                       children: [
                         Icon(
                           Icons.account_balance_wallet,
-                          color: Colors.grey[400],
                         ),
                         SizedBox(width: 8.0),
                         Text(
                           'Available Balance',
                           style: TextStyle(
                             fontSize: 16,
-                            color: Colors.grey[400],
                           ),
                         ),
                       ],
@@ -108,13 +103,11 @@ class _SaldoPageState extends State<SaldoPage> {
                         'Received Payment',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
                         ),
                       ),
                       subtitle: Text(
                         'June 25, 2023',
                         style: TextStyle(
-                          color: Colors.grey[600],
                         ),
                       ),
                       trailing: Text(

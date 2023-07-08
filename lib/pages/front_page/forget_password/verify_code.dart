@@ -22,7 +22,6 @@ class pageVerify extends StatelessWidget {
                     ),
                     const Text('Enter the 6 digit verification code',
                         style: TextStyle(
-                          color: Colors.black,
                           fontSize: 15,
                         )),
                     Container(

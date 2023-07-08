@@ -136,7 +136,6 @@ class _FAQItemState extends State<FAQItem> {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16.0,
-                    color: Colors.black,
                   ),
                 ),
               );
@@ -147,7 +146,6 @@ class _FAQItemState extends State<FAQItem> {
                 widget.answer,
                 style: TextStyle(
                   fontSize: 14.0,
-                  color: Colors.grey[600],
                 ),
               ),
             ),

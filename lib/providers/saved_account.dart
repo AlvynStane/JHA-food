@@ -21,7 +21,7 @@ class LoginResult {
 
 class AccountProvider with ChangeNotifier {
   List<Account> accountList = [
-    Account('Guest', '1', 'guest@gmail.com', '081234567890', 0),
+    Account('Guest', '1', 'guest@gmail.com', '081234567890', 1000),
     Account('a', '1', 'aaa@gmail.com', '081714384288', 1000),
   ];
 
@@ -97,4 +97,11 @@ class AccountProvider with ChangeNotifier {
       notifyListeners();
     }
   }
+
+  void editBalance(double total) {
+  if (loggedInAccount != null) {
+    loggedInAccount!.balance = (loggedInAccount!.balance ?? 0) - total;
+    notifyListeners();
+  }
+}
 }

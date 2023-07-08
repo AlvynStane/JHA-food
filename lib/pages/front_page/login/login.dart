@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:testing/pages/front_page/forget_password/forget_password.dart';
 import 'package:testing/pages/main_page/main_menu_page.dart';
 import 'package:testing/pages/front_page/signup/signup.dart';
 import 'package:testing/providers/dark_theme.dart';
+import 'package:testing/pages/front_page/login/recapcha.dart';
 import 'package:testing/providers/saved_account.dart';
 
 class Login extends StatefulWidget {
@@ -92,7 +95,6 @@ class _LoginState extends State<Login> {
                       Icons.lock,
                     ),
                     suffixIcon: IconButton(
-                      color: Colors.transparent,
                       icon: Icon(
                         _obscureText ? Icons.visibility_off : Icons.visibility,
                       ),
@@ -152,12 +154,17 @@ class _LoginState extends State<Login> {
                                 showErrorSnackBar);
                             if (logged.success) {
                               accountProvider.login(logged.account!);
-                              Navigator.pushReplacement(
+                              showDialog(
+                                context: context,
+                                builder: (context) => MyDialog(),
+                              ).then((isCorrect){
+                              Timer(Duration(milliseconds: 50), (){Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => const HomePages(),
                                 ),
-                              );
+                              );});
+                              });
                             }
                           }
                         }
