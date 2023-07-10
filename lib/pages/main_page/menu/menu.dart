@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:testing/providers/dark_theme.dart';
+import 'package:testing/providers/saved_account.dart';
 import 'details_page.dart';
 
 class MainMenu extends StatefulWidget {
@@ -11,19 +14,22 @@ class MainMenu extends StatefulWidget {
 class _MainMenuState extends State<MainMenu> {
   @override
   Widget build(BuildContext context) {
+    final accountProvider = Provider.of<AccountProvider>(context, listen: false);
+    if (accountProvider.loggedInAccount == null) {
+      accountProvider.login(accountProvider.accountList[0]);
+    }
     return Scaffold(
-      backgroundColor: Colors.cyan,
+      backgroundColor: context.watch<DarkThemeProvider>().darkTheme ? Colors.grey[800] : Colors.cyan,
       body: ListView(
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         children: <Widget>[
           const Padding(
             padding: EdgeInsets.only(top: 15.0, left: 10.0),
             child: Text('Welcome, Order Now!',
                 style: TextStyle(
-                    // color: Colors.white,
                     fontWeight: FontWeight.bold,
-                    fontSize: 25.0)),
+                    fontSize: 25.0),),
           ),
           const SizedBox(height: 25.0),
           Padding(
@@ -32,24 +38,22 @@ class _MainMenuState extends State<MainMenu> {
               children: const <Widget>[
                 Text('Healthy',
                     style: TextStyle(
-
-                        // color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25.0)),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25.0,
+                      ),
+                    ),
                 SizedBox(width: 10.0),
                 Text('Food Menu',
-                    style: TextStyle(
-
-                        // color: Colors.white,
-                        fontSize: 25.0))
+                    style: TextStyle(fontSize: 25.0),
+                )
               ],
             ),
           ),
           const SizedBox(height: 25.0),
           Container(
             height: MediaQuery.of(context).size.height,
-            decoration: const BoxDecoration(
-              color: Colors.white,
+            decoration: BoxDecoration(
+              color: context.watch<DarkThemeProvider>().darkTheme ? Colors.grey[850] : Colors.white,
               borderRadius: BorderRadius.only(topLeft: Radius.circular(75.0)),
             ),
             child: ListView(
@@ -129,7 +133,6 @@ class _MainMenuState extends State<MainMenu> {
                   Text('\$$price',
                       style: const TextStyle(
                         fontSize: 15.0,
-                        // color: Colors.grey
                       ))
                 ])
               ]),

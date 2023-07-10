@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:testing/providers/dark_theme.dart';
 import '../../../providers/food_list.dart';
 import 'package:collection/collection.dart';
 
@@ -26,7 +28,7 @@ class _DetailsPageState extends State<DetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.cyan,
+        backgroundColor: context.watch<DarkThemeProvider>().darkTheme ? Colors.grey[800] : Colors.cyan,
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
@@ -57,12 +59,13 @@ class _DetailsPageState extends State<DetailsPage> {
                     Positioned(
                         top: 75.0,
                         child: Container(
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(45.0),
                                   topRight: Radius.circular(45.0),
                                 ),
-                                color: Colors.white),
+                                color: context.watch<DarkThemeProvider>().darkTheme ? Colors.grey[850] : Colors.white,
+                            ),
                             height: MediaQuery.of(context).size.height - 100.0,
                             width: MediaQuery.of(context).size.width)),
                     Positioned(
@@ -104,7 +107,8 @@ class _DetailsPageState extends State<DetailsPage> {
                                   height: 40.0,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(17.0),
-                                      color: Colors.cyan),
+                                      color: context.watch<DarkThemeProvider>().darkTheme ? Colors.grey[200 ] : Colors.cyan,
+                                      ),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
@@ -124,19 +128,19 @@ class _DetailsPageState extends State<DetailsPage> {
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(7.0),
-                                              color: Colors.cyan),
-                                          child: const Center(
+                                              color: context.watch<DarkThemeProvider>().darkTheme ? Colors.grey[200] : Colors.cyan),
+                                          child:  Center(
                                             child: Icon(
                                               Icons.remove,
-                                              color: Colors.white,
+                                              color: context.watch<DarkThemeProvider>().darkTheme ? Colors.black : Colors.white,
                                               size: 20.0,
                                             ),
                                           ),
                                         ),
-                                      ),
+                                      ),  
                                       Text('$num',
-                                          style: const TextStyle(
-                                              color: Colors.white,
+                                          style:  TextStyle(
+                                              color: context.watch<DarkThemeProvider>().darkTheme ? Colors.black : Colors.white,
                                               fontSize: 15.0)),
                                       InkWell(
                                         onTap: () {
@@ -151,11 +155,11 @@ class _DetailsPageState extends State<DetailsPage> {
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(7.0),
-                                              color: Colors.white),
-                                          child: const Center(
+                                              color: context.watch<DarkThemeProvider>().darkTheme ? Colors.grey[850] : Colors.white),
+                                          child:  Center(
                                             child: Icon(
                                               Icons.add,
-                                              color: Colors.cyan,
+                                              color: context.watch<DarkThemeProvider>().darkTheme ? Colors.grey[200] : Colors.cyan,
                                               size: 20.0,
                                             ),
                                           ),
@@ -175,23 +179,28 @@ class _DetailsPageState extends State<DetailsPage> {
             Align(
               alignment: Alignment.bottomCenter,
               child: InkWell(
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                splashFactory: NoSplash.splashFactory,
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 28),
                   child: Container(
-                    decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
+                    decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(10.0),
                             topRight: Radius.circular(10.0),
                             bottomLeft: Radius.circular(25.0),
-                            bottomRight: Radius.circular(25.0)),
-                        color: Colors.black),
+                            bottomRight: Radius.circular(25.0),
+                        ),
+                        color: context.watch<DarkThemeProvider>().darkTheme ? Colors.grey[200] : Colors.black),
                     height: 40.0,
                     width: MediaQuery.of(context).size.width - 50,
                     child: Center(
                       child: Text('ADD \n$price \$',
-                          style: const TextStyle(
-                            color: Colors.white,
-                          )),
+                          style: TextStyle(
+                            color: context.watch<DarkThemeProvider>().darkTheme ? Colors.black : Colors.white,
+                          ),
+                      ),
                     ),
                   ),
                 ),

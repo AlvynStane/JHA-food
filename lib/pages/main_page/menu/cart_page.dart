@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:testing/providers/dark_theme.dart';
 import '../../../providers/food_list.dart';
 import 'check_out.dart';
 
@@ -21,7 +23,7 @@ class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.cyan,
+      backgroundColor: context.watch<DarkThemeProvider>().darkTheme ? Colors.grey[800] : Colors.cyan,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -40,8 +42,8 @@ class _CartPageState extends State<CartPage> {
         const SizedBox(height: 20.0),
         Container(
             height: MediaQuery.of(context).size.height - 100.0,
-            decoration: const BoxDecoration(
-              color: Colors.white,
+            decoration: BoxDecoration(
+              color: context.watch<DarkThemeProvider>().darkTheme ? Colors.grey[850] : Colors.white,
               borderRadius: BorderRadius.only(topLeft: Radius.circular(75.0)),
             ),
             child: ListView(
@@ -89,10 +91,10 @@ class _CartPageState extends State<CartPage> {
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           child: InkWell(
-                            child: const Center(
+                            child: Center(
                               child: Text('Checkout',
                                   style: TextStyle(
-                                      color: Colors.black,
+                                      color: context.watch<DarkThemeProvider>().darkTheme ? Colors.white : Colors.black,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 17.0)),
                             ),
@@ -138,8 +140,8 @@ class _CartPageState extends State<CartPage> {
                         width: 20,
                       ),
                       Text("Total: $total \$",
-                          style: const TextStyle(
-                              color: Colors.black,
+                          style: TextStyle(
+                              color: context.watch<DarkThemeProvider>().darkTheme ? Colors.white : Colors.black,
                               fontWeight: FontWeight.bold,
                               fontSize: 17.0)),
                     ],
@@ -208,7 +210,7 @@ class _BuildFoodItemState extends State<BuildFoodItem> {
                 height: 40.0,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(17.0),
-                    color: Colors.cyan),
+                    color: context.watch<DarkThemeProvider>().darkTheme ? Colors.grey[200] : Colors.cyan),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
@@ -238,19 +240,22 @@ class _BuildFoodItemState extends State<BuildFoodItem> {
                         width: 25.0,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(7.0),
-                            color: Colors.cyan),
-                        child: const Center(
+                            color: context.watch<DarkThemeProvider>().darkTheme ? Colors.grey[200] : Colors.cyan),
+                        child: Center(
                           child: Icon(
                             Icons.remove,
-                            color: Colors.white,
+                            color: context.watch<DarkThemeProvider>().darkTheme ? Colors.black : Colors.white,
                             size: 20.0,
                           ),
                         ),
                       ),
                     ),
                     Text('$localNumber',
-                        style: const TextStyle(
-                            color: Colors.white, fontSize: 15.0)),
+                        style: TextStyle(
+                            color: context.watch<DarkThemeProvider>().darkTheme ? Colors.black : Colors.white, 
+                            fontSize: 15.0,
+                          ),
+                        ),
                     InkWell(
                       onTap: () {
                         setState(() {
@@ -269,11 +274,11 @@ class _BuildFoodItemState extends State<BuildFoodItem> {
                         width: 25.0,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(7.0),
-                            color: Colors.white),
-                        child: const Center(
+                            color: context.watch<DarkThemeProvider>().darkTheme ? Colors.grey[850] : Colors.white),
+                        child: Center(
                           child: Icon(
                             Icons.add,
-                            color: Color(0xFF7A9BEE),
+                            color: context.watch<DarkThemeProvider>().darkTheme ? Colors.grey[200] : Colors.cyan,
                             size: 20.0,
                           ),
                         ),

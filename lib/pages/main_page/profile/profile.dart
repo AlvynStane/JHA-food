@@ -28,12 +28,10 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final accountProvider =
-        Provider.of<AccountProvider>(context, listen: false);
+    final accountProvider = Provider.of<AccountProvider>(context, listen: false);
     if (accountProvider.loggedInAccount == null) {
       accountProvider.login(accountProvider.accountList[0]);
     }
-    final themeProvider = Provider.of<DarkThemeProvider>(context);
     String username = accountProvider.loggedInAccount!.username;
     String email = accountProvider.loggedInAccount!.email;
     return Scaffold(
@@ -41,6 +39,11 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
         centerTitle: true,
         title: const Text(
           'Profile',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 25.0,
+            color: Colors.white,
+          ),
         ),
       ),
       body: SingleChildScrollView(
@@ -160,7 +163,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                     children: [
                       _listItem(Icons.language, 'Language', page: Language()),
                       _listItem(
-                          themeProvider.darkTheme == false
+                          context.watch<DarkThemeProvider>().darkTheme
                               ? Icons.wb_sunny
                               : Icons.nightlight_round,
                           'Dark Theme'),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:testing/providers/dark_theme.dart';
 import 'package:testing/providers/saved_account.dart';
 import '../main_menu_page.dart';
 import 'package:testing/providers/food_list.dart';
@@ -71,7 +72,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
         Provider.of<AccountProvider>(context, listen: false);
     double balance = accountProvider.loggedInAccount?.balance ?? 0;
     return Scaffold(
-        backgroundColor: Colors.cyan,
+        backgroundColor: context.watch<DarkThemeProvider>().darkTheme ? Colors.grey[800] : Colors.cyan,
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
@@ -90,8 +91,8 @@ class _CheckOutPageState extends State<CheckOutPage> {
           const SizedBox(height: 20.0),
           Container(
               height: MediaQuery.of(context).size.height - 100.0,
-              decoration: const BoxDecoration(
-                color: Colors.white,
+              decoration: BoxDecoration(
+                color: context.watch<DarkThemeProvider>().darkTheme ? Colors.grey[850] : Colors.white,
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(75.0)),
               ),
               child: SingleChildScrollView(
@@ -274,7 +275,6 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                   child: const Center(
                                     child: Text(' Confirm\nPurchase',
                                         style: TextStyle(
-                                            color: Colors.black,
                                             fontWeight: FontWeight.bold,
                                             fontSize: 17.0)),
                                   ),
@@ -291,7 +291,9 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                     } else {
                                       showSuccessDialog(context);
                                     }
-                                  })),
+                                  },
+                              ),
+                          ),
                         ],
                       ),
                     ),
