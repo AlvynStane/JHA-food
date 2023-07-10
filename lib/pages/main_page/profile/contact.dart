@@ -58,7 +58,7 @@ class _ContactState extends State<Contact> {
             SizedBox(height: 15),
             Form(
               child: SizedBox(
-                width: 380,
+                width: 300,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -151,7 +151,7 @@ class _ContactState extends State<Contact> {
             ),
             Container(
               margin: const EdgeInsets.only(top: 10),
-              padding: const EdgeInsets.only(top: 15, left: 290, bottom: 15),
+              padding: const EdgeInsets.only(top: 10, left: 205, bottom: 15),
               child: SizedBox(
                 height: 40,
                 width: 90,

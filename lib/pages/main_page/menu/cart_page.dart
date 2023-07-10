@@ -23,7 +23,9 @@ class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.watch<DarkThemeProvider>().darkTheme ? Colors.grey[800] : Colors.cyan,
+      backgroundColor: context.watch<DarkThemeProvider>().darkTheme
+          ? Colors.grey[800]
+          : Colors.cyan,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -43,12 +45,14 @@ class _CartPageState extends State<CartPage> {
         Container(
             height: MediaQuery.of(context).size.height - 100.0,
             decoration: BoxDecoration(
-              color: context.watch<DarkThemeProvider>().darkTheme ? Colors.grey[850] : Colors.white,
+              color: context.watch<DarkThemeProvider>().darkTheme
+                  ? Colors.grey[850]
+                  : Colors.white,
               borderRadius: BorderRadius.only(topLeft: Radius.circular(75.0)),
             ),
             child: ListView(
                 primary: false,
-                padding: const EdgeInsets.only(left: 25.0, right: 20.0),
+                padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                 children: <Widget>[
                   Padding(
                       padding: const EdgeInsets.only(top: 45.0),
@@ -94,7 +98,11 @@ class _CartPageState extends State<CartPage> {
                             child: Center(
                               child: Text('Checkout',
                                   style: TextStyle(
-                                      color: context.watch<DarkThemeProvider>().darkTheme ? Colors.white : Colors.black,
+                                      color: context
+                                              .watch<DarkThemeProvider>()
+                                              .darkTheme
+                                          ? Colors.white
+                                          : Colors.black,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 17.0)),
                             ),
@@ -137,11 +145,14 @@ class _CartPageState extends State<CartPage> {
                         ),
                       ),
                       const SizedBox(
-                        width: 20,
+                        width: 10,
                       ),
                       Text("Total: $total \$",
                           style: TextStyle(
-                              color: context.watch<DarkThemeProvider>().darkTheme ? Colors.white : Colors.black,
+                              color:
+                                  context.watch<DarkThemeProvider>().darkTheme
+                                      ? Colors.white
+                                      : Colors.black,
                               fontWeight: FontWeight.bold,
                               fontSize: 17.0)),
                     ],
@@ -210,7 +221,9 @@ class _BuildFoodItemState extends State<BuildFoodItem> {
                 height: 40.0,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(17.0),
-                    color: context.watch<DarkThemeProvider>().darkTheme ? Colors.grey[200] : Colors.cyan),
+                    color: context.watch<DarkThemeProvider>().darkTheme
+                        ? Colors.grey[200]
+                        : Colors.cyan),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
@@ -240,22 +253,29 @@ class _BuildFoodItemState extends State<BuildFoodItem> {
                         width: 25.0,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(7.0),
-                            color: context.watch<DarkThemeProvider>().darkTheme ? Colors.grey[200] : Colors.cyan),
+                            color: context.watch<DarkThemeProvider>().darkTheme
+                                ? Colors.grey[200]
+                                : Colors.cyan),
                         child: Center(
                           child: Icon(
                             Icons.remove,
-                            color: context.watch<DarkThemeProvider>().darkTheme ? Colors.black : Colors.white,
+                            color: context.watch<DarkThemeProvider>().darkTheme
+                                ? Colors.black
+                                : Colors.white,
                             size: 20.0,
                           ),
                         ),
                       ),
                     ),
-                    Text('$localNumber',
-                        style: TextStyle(
-                            color: context.watch<DarkThemeProvider>().darkTheme ? Colors.black : Colors.white, 
-                            fontSize: 15.0,
-                          ),
-                        ),
+                    Text(
+                      '$localNumber',
+                      style: TextStyle(
+                        color: context.watch<DarkThemeProvider>().darkTheme
+                            ? Colors.black
+                            : Colors.white,
+                        fontSize: 15.0,
+                      ),
+                    ),
                     InkWell(
                       onTap: () {
                         setState(() {
@@ -274,11 +294,15 @@ class _BuildFoodItemState extends State<BuildFoodItem> {
                         width: 25.0,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(7.0),
-                            color: context.watch<DarkThemeProvider>().darkTheme ? Colors.grey[850] : Colors.white),
+                            color: context.watch<DarkThemeProvider>().darkTheme
+                                ? Colors.grey[850]
+                                : Colors.white),
                         child: Center(
                           child: Icon(
                             Icons.add,
-                            color: context.watch<DarkThemeProvider>().darkTheme ? Colors.grey[200] : Colors.cyan,
+                            color: context.watch<DarkThemeProvider>().darkTheme
+                                ? Colors.grey[200]
+                                : Colors.cyan,
                             size: 20.0,
                           ),
                         ),

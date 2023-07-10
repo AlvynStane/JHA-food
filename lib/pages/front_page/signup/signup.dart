@@ -124,7 +124,6 @@ class _Register_NewsState extends State<Register_News> {
                         Icons.lock,
                       ),
                       suffixIcon: IconButton(
-                        color: Colors.transparent,
                         icon: Icon(
                           _obscureText
                               ? Icons.visibility_off
@@ -153,7 +152,8 @@ class _Register_NewsState extends State<Register_News> {
                             0,
                             showErrorSnackBar);
                         if (create) {
-                          accountProvider.login(accountProvider.accountList.last);
+                          accountProvider
+                              .login(accountProvider.accountList.last);
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(

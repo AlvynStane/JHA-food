@@ -28,32 +28,37 @@ class _HistoryState extends State<History> {
         ),
       ),
       body: SingleChildScrollView(
-        child: ListView.builder(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          itemCount: allHistory.length,
-          itemBuilder: (context, index) {
-            HistoryList history = allHistory[index];
-            return ExpansionTile(
-                title: Text('Tracking ID: #${history.invoiceHistory}'),
-                children: [
-                  ListView.builder(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount: history.listHistory?.length,
-                    itemBuilder: (context, foodIndex) {
-                      Food food = history.listHistory![foodIndex];
-                      return ListTile(
-                        title: Text(food.foodName!),
-                        subtitle: Text(
-                            'Price: \$${food.foodPrice!.toStringAsFixed(2)}'),
-                        trailing: Text('Quantity: ${food.number}'),
-                      );
-                    },
-                  )
-                ]);
-          },
-        ),
+        child: allHistory != null
+            ? Padding(
+                padding: EdgeInsets.only(top: 300, left: 105),
+                child: Text('There is no history yet'),
+              )
+            : ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: allHistory.length,
+                itemBuilder: (context, index) {
+                  HistoryList history = allHistory[index];
+                  return ExpansionTile(
+                      title: Text('Tracking ID: #${history.invoiceHistory}'),
+                      children: [
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: history.listHistory?.length,
+                          itemBuilder: (context, foodIndex) {
+                            Food food = history.listHistory![foodIndex];
+                            return ListTile(
+                              title: Text(food.foodName!),
+                              subtitle: Text(
+                                  'Price: \$${food.foodPrice!.toStringAsFixed(2)}'),
+                              trailing: Text('Quantity: ${food.number}'),
+                            );
+                          },
+                        )
+                      ]);
+                },
+              ),
       ),
     );
   }
