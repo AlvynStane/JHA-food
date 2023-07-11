@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:testing/providers/dark_theme.dart';
 
 class MyDialog extends StatefulWidget {
-  MyDialog({Key? key}) : super(key: key);
+  const MyDialog({Key? key}) : super(key: key);
 
   @override
   _MyDialogState createState() => _MyDialogState();
@@ -72,7 +72,7 @@ class _MyDialogState extends State<MyDialog> {
         selectedIndex = index;
         isCorrect = true;
       });
-      Timer(Duration(seconds: 1), () {
+      Timer(const Duration(seconds: 1), () {
         Navigator.pop(context, true);
       });
     } else {
@@ -95,7 +95,7 @@ class _MyDialogState extends State<MyDialog> {
           RichText(
             text: TextSpan(
                 children: [
-                  TextSpan(text: 'Select the similar icon as '),
+                  const TextSpan(text: 'Select the similar icon as '),
                   WidgetSpan(child: Icon(selected)),
                 ],
                 style: TextStyle(
@@ -105,7 +105,7 @@ class _MyDialogState extends State<MyDialog> {
                         ? Colors.white
                         : Colors.black)),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           GridView.count(
             shrinkWrap: true,
             crossAxisCount: 2,
@@ -113,13 +113,13 @@ class _MyDialogState extends State<MyDialog> {
                 List.generate(4, (index) => _buildCard(randomNumbers[index])),
           ),
           if (isCorrect)
-            Text(
+            const Text(
               'Correct!',
               style: TextStyle(color: Colors.blue),
             ),
-          if (isCorrect) SizedBox(height: 16),
+          if (isCorrect) const SizedBox(height: 16),
           if (!isCorrect && selectedIndex != -1)
-            Text(
+            const Text(
               'Try again!',
               style: TextStyle(color: Colors.red),
             ),

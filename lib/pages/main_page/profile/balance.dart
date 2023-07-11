@@ -45,7 +45,7 @@ class _SaldoPageState extends State<SaldoPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Balance',
                       style: TextStyle(
                         fontSize: 24,
@@ -53,11 +53,11 @@ class _SaldoPageState extends State<SaldoPage> {
                         color: Colors.blue,
                       ),
                     ),
-                    SizedBox(height: 16.0),
+                    const SizedBox(height: 16.0),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           "\$",
                           style: TextStyle(
                             fontSize: 20,
@@ -66,16 +66,16 @@ class _SaldoPageState extends State<SaldoPage> {
                         ),
                         Text(
                           accountProvider.loggedInAccount!.balance.toString(),
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 40,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(height: 24.0),
+                    const SizedBox(height: 24.0),
                     Row(
-                      children: [
+                      children: const [
                         Icon(
                           Icons.account_balance_wallet,
                         ),
@@ -88,7 +88,7 @@ class _SaldoPageState extends State<SaldoPage> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 24.0),
+                    const SizedBox(height: 24.0),
                   ],
                 ),
               ),

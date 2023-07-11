@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:testing/providers/saved_account.dart';
 import 'package:testing/providers/saved_address.dart';
 
 class Address extends StatefulWidget {
@@ -38,7 +37,7 @@ class _AddressState extends State<Address> {
                   removeBut = !removeBut;
                 });
               },
-              icon: Icon(Icons.delete))
+              icon: const Icon(Icons.delete))
         ],
       ),
       body: Container(
@@ -59,14 +58,14 @@ class _AddressState extends State<Address> {
                     child: ListTile(
                         title: Text(
                           address.name,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16.0,
                           ),
                         ),
                         subtitle: Text(
                           "${address.address}, ${address.city} - ${address.province}",
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 14.0,
                           ),
                         ),
@@ -75,7 +74,7 @@ class _AddressState extends State<Address> {
                                 onPressed: () {
                                   _editAddress(address);
                                 },
-                                icon: Icon(
+                                icon: const Icon(
                                   Icons.edit,
                                 ),
                               )
@@ -83,7 +82,7 @@ class _AddressState extends State<Address> {
                                 onPressed: () {
                                   addressProvider.removeAddress(address);
                                 },
-                                icon: Icon(Icons.remove_circle),
+                                icon: const Icon(Icons.remove_circle),
                                 color: Colors.red,
                               )),
                   );
@@ -98,10 +97,10 @@ class _AddressState extends State<Address> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => AddNewAdress(),
+                builder: (context) => const AddNewAdress(),
               ));
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
@@ -118,7 +117,7 @@ class _AddressState extends State<Address> {
         TextEditingController provinceController =
             TextEditingController(text: address.province);
         return AlertDialog(
-          title: Text('Edit Address'),
+          title: const Text('Edit Address'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -126,7 +125,7 @@ class _AddressState extends State<Address> {
                 onChanged: (value) {
                   newName = value;
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Name',
                 ),
               ),
@@ -134,7 +133,7 @@ class _AddressState extends State<Address> {
                 onChanged: (value) {
                   newAddress = value;
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Address',
                 ),
               ),
@@ -142,7 +141,7 @@ class _AddressState extends State<Address> {
                 onChanged: (value) {
                   newPhone = value;
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Phone Number',
                 ),
               ),
@@ -150,13 +149,13 @@ class _AddressState extends State<Address> {
                 onChanged: (value) {
                   newCity = value;
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'City',
                 ),
               ),
               TextField(
                 controller: provinceController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Province',
                 ),
                 onTap: () async {
@@ -180,13 +179,13 @@ class _AddressState extends State<Address> {
                 });
                 Navigator.pop(context);
               },
-              child: Text('Save'),
+              child: const Text('Save'),
             ),
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
           ],
         );
@@ -207,7 +206,7 @@ class _AddNewAdressState extends State<AddNewAdress> {
   final _addressController = TextEditingController();
   final _phoneController = TextEditingController();
   final _cityController = TextEditingController();
-  TextEditingController _provinceController = TextEditingController();
+  final _provinceController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -348,7 +347,7 @@ class _AddNewAdressState extends State<AddNewAdress> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -364,14 +363,14 @@ class _AddNewAdressState extends State<AddNewAdress> {
                             Navigator.pop(context);
                           }
                         },
-                        child: Text(' Save '),
+                        child: const Text(' Save '),
                       ),
-                      SizedBox(width: 15),
+                      const SizedBox(width: 15),
                       OutlinedButton(
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        child: Text('Cancel'),
+                        child: const Text('Cancel'),
                       )
                     ],
                   )

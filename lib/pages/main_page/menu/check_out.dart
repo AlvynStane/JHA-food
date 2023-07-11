@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:testing/providers/dark_theme.dart';
 import 'package:testing/providers/saved_account.dart';
+import 'package:testing/providers/saved_address.dart';
 import '../main_menu_page.dart';
 import 'package:testing/providers/food_list.dart';
 
@@ -16,14 +17,21 @@ class _CheckOutPageState extends State<CheckOutPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   PaymentType pt = PaymentType.Cash;
   bool show = false;
-  String dropdownvalue = 'Saved Address 1';
-  String selectedAddress = '';
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
+  final TextEditingController _cityController = TextEditingController();
+  final TextEditingController _provinceController = TextEditingController();
 
-  var items = [
-    'Saved Address 1',
-    'Saved Address 2',
-    'Saved Address 3',
-  ];
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _addressController.dispose();
+    _phoneController.dispose();
+    _cityController.dispose();
+    _provinceController.dispose();
+    super.dispose();
+  }
 
   void showErrorSnackBar(String message) {
     final snackBar = SnackBar(content: Text(message));
@@ -76,9 +84,11 @@ class _CheckOutPageState extends State<CheckOutPage> {
 
   @override
   Widget build(BuildContext context) {
-    final accountProvider =
-        Provider.of<AccountProvider>(context, listen: false);
+    final accountProvider = Provider.of<AccountProvider>(context, listen: false);
+    final addressProvider = Provider.of<AddressProvider>(context);
     double balance = accountProvider.loggedInAccount?.balance ?? 0;
+    List<AddressData> addressList = addressProvider.addresses;
+    AddressData? dropdownvalue;
     return Scaffold(
       backgroundColor: context.watch<DarkThemeProvider>().darkTheme
           ? Colors.grey[800]
@@ -106,7 +116,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                 color: context.watch<DarkThemeProvider>().darkTheme
                     ? Colors.grey[850]
                     : Colors.white,
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(75.0)),
+                borderRadius: const BorderRadius.only(topLeft: Radius.circular(75.0)),
               ),
               child: SingleChildScrollView(
                 child: Column(children: [
@@ -124,28 +134,25 @@ class _CheckOutPageState extends State<CheckOutPage> {
                           const SizedBox(height: 16),
                           DropdownButtonFormField(
                             value: dropdownvalue,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
-                              hintText: 'Select your address',
+                              labelText: 'Select saved address',
                             ),
                             icon: const Icon(Icons.keyboard_arrow_down),
-                            items: items.map((String items) {
+                            items: addressList.map((item) {
                               return DropdownMenuItem(
-                                value: items,
-                                child: Text(items),
+                                value: item,
+                                child: Text(item.name),
                               );
                             }).toList(),
-                            onChanged: (String? newValue) {
+                            onChanged: (value) {
                               setState(() {
-                                if (newValue == 'Saved Address 1') {
-                                  selectedAddress = 'Saved Address 1';
-                                } else if (newValue == 'Saved Address 2') {
-                                  selectedAddress = 'Saved Address 2';
-                                } else if (newValue == 'Saved Address 3') {
-                                  selectedAddress = 'Saved Address 3';
-                                } else {
-                                  dropdownvalue = newValue!;
-                                }
+                                dropdownvalue = value!;
+                                _nameController.text = dropdownvalue!.name;
+                                _addressController.text = dropdownvalue!.address;
+                                _phoneController.text = dropdownvalue!.phone;
+                                _cityController.text = dropdownvalue!.city;
+                                _provinceController.text = dropdownvalue!.province;
                               });
                             },
                           ),
@@ -156,6 +163,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                 width: (MediaQuery.of(context).size.width / 2) -
                                     15,
                                 child: TextFormField(
+                                  controller: _nameController,
                                   decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
                                     hintText: 'Enter your Name',
@@ -174,11 +182,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                 width: (MediaQuery.of(context).size.width / 2) -
                                     15,
                                 child: TextFormField(
-                                  initialValue:
-                                      accountProvider.loggedInAccount != null
-                                          ? accountProvider
-                                              .loggedInAccount!.phonenum
-                                          : '',
+                                  controller: _phoneController,
                                   decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
                                     hintText: 'Enter your Phone Number',
@@ -201,16 +205,14 @@ class _CheckOutPageState extends State<CheckOutPage> {
                             padding: const EdgeInsets.only(right: 0),
                             width: MediaQuery.of(context).size.width - 15,
                             child: TextFormField(
-                              decoration: InputDecoration(
+                              controller: _addressController,
+                              decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
-                                hintText: selectedAddress.isNotEmpty
-                                    ? 'Enter your Delivery address'
-                                    : 'Select a saved address',
+                                hintText: 'Enter your Delivery address',
                                 labelText: 'Delivery Address',
                               ),
                               validator: (value) {
-                                if (selectedAddress.isEmpty &&
-                                    (value == null || value.isEmpty)) {
+                                if (value == null || value.isEmpty) {
                                   return 'Please enter the delivery address';
                                 }
                                 return null;
@@ -224,6 +226,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                 width: (MediaQuery.of(context).size.width / 2) -
                                     15,
                                 child: TextFormField(
+                                  controller: _cityController,
                                   decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
                                     hintText: 'Enter your City',
@@ -242,6 +245,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                 width: (MediaQuery.of(context).size.width / 2) -
                                     15,
                                 child: TextFormField(
+                                  controller: _provinceController,
                                   decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
                                     hintText: 'Enter your Province',
@@ -252,6 +256,18 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                       return 'Please enter the Province you live in';
                                     }
                                     return null;
+                                  },
+                                  onTap: () async {
+                                    final selectedProvince =
+                                        await showProvinceDialog(context);
+                                    if (selectedProvince != null) {
+                                      setState(() {
+                                        _provinceController.text =
+                                            selectedProvince;
+                                      });
+                                    }
+                                    FocusManager.instance.primaryFocus
+                                        ?.unfocus();
                                   },
                                 ),
                               ),
@@ -264,11 +280,10 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                     style: TextStyle(fontSize: 18.0))),
                           ),
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Container(
-                                margin: const EdgeInsets.only(left: 0),
-                                width: (MediaQuery.of(context).size.width / 2) -
-                                    10,
+                              SizedBox(
+                                width: (MediaQuery.of(context).size.width / 3)+10,
                                 child: ListTile(
                                   title: const Text('Cash'),
                                   leading: Radio(
@@ -284,7 +299,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                                 ),
                               ),
                               SizedBox(
-                                width: (MediaQuery.of(context).size.width / 2) -
+                                width: (MediaQuery.of(context).size.width / 3) +
                                     10,
                                 child: ListTile(
                                   title: const Text('Balance'),

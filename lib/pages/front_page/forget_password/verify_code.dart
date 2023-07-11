@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:testing/pages/front_page/forget_password/change_password.dart';
 
-class pageVerify extends StatelessWidget {
-  const pageVerify({super.key});
+class PageVerify extends StatelessWidget {
+  const PageVerify({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class pageVerify extends StatelessWidget {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const forgotPassword()));
+                                builder: (context) => const ForgotPassword()));
                       },
                       child: const Text('Send'),
                     )

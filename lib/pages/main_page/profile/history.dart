@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:testing/pages/main_page/profile/profile.dart';
 import 'package:testing/providers/food_list.dart';
 
 class History extends StatefulWidget {
@@ -28,14 +27,18 @@ class _HistoryState extends State<History> {
         ),
       ),
       body: SingleChildScrollView(
-        child: allHistory != null
-            ? Padding(
-                padding: EdgeInsets.only(top: 300, left: 105),
-                child: Text('There is no history yet'),
+        child: allHistory.isEmpty
+            ? Column(
+                children: const [
+                  SizedBox(height: 100),
+                  Center(
+                    child: Text('There is no history yet'),
+                  ),
+                ],
               )
             : ListView.builder(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: allHistory.length,
                 itemBuilder: (context, index) {
                   HistoryList history = allHistory[index];
@@ -44,7 +47,7 @@ class _HistoryState extends State<History> {
                       children: [
                         ListView.builder(
                           shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           itemCount: history.listHistory?.length,
                           itemBuilder: (context, foodIndex) {
                             Food food = history.listHistory![foodIndex];

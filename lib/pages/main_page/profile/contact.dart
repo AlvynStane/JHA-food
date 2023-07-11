@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:testing/pages/main_page/profile/profile.dart';
 
 class Contact extends StatefulWidget {
   const Contact({super.key});
@@ -14,9 +12,6 @@ class _ContactState extends State<Contact> {
   final _phonenumberController = TextEditingController();
   final _emailController = TextEditingController();
   final _messageController = TextEditingController();
-  bool _agree = false;
-  String? _agreeError;
-  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +33,8 @@ class _ContactState extends State<Contact> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Text(
                 'Our Priority is always Your Satisfaction',
                 style: TextStyle(
@@ -48,22 +43,22 @@ class _ContactState extends State<Contact> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(20),
+            const Padding(
+              padding: EdgeInsets.all(20),
               child: Text(
                 "For further inquiries, please don't hesitate to contact us using the form below. We will get in touch with you as soon as possible.",
                 style: TextStyle(fontSize: 20),
               ),
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             Form(
               child: SizedBox(
                 width: 300,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 10),
+                    const Padding(
+                      padding: EdgeInsets.only(bottom: 10),
                       child: Text(
                         'FULL NAME',
                         style: TextStyle(
@@ -82,9 +77,9 @@ class _ContactState extends State<Contact> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 10),
+                    const SizedBox(height: 20),
+                    const Padding(
+                      padding: EdgeInsets.only(bottom: 10),
                       child: Text(
                         'PHONE NUMBER',
                         style: TextStyle(
@@ -103,9 +98,9 @@ class _ContactState extends State<Contact> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 10),
+                    const SizedBox(height: 20),
+                    const Padding(
+                      padding: EdgeInsets.only(bottom: 10),
                       child: Text(
                         'EMAIL',
                         style: TextStyle(
@@ -124,9 +119,9 @@ class _ContactState extends State<Contact> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 10),
+                    const SizedBox(height: 20),
+                    const Padding(
+                      padding: EdgeInsets.only(bottom: 10),
                       child: Text(
                         'MESSAGE',
                         style: TextStyle(
@@ -157,7 +152,7 @@ class _ContactState extends State<Contact> {
                 width: 90,
                 child: ElevatedButton(
                   onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       content: Text('Thank you for your messages'),
                       behavior: SnackBarBehavior.floating,
                       duration: Duration(seconds: 2),

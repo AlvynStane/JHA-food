@@ -42,9 +42,6 @@ void addToHistory() {
     allHistory.add(newHistory);
     list.clear();
     total = 0;
-    print('History saved successfully.');
-  } else {
-    print('Duplicate history found. Skipping...');
   }
 }
 

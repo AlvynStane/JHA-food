@@ -60,7 +60,7 @@ class _DetailsPageState extends State<DetailsPage> {
                         top: 75.0,
                         child: Container(
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(45.0),
                                   topRight: Radius.circular(45.0),
                                 ),

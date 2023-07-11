@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class FAQ extends StatelessWidget {
+  const FAQ({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +25,7 @@ class FAQ extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: const [
               Text(
                 'About Us',
                 style: TextStyle(
@@ -133,7 +135,7 @@ class _FAQItemState extends State<FAQItem> {
               return ListTile(
                 title: Text(
                   widget.question,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16.0,
                   ),
@@ -141,10 +143,10 @@ class _FAQItemState extends State<FAQItem> {
               );
             },
             body: Padding(
-              padding: EdgeInsets.fromLTRB(16.0, 0, 16.0, 16.0),
+              padding: const EdgeInsets.fromLTRB(16.0, 0, 16.0, 16.0),
               child: Text(
                 widget.answer,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 14.0,
                 ),
               ),

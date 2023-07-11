@@ -48,7 +48,7 @@ class _CartPageState extends State<CartPage> {
               color: context.watch<DarkThemeProvider>().darkTheme
                   ? Colors.grey[850]
                   : Colors.white,
-              borderRadius: BorderRadius.only(topLeft: Radius.circular(75.0)),
+              borderRadius: const BorderRadius.only(topLeft: Radius.circular(75.0)),
             ),
             child: ListView(
                 primary: false,
@@ -138,7 +138,7 @@ class _CartPageState extends State<CartPage> {
                                 );
                               } else {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => CheckOutPage()));
+                                    builder: (context) => const CheckOutPage()));
                               }
                             },
                           ),

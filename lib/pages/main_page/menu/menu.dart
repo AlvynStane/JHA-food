@@ -54,7 +54,7 @@ class _MainMenuState extends State<MainMenu> {
             height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
               color: context.watch<DarkThemeProvider>().darkTheme ? Colors.grey[850] : Colors.white,
-              borderRadius: BorderRadius.only(topLeft: Radius.circular(75.0)),
+              borderRadius: const BorderRadius.only(topLeft: Radius.circular(75.0)),
             ),
             child: ListView(
               primary: false,

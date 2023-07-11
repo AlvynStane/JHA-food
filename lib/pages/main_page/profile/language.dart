@@ -56,7 +56,7 @@ class _LanguageState extends State<Language> {
           itemCount: languageProvider.languageList.length,
           itemBuilder: (context, index) {
             return Container(
-              decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey))),
+              decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey))),
               child: RadioListTile(
                 title: Text(languageProvider.languageList[index]),
                 value: languageProvider.languageList[index],

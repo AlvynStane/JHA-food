@@ -1,11 +1,9 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:testing/pages/front_page/forget_password/forget_password.dart';
 import 'package:testing/pages/main_page/main_menu_page.dart';
 import 'package:testing/pages/front_page/signup/signup.dart';
-import 'package:testing/providers/dark_theme.dart';
 import 'package:testing/pages/front_page/login/recapcha.dart';
 import 'package:testing/providers/saved_account.dart';
 
@@ -52,7 +50,7 @@ class _LoginState extends State<Login> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text('SIGN IN', style: TextStyle(fontSize: 35)),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 TextFormField(
                   controller: _emailController,
                   validator: (value) {
@@ -130,7 +128,7 @@ class _LoginState extends State<Login> {
                       padding: const EdgeInsets.only(left: 28.0),
                       child: Text(
                         _agreeError!,
-                        style: TextStyle(color: Colors.red),
+                        style: const TextStyle(color: Colors.red),
                       ),
                     ),
                   ),
@@ -156,9 +154,9 @@ class _LoginState extends State<Login> {
                               accountProvider.login(logged.account!);
                               showDialog(
                                 context: context,
-                                builder: (context) => MyDialog(),
+                                builder: (context) => const MyDialog(),
                               ).then((isCorrect){
-                              Timer(Duration(milliseconds: 50), (){Navigator.pushReplacement(
+                              Timer(const Duration(milliseconds: 50), (){Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => const HomePages(),
@@ -182,7 +180,7 @@ class _LoginState extends State<Login> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Register_News(),
+                            builder: (context) => const Register(),
                           ),
                         );
                       },
@@ -202,7 +200,7 @@ class _LoginState extends State<Login> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const bantuanForgot(),
+                        builder: (context) => const BantuanForgot(),
                       ),
                     );
                   },

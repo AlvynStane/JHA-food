@@ -70,98 +70,98 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
               ),
               title: Text(
                 username,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 23,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               subtitle: Text(
                 email,
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.w300,
                 ),
               ),
               trailing: IconButton(
-                icon: Icon(Icons.edit),
+                icon: const Icon(Icons.edit),
                 onPressed: () {
                   _editProfile();
                 },
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Text(
                     'Account',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: ListView(
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     children: [
                       _listItem(Icons.credit_card, 'Balance',
-                          page: SaldoPage()),
+                          page: const SaldoPage()),
                       _listItem(Icons.location_city_rounded, 'Saved Address',
-                          page: Address()),
+                          page: const Address()),
                     ],
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Text(
                     'Activities',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: ListView(
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     children: [
                       _listItem(Icons.history, 'Order History',
-                          page: History()),
+                          page: const History()),
                     ],
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Text(
                     'General',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: ListView(
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     children: [
-                      _listItem(Icons.language, 'Language', page: Language()),
+                      _listItem(Icons.language, 'Language', page: const Language()),
                       _listItem(
                           context.watch<DarkThemeProvider>().darkTheme
                               ? Icons.wb_sunny
@@ -172,36 +172,36 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Text(
                     'Help Center',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: ListView(
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     children: [
                       _listItem(Icons.question_answer, 'About Us and FAQ',
-                          page: FAQ()),
-                      SizedBox(height: 10),
+                          page: const FAQ()),
+                      const SizedBox(height: 10),
                       _listItem(Icons.help_center, 'Contact Us',
-                          page: Contact()),
+                          page: const Contact()),
                     ],
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Container(
               padding: const EdgeInsets.all(8.0),
               width: double.infinity,
@@ -211,7 +211,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Login(),
+                      builder: (context) => const Login(),
                     ),
                   );
                 },
@@ -236,7 +236,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
         }
       },
       child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           border: Border(
             bottom: BorderSide(color: Colors.grey),
           ),
@@ -245,7 +245,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
           title: Text(name),
           leading: Icon(icon),
           trailing: page != null
-              ? Icon(Icons.arrow_forward_ios)
+              ? const Icon(Icons.arrow_forward_ios)
               : Switch(
                   value: themeProvider.darkTheme,
                   onChanged: (value) {
@@ -270,7 +270,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
         String newPhone = accountProvider.loggedInAccount!.phonenum;
         String newPass = accountProvider.loggedInAccount!.password;
         return AlertDialog(
-          title: Text('Edit Profile'),
+          title: const Text('Edit Profile'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -278,7 +278,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                 onChanged: (value) {
                   newUsername = value;
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Username',
                 ),
               ),
@@ -286,7 +286,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                 onChanged: (value) {
                   newEmail = value;
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Email',
                 ),
               ),
@@ -294,7 +294,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                 onChanged: (value) {
                   newPhone = value;
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Phone Number',
                 ),
               ),
@@ -302,7 +302,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                 onChanged: (value) {
                   newPass = value;
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Password',
                 ),
               ),
@@ -313,7 +313,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () {
@@ -323,7 +323,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                 });
                 Navigator.pop(context);
               },
-              child: Text('Save'),
+              child: const Text('Save'),
             ),
           ],
         );

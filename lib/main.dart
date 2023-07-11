@@ -2,8 +2,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:testing/pages/loading_page/loading.dart';
-import 'package:testing/pages/front_page/login/login.dart';
-import 'package:testing/pages/main_page/main_menu_page.dart';
 import 'package:testing/providers/dark_theme.dart';
 import 'package:testing/providers/language_provider.dart';
 import 'package:testing/providers/saved_account.dart';
@@ -24,7 +22,7 @@ class NoThumbScrollBehavior extends ScrollBehavior {
         PointerDeviceKind.touch,
         PointerDeviceKind.mouse,
         PointerDeviceKind.stylus,
-      };
+      };  
 }
 
 class MyApp extends StatelessWidget {
@@ -45,7 +43,7 @@ class MyApp extends StatelessWidget {
             theme: themeProvider.darkTheme == true
                 ? themeProvider.dark
                 : themeProvider.light,
-            home: HomePages(),
+            home: const SplashScreen(),
           );
         });
   }

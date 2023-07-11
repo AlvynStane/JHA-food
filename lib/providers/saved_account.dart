@@ -61,7 +61,6 @@ class AccountProvider with ChangeNotifier {
 
     if (account != null) {
       if (account.password == password) {
-        print('Login successful!');
         return LoginResult(true, account: account);
       } else {
         showErrorSnackBar('Incorrect password!');
@@ -99,9 +98,9 @@ class AccountProvider with ChangeNotifier {
   }
 
   void editBalance(double total) {
-  if (loggedInAccount != null) {
-    loggedInAccount!.balance = (loggedInAccount!.balance ?? 0) - total;
-    notifyListeners();
+    if (loggedInAccount != null) {
+      loggedInAccount!.balance = (loggedInAccount!.balance ?? 0) - total;
+      notifyListeners();
+    }
   }
-}
 }

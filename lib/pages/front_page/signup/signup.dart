@@ -4,14 +4,14 @@ import 'package:testing/pages/front_page/login/login.dart';
 import 'package:testing/pages/main_page/main_menu_page.dart';
 import 'package:testing/providers/saved_account.dart';
 
-class Register_News extends StatefulWidget {
-  Register_News({super.key});
+class Register extends StatefulWidget {
+  const Register({super.key});
 
   @override
-  State<Register_News> createState() => _Register_NewsState();
+  State<Register> createState() => _RegisterState();
 }
 
-class _Register_NewsState extends State<Register_News> {
+class _RegisterState extends State<Register> {
   final _unameController = TextEditingController();
   final _phoneController = TextEditingController();
   final _emailController = TextEditingController();
@@ -40,7 +40,7 @@ class _Register_NewsState extends State<Register_News> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text('SIGN UP', style: TextStyle(fontSize: 35)),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   TextFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -157,7 +157,7 @@ class _Register_NewsState extends State<Register_News> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HomePages()));
+                                  builder: (context) => const HomePages()));
                         }
                       }
                     },
@@ -175,7 +175,7 @@ class _Register_NewsState extends State<Register_News> {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Login()));
+                                    builder: (context) => const Login()));
                           },
                           style: ButtonStyle(
                               overlayColor: MaterialStateProperty.all<Color>(
