@@ -16,15 +16,13 @@ class _CheckOutPageState extends State<CheckOutPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   PaymentType pt = PaymentType.Cash;
   bool show = false;
-  String dropdownvalue = 'Item 1';
+  String dropdownvalue = 'Saved Address 1';
+  String selectedAddress = '';
 
-  // List of items in our dropdown menu
   var items = [
-    'Item 1',
-    'Item 2',
-    'Item 3',
-    'Item 4',
-    'Item 5',
+    'Saved Address 1',
+    'Saved Address 2',
+    'Saved Address 3',
   ];
 
   void showErrorSnackBar(String message) {
@@ -139,15 +137,24 @@ class _CheckOutPageState extends State<CheckOutPage> {
                             }).toList(),
                             onChanged: (String? newValue) {
                               setState(() {
-                                dropdownvalue = newValue!;
+                                if (newValue == 'Saved Address 1') {
+                                  selectedAddress = 'Saved Address 1';
+                                } else if (newValue == 'Saved Address 2') {
+                                  selectedAddress = 'Saved Address 2';
+                                } else if (newValue == 'Saved Address 3') {
+                                  selectedAddress = 'Saved Address 3';
+                                } else {
+                                  dropdownvalue = newValue!;
+                                }
                               });
                             },
                           ),
+                          const SizedBox(height: 16),
                           Row(
                             children: [
                               SizedBox(
                                 width: (MediaQuery.of(context).size.width / 2) -
-                                    20,
+                                    15,
                                 child: TextFormField(
                                   decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
@@ -165,7 +172,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                               const SizedBox(width: 10),
                               SizedBox(
                                 width: (MediaQuery.of(context).size.width / 2) -
-                                    20,
+                                    15,
                                 child: TextFormField(
                                   initialValue:
                                       accountProvider.loggedInAccount != null
@@ -190,20 +197,41 @@ class _CheckOutPageState extends State<CheckOutPage> {
                             ],
                           ),
                           const SizedBox(height: 16),
+                          Container(
+                            padding: const EdgeInsets.only(right: 0),
+                            width: MediaQuery.of(context).size.width - 15,
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: selectedAddress.isNotEmpty
+                                    ? 'Enter your Delivery address'
+                                    : 'Select a saved address',
+                                labelText: 'Delivery Address',
+                              ),
+                              validator: (value) {
+                                if (selectedAddress.isEmpty &&
+                                    (value == null || value.isEmpty)) {
+                                  return 'Please enter the delivery address';
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+                          const SizedBox(height: 16),
                           Row(
                             children: [
                               SizedBox(
                                 width: (MediaQuery.of(context).size.width / 2) -
-                                    20,
+                                    15,
                                 child: TextFormField(
                                   decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
-                                    hintText: 'Enter your Province',
-                                    labelText: 'Province',
+                                    hintText: 'Enter your City',
+                                    labelText: 'City',
                                   ),
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
-                                      return 'Please enter a valid province';
+                                      return 'Please enter a valid City';
                                     }
                                     return null;
                                   },
@@ -212,39 +240,22 @@ class _CheckOutPageState extends State<CheckOutPage> {
                               const SizedBox(width: 10),
                               SizedBox(
                                 width: (MediaQuery.of(context).size.width / 2) -
-                                    20,
+                                    15,
                                 child: TextFormField(
                                   decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
-                                    hintText: 'Enter your City',
-                                    labelText: "City",
+                                    hintText: 'Enter your Province',
+                                    labelText: "Province",
                                   ),
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
-                                      return 'Please enter the city you live in';
+                                      return 'Please enter the Province you live in';
                                     }
                                     return null;
                                   },
                                 ),
                               ),
                             ],
-                          ),
-                          const SizedBox(height: 16),
-                          Container(
-                            padding: const EdgeInsets.only(right: 10),
-                            width: MediaQuery.of(context).size.width - 20,
-                            child: TextFormField(
-                              decoration: const InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  hintText: 'Enter your Delivery address',
-                                  labelText: 'Delivery Address'),
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please enter the delivery address';
-                                }
-                                return null;
-                              },
-                            ),
                           ),
                           Container(
                             margin: const EdgeInsets.only(top: 10),
@@ -257,7 +268,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                               Container(
                                 margin: const EdgeInsets.only(left: 0),
                                 width: (MediaQuery.of(context).size.width / 2) -
-                                    30,
+                                    10,
                                 child: ListTile(
                                   title: const Text('Cash'),
                                   leading: Radio(
@@ -274,7 +285,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                               ),
                               SizedBox(
                                 width: (MediaQuery.of(context).size.width / 2) -
-                                    30,
+                                    10,
                                 child: ListTile(
                                   title: const Text('Balance'),
                                   leading: Radio(

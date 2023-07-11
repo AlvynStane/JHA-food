@@ -88,7 +88,7 @@ class AddressProvider extends ChangeNotifier {
         city: 'Medan',
         province: 'North Sumatra'),
     AddressData(
-        name: 'Kantor',
+        name: 'Budi',
         address: 'Jl. Sutomo No 789',
         phone: '085388271441',
         city: 'Medan',
@@ -116,7 +116,7 @@ class AddressProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void removeAddress(AddressData address){
+  void removeAddress(AddressData address) {
     addresses.remove(address);
     notifyListeners();
   }

@@ -115,7 +115,8 @@ class _AddressState extends State<Address> {
         String newAddress = address.address;
         String newPhone = address.phone;
         String newCity = address.city;
-        TextEditingController provinceController = TextEditingController(text: address.province);
+        TextEditingController provinceController =
+            TextEditingController(text: address.province);
         return AlertDialog(
           title: Text('Edit Address'),
           content: Column(
@@ -241,7 +242,7 @@ class _AddNewAdressState extends State<AddNewAdress> {
                   Row(
                     children: [
                       SizedBox(
-                        width: (MediaQuery.of(context).size.width / 2) - 20,
+                        width: (MediaQuery.of(context).size.width / 2) - 15,
                         child: TextFormField(
                           controller: _nameController,
                           decoration: const InputDecoration(
@@ -259,7 +260,7 @@ class _AddNewAdressState extends State<AddNewAdress> {
                       ),
                       const SizedBox(width: 10),
                       SizedBox(
-                        width: (MediaQuery.of(context).size.width / 2) - 20,
+                        width: (MediaQuery.of(context).size.width / 2) - 15,
                         child: TextFormField(
                           controller: _phoneController,
                           decoration: const InputDecoration(
@@ -282,7 +283,7 @@ class _AddNewAdressState extends State<AddNewAdress> {
                   const SizedBox(height: 16),
                   Container(
                     padding: const EdgeInsets.only(right: 10, left: 10),
-                    width: MediaQuery.of(context).size.width - 20,
+                    width: MediaQuery.of(context).size.width - 0,
                     child: TextFormField(
                       controller: _addressController,
                       decoration: const InputDecoration(
@@ -301,7 +302,7 @@ class _AddNewAdressState extends State<AddNewAdress> {
                   Row(
                     children: [
                       SizedBox(
-                        width: (MediaQuery.of(context).size.width / 2) - 20,
+                        width: (MediaQuery.of(context).size.width / 2) - 15,
                         child: TextFormField(
                           controller: _cityController,
                           decoration: const InputDecoration(
@@ -319,7 +320,7 @@ class _AddNewAdressState extends State<AddNewAdress> {
                       ),
                       const SizedBox(width: 10),
                       SizedBox(
-                        width: (MediaQuery.of(context).size.width / 2) - 20,
+                        width: (MediaQuery.of(context).size.width / 2) - 15,
                         child: TextFormField(
                           controller: _provinceController,
                           decoration: const InputDecoration(
@@ -332,8 +333,7 @@ class _AddNewAdressState extends State<AddNewAdress> {
                                 await showProvinceDialog(context);
                             if (selectedProvince != null) {
                               setState(() {
-                                _provinceController.text =
-                                    selectedProvince;
+                                _provinceController.text = selectedProvince;
                               });
                             }
                             FocusManager.instance.primaryFocus?.unfocus();
@@ -364,9 +364,9 @@ class _AddNewAdressState extends State<AddNewAdress> {
                             Navigator.pop(context);
                           }
                         },
-                        child: Text('Save'),
+                        child: Text(' Save '),
                       ),
-                      SizedBox(width: 20),
+                      SizedBox(width: 15),
                       OutlinedButton(
                         onPressed: () {
                           Navigator.pop(context);

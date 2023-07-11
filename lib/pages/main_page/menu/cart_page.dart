@@ -217,7 +217,7 @@ class _BuildFoodItemState extends State<BuildFoodItem> {
                 ])
               ]),
               Container(
-                width: 125.0,
+                width: 90.0,
                 height: 40.0,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(17.0),

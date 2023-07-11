@@ -12,7 +12,8 @@ class SaldoPage extends StatefulWidget {
 class _SaldoPageState extends State<SaldoPage> {
   @override
   Widget build(BuildContext context) {
-    final accountProvider = Provider.of<AccountProvider>(context, listen: false);
+    final accountProvider =
+        Provider.of<AccountProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -88,36 +89,6 @@ class _SaldoPageState extends State<SaldoPage> {
                       ],
                     ),
                     SizedBox(height: 24.0),
-                    Text(
-                      'Last Transaction',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
-                    SizedBox(height: 8.0),
-                    ListTile(
-                      leading: Icon(Icons.arrow_upward, color: Colors.green),
-                      title: Text(
-                        'Received Payment',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      subtitle: Text(
-                        'June 25, 2023',
-                        style: TextStyle(
-                        ),
-                      ),
-                      trailing: Text(
-                        '+\$ 1,000',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green,
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),
