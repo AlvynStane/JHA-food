@@ -65,7 +65,7 @@ class _SaldoPageState extends State<SaldoPage> {
                           ),
                         ),
                         Text(
-                          accountProvider.loggedInAccount!.balance.toString(),
+                          accountProvider.loggedInAccount!.balance!.toStringAsFixed(2),
                           style: const TextStyle(
                             fontSize: 40,
                             fontWeight: FontWeight.bold,

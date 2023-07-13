@@ -147,7 +147,7 @@ class _CartPageState extends State<CartPage> {
                       const SizedBox(
                         width: 10,
                       ),
-                      Text("Total: $total \$",
+                      Text("Total: \$${total.toStringAsFixed(2)}",
                           style: TextStyle(
                               color:
                                   context.watch<DarkThemeProvider>().darkTheme
@@ -202,7 +202,7 @@ class _BuildFoodItemState extends State<BuildFoodItem> {
                 Hero(
                     tag: widget.imgPath,
                     child: Image(
-                        image: AssetImage(widget.imgPath),
+                        image: AssetImage('assets/${widget.imgPath}'),
                         fit: BoxFit.cover,
                         height: 75.0,
                         width: 75.0)),
@@ -211,7 +211,7 @@ class _BuildFoodItemState extends State<BuildFoodItem> {
                   Text(widget.foodName,
                       style: const TextStyle(
                           fontSize: 17.0, fontWeight: FontWeight.bold)),
-                  Text('Total price: \$${widget.price * localNumber}',
+                  Text('Total price: \$${(widget.price * localNumber).toStringAsFixed(2)}',
                       style:
                           const TextStyle(fontSize: 15.0, color: Colors.grey))
                 ])

@@ -76,7 +76,7 @@ class _DetailsPageState extends State<DetailsPage> {
                             child: Container(
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
-                                        image: AssetImage(widget.heroTag),
+                                        image: AssetImage('assets/${widget.heroTag}'),
                                         fit: BoxFit.cover)),
                                 height: 200.0,
                                 width: 200.0))),
@@ -95,7 +95,7 @@ class _DetailsPageState extends State<DetailsPage> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
-                                Text('\$${widget.foodPrice}',
+                                Text('\$${widget.foodPrice!.toStringAsFixed(2)}',
                                     style: const TextStyle(
                                         fontSize: 20.0, color: Colors.grey)),
                                 Container(

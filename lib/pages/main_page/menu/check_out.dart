@@ -318,7 +318,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                             ],
                           ),
                           show
-                              ? Text('Balance : \$ $balance')
+                              ? Text('Balance : \$ ${balance.toStringAsFixed(2)}')
                               : const SizedBox.shrink(),
                           Container(
                             margin: const EdgeInsets.only(top: 10),

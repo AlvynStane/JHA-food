@@ -121,7 +121,7 @@ class _MainMenuState extends State<MainMenu> {
                 Hero(
                     tag: imgPath,
                     child: Image(
-                        image: AssetImage(imgPath),
+                        image: AssetImage('assets/$imgPath'),
                         fit: BoxFit.cover,
                         height: 75.0,
                         width: 75.0)),
@@ -130,7 +130,7 @@ class _MainMenuState extends State<MainMenu> {
                   Text(foodName,
                       style: const TextStyle(
                           fontSize: 17.0, fontWeight: FontWeight.bold)),
-                  Text('\$$price',
+                  Text('\$${price.toStringAsFixed(2)}',
                       style: const TextStyle(
                         fontSize: 15.0,
                       ))
