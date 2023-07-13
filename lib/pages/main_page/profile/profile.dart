@@ -50,42 +50,45 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            ListTile(
-              leading: Container(
-                height: 50,
-                width: 50,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(40),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.white10,
-                      spreadRadius: 2,
-                    ),
-                  ],
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child: ListTile(
+                leading: Container(
+                  height: 70,
+                  width: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.white10,
+                        spreadRadius: 2,
+                      ),
+                    ],
+                    image: const DecorationImage(
+                      image: AssetImage('assets/selena.jpg'),
+                      fit: BoxFit.cover,
+                    )
+                  ),
                 ),
-                child: const CircleAvatar(
-                  radius: 70,
-                  backgroundImage: AssetImage('assets/selena.jpg'),
+                title: Text(
+                  username,
+                  style: const TextStyle(
+                    fontSize: 23,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              title: Text(
-                username,
-                style: const TextStyle(
-                  fontSize: 23,
-                  fontWeight: FontWeight.bold,
+                subtitle: Text(
+                  email,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w300,
+                  ),
                 ),
-              ),
-              subtitle: Text(
-                email,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w300,
+                trailing: IconButton(
+                  icon: const Icon(Icons.edit),
+                  onPressed: () {
+                    _editProfile();
+                  },
                 ),
-              ),
-              trailing: IconButton(
-                icon: const Icon(Icons.edit),
-                onPressed: () {
-                  _editProfile();
-                },
               ),
             ),
             const SizedBox(height: 20),

@@ -56,6 +56,7 @@ class _AddressState extends State<Address> {
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                     child: ListTile(
+                        isThreeLine: true,
                         title: Text(
                           address.name,
                           style: const TextStyle(
@@ -64,7 +65,7 @@ class _AddressState extends State<Address> {
                           ),
                         ),
                         subtitle: Text(
-                          "${address.address}, ${address.city} - ${address.province}",
+                          "${address.address}, \n${address.city} - ${address.province}",
                           style: const TextStyle(
                             fontSize: 14.0,
                           ),
